@@ -1,0 +1,8 @@
+{
+  "name": "flipgym-agent",
+  "version": "1.0.0",
+  "description": "Environnement de test local pour FlipGym",
+  "scripts": {
+    "start": "npx serve ."
+  }
+}

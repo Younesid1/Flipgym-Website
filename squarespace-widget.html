@@ -1,0 +1,388 @@
+<!--
+  ╔══════════════════════════════════════════════════════════╗
+  ║  AGENT IA SOPHIE — Club flipgym de Montréal             ║
+  ║  → Coller dans Squarespace :                             ║
+  ║    Paramètres > Avancé > Injection de code > Pied de page ║
+  ╚══════════════════════════════════════════════════════════╝
+
+  ⚠️  IMPORTANT : Remplace YOUR_OPENAI_API_KEY par ta vraie clé
+  ou laisse le champ vide pour que l'utilisateur la saisisse.
+
+  CONFIGURATION :
+  - Pour cacher la clé aux visiteurs → utilise l'option backend (voir README)
+  - Pour un usage interne/demo → colle ta clé dans API_KEY ci-dessous
+-->
+
+<style>
+  /* ── CHAT FAB ── */
+  #fg-fab {
+    position: fixed; bottom: 28px; right: 28px; z-index: 99999;
+    width: 60px; height: 60px; border-radius: 50%;
+    background: #10488B; box-shadow: 0 6px 24px rgba(16,72,139,0.4);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; border: none;
+    transition: transform .25s, box-shadow .25s;
+    font-size: 1.6rem;
+  }
+  #fg-fab:hover { transform: scale(1.12); box-shadow: 0 10px 32px rgba(16,72,139,0.5); }
+  #fg-fab-pulse {
+    position: absolute; inset: 0; border-radius: 50%;
+    background: #10488B; animation: fg-pulse 2.5s ease-out infinite; z-index: -1;
+  }
+  #fg-fab-badge {
+    position: absolute; top: -4px; right: -4px;
+    background: #e53e3e; color: #fff; width: 18px; height: 18px;
+    border-radius: 50%; font-size: 11px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    border: 2px solid #fff; font-family: sans-serif;
+  }
+  @keyframes fg-pulse {
+    0% { transform: scale(1); opacity: .7; }
+    100% { transform: scale(1.75); opacity: 0; }
+  }
+
+  /* ── CHAT WINDOW ── */
+  #fg-window {
+    display: none; flex-direction: column;
+    position: fixed; bottom: 102px; right: 28px; z-index: 99999;
+    width: 370px; max-width: calc(100vw - 24px);
+    max-height: 82vh; border-radius: 20px; overflow: hidden;
+    background: #fff; box-shadow: 0 20px 60px rgba(16,72,139,0.18);
+    border: 1px solid rgba(16,72,139,0.15);
+    font-family: 'Outfit', 'Segoe UI', sans-serif;
+    animation: fg-slideup .3s ease;
+  }
+  #fg-window.fg-open { display: flex; }
+  @keyframes fg-slideup {
+    from { opacity: 0; transform: translateY(16px) scale(.97); }
+    to { opacity: 1; transform: none; }
+  }
+
+  /* Header */
+  #fg-header {
+    background: #10488B; padding: 14px 18px;
+    display: flex; align-items: center; gap: 12px; flex-shrink: 0;
+  }
+  #fg-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.4);
+    display: flex; align-items: center; justify-content: center; font-size: 1.3rem;
+  }
+  #fg-agent-name { font-weight: 700; color: #fff; font-size: .93rem; }
+  #fg-agent-status { font-size: .74rem; color: rgba(255,255,255,.75); display: flex; align-items: center; gap: 5px; }
+  #fg-dot { width: 7px; height: 7px; background: #4ade80; border-radius: 50%; box-shadow: 0 0 6px #4ade80; animation: fg-blink 2s infinite; }
+  @keyframes fg-blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+  #fg-close {
+    margin-left: auto; background: rgba(255,255,255,.15); border: none;
+    color: #fff; width: 30px; height: 30px; border-radius: 50%;
+    cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center;
+  }
+  #fg-close:hover { background: rgba(255,255,255,.3); }
+
+  /* Setup */
+  #fg-setup { padding: 28px 24px; display: flex; flex-direction: column; gap: 20px; }
+  #fg-setup-logo { height: 42px; display: block; margin: 0 auto 4px; }
+  #fg-setup-sub { text-align: center; color: #5a7394; font-size: .88rem; }
+  #fg-key-label { font-weight: 600; font-size: .88rem; color: #0d1b2e; margin-bottom: 6px; display: block; }
+  #fg-key-input {
+    width: 100%; padding: 11px 14px; border-radius: 10px;
+    border: 1.5px solid rgba(16,72,139,.2); background: #f5f8fc;
+    font-size: .88rem; outline: none; font-family: inherit; color: #0d1b2e;
+  }
+  #fg-key-input:focus { border-color: #10488B; box-shadow: 0 0 0 3px rgba(16,72,139,.1); }
+  #fg-hint { font-size: .75rem; color: #8aa3c0; line-height: 1.6; margin-top: 6px; }
+  #fg-hint a { color: #10488B; font-weight: 600; }
+  #fg-start-btn {
+    width: 100%; padding: 12px; background: #10488B; color: #fff;
+    border: none; border-radius: 50px; font-size: .93rem; font-weight: 700;
+    cursor: pointer; font-family: inherit; transition: background .2s;
+  }
+  #fg-start-btn:hover { background: #0c366a; }
+
+  /* Messages */
+  #fg-messages {
+    flex: 1; overflow-y: auto; padding: 16px;
+    display: flex; flex-direction: column; gap: 14px;
+    background: #f5f8fc; scroll-behavior: smooth;
+  }
+  #fg-messages::-webkit-scrollbar { width: 3px; }
+  #fg-messages::-webkit-scrollbar-thumb { background: rgba(16,72,139,.15); border-radius: 2px; }
+  .fg-msg { display: flex; align-items: flex-end; gap: 8px; animation: fg-msgin .25s ease; }
+  @keyframes fg-msgin { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:none} }
+  .fg-msg-av {
+    width: 30px; height: 30px; background: #10488B;
+    border-radius: 50%; display: flex; align-items: center;
+    justify-content: center; font-size: .9rem; flex-shrink: 0;
+  }
+  .fg-bubble {
+    background: #fff; border: 1px solid rgba(16,72,139,.12);
+    border-radius: 16px 16px 16px 4px; padding: 10px 14px;
+    font-size: .85rem; line-height: 1.6; color: #0d1b2e;
+    max-width: 84%; box-shadow: 0 2px 8px rgba(16,72,139,.06);
+  }
+  .fg-user { flex-direction: row-reverse; }
+  .fg-user .fg-bubble {
+    background: #10488B; color: #fff;
+    border-radius: 16px 16px 4px 16px; border-color: transparent;
+  }
+  .fg-quick { display: flex; flex-wrap: wrap; gap: 7px; padding-left: 38px; }
+  .fg-qbtn {
+    background: #fff; border: 1.5px solid rgba(16,72,139,.3);
+    border-radius: 50px; padding: 6px 14px; font-size: .79rem;
+    color: #10488B; font-weight: 600; cursor: pointer; font-family: inherit;
+    transition: all .2s; white-space: nowrap;
+  }
+  .fg-qbtn:hover { background: #10488B; color: #fff; border-color: #10488B; }
+  .fg-typing { padding: 10px 14px; }
+  .fg-dot-t {
+    display: inline-block; width: 6px; height: 6px; background: #8aa3c0;
+    border-radius: 50%; margin: 0 2px; animation: fg-bounce 1.2s ease-in-out infinite;
+  }
+  .fg-dot-t:nth-child(2){animation-delay:.2s} .fg-dot-t:nth-child(3){animation-delay:.4s}
+  @keyframes fg-bounce { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-6px)} }
+
+  /* Input */
+  #fg-input-area {
+    display: flex; align-items: center; gap: 8px;
+    padding: 12px 14px; border-top: 1px solid rgba(16,72,139,.1);
+    background: #fff; flex-shrink: 0;
+  }
+  #fg-input {
+    flex: 1; padding: 10px 16px; border-radius: 50px;
+    border: 1.5px solid rgba(16,72,139,.18); background: #f5f8fc;
+    font-size: .88rem; outline: none; font-family: inherit; color: #0d1b2e;
+  }
+  #fg-input:focus { border-color: #10488B; }
+  #fg-input::placeholder { color: #8aa3c0; }
+  #fg-send {
+    width: 40px; height: 40px; border-radius: 50%; background: #10488B;
+    border: none; color: #fff; cursor: pointer; display: flex;
+    align-items: center; justify-content: center; flex-shrink: 0;
+    transition: all .2s;
+  }
+  #fg-send:hover { background: #0c366a; transform: scale(1.08); }
+  #fg-send:disabled { opacity: .45; transform: none; cursor: not-allowed; }
+
+  @media(max-width:600px){
+    #fg-window { right: 12px; left: 12px; width: auto; bottom: 96px; }
+    #fg-fab { right: 18px; bottom: 18px; }
+  }
+</style>
+
+<!-- FAB Button -->
+<div id="fg-fab" role="button" aria-label="Parler à notre agent IA" tabindex="0">
+  <div id="fg-fab-pulse"></div>
+  <span>🤖</span>
+  <div id="fg-fab-badge">1</div>
+</div>
+
+<!-- Chat Window -->
+<div id="fg-window" role="dialog" aria-label="Agent IA flipgym">
+
+  <!-- SETUP -->
+  <div id="fg-setup">
+    <img id="fg-setup-logo"
+      src="https://images.squarespace-cdn.com/content/v1/65d0e4268814e406eac41de1/ef9e80c2-17a3-454b-88a7-3bf3225e71af/logo_bleu_header.png"
+      alt="flipgym" />
+    <p id="fg-setup-sub">Notre agente virtuelle répond à vos questions 24h/24 !</p>
+    <div>
+      <label id="fg-key-label" for="fg-key-input">Clé API OpenAI</label>
+      <input type="password" id="fg-key-input" placeholder="sk-proj-..." />
+      <p id="fg-hint">🔒 Votre clé reste dans votre navigateur.<br/>
+        <a href="https://platform.openai.com/api-keys" target="_blank">Obtenir une clé gratuite →</a>
+      </p>
+    </div>
+    <button id="fg-start-btn">Démarrer — Sophie ✨</button>
+  </div>
+
+  <!-- CHAT -->
+  <div id="fg-chat" style="display:none; flex-direction:column; height:100%; max-height:82vh;">
+    <div id="fg-header">
+      <div id="fg-avatar">🤸</div>
+      <div>
+        <div id="fg-agent-name">Sophie — Agent flipgym</div>
+        <div id="fg-agent-status"><span id="fg-dot"></span> En ligne maintenant</div>
+      </div>
+      <button id="fg-close">✕</button>
+    </div>
+    <div id="fg-messages"></div>
+    <div id="fg-input-area">
+      <input type="text" id="fg-input" placeholder="Écrivez votre message..." autocomplete="off" />
+      <button id="fg-send">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  /* ─── CONFIG ──────────────────────────────────────────────
+     Option 1 : Laisser vide → l'utilisateur saisit sa clé
+     Option 2 : Coller ta clé ici (usage interne seulement)
+  ──────────────────────────────────────────────────────── */
+  var PRESET_KEY = 'COLLE_TA_CLÉ_ICI';  // ← Remplace par ta clé sk-proj-...
+
+  var SYSTEM = `Tu es Sophie, l'agente virtuelle et accueillante du Club flipgym de Montréal.
+Tu réponds UNIQUEMENT en français, avec un ton chaleureux, professionnel et enthousiaste.
+Tu gardes tes réponses concises (3-5 phrases max) et utilises des emojis avec modération.
+
+INFORMATIONS DU CLUB:
+📍 Adresse: 1600 Rue de Drucourt, Montréal (QC) H2G 1N6 — Rosemont
+📞 Téléphone: 514 948-2222
+✉️ Courriel: flipgym@flipgym.com
+🌐 Site: flipgym.com
+🕐 Heures: Lun-Ven 13h-20h | Sam-Dim 9h-16h
+📅 Depuis 1977
+
+PROGRAMMES:
+- Récréatif: Mini-gym (18 mois+), groupes par âge, environnement sécuritaire
+- Compétitif (sur audition): Relève-Défi, Régional, Provincial/Sport-Études
+- Camps de jour (été): Récréatif, Relève, Compétitif
+
+SERVICES: Cours privés, Fêtes d'enfants, Location du gymnase, Aide financière
+
+RÈGLES: Ne jamais inventer de prix précis. Pour les tarifs, renvoyer au site ou au 514 948-2222.
+Pour s'inscrire: qidigo.com/u/Club-Flipgym-de-Montreal/activities/session`;
+
+  var apiKey = '';
+  var history = [];
+  var typing = false;
+
+  var fab    = document.getElementById('fg-fab');
+  var win    = document.getElementById('fg-window');
+  var setup  = document.getElementById('fg-setup');
+  var chat   = document.getElementById('fg-chat');
+  var keyIn  = document.getElementById('fg-key-input');
+  var startB = document.getElementById('fg-start-btn');
+  var msgs   = document.getElementById('fg-messages');
+  var input  = document.getElementById('fg-input');
+  var sendB  = document.getElementById('fg-send');
+  var closeB = document.getElementById('fg-close');
+  var badge  = document.getElementById('fg-fab-badge');
+
+  // Pre-fill key if set
+  if (PRESET_KEY) { apiKey = PRESET_KEY; keyIn.value = PRESET_KEY; }
+  var saved = localStorage.getItem('fg_key');
+  if (saved) { apiKey = saved; keyIn.value = saved; }
+
+  // Open/close
+  fab.addEventListener('click', toggle);
+  fab.addEventListener('keydown', function(e){ if(e.key==='Enter') toggle(); });
+  closeB.addEventListener('click', close);
+
+  document.addEventListener('click', function(e){
+    if(win.classList.contains('fg-open') && !win.contains(e.target) && !fab.contains(e.target)) close();
+  });
+
+  function toggle(){
+    if(win.classList.contains('fg-open')){ close(); } else { open(); }
+  }
+  function open(){
+    win.classList.add('fg-open');
+    badge.style.display = 'none';
+    if(apiKey){ showChat(); } else { setup.style.display='flex'; chat.style.display='none'; }
+  }
+  function close(){ win.classList.remove('fg-open'); }
+
+  // Start chat
+  startB.addEventListener('click', function(){
+    var k = keyIn.value.trim();
+    if(!k || !k.startsWith('sk-')){ keyIn.style.borderColor='#e53e3e'; return; }
+    apiKey = k;
+    localStorage.setItem('fg_key', k);
+    showChat();
+  });
+
+  function showChat(){
+    setup.style.display = 'none';
+    chat.style.display  = 'flex';
+    if(msgs.children.length === 0) initMessages();
+    input.focus();
+  }
+
+  function initMessages(){
+    addMsg('agent', 'Bonjour ! Je suis <strong>Sophie</strong>, votre agente virtuelle flipgym 🎉<br/>Je peux vous aider avec nos programmes, horaires, inscriptions et plus encore.<br/><br/>Comment puis-je vous aider ?');
+    var qr = document.createElement('div');
+    qr.className = 'fg-quick';
+    qr.id = 'fg-quick';
+    [['📋 Programmes','Quels programmes offrez-vous?'],
+     ['💰 Tarifs','Quels sont vos tarifs?'],
+     ['✍️ S\'inscrire','Comment s\'inscrire?'],
+     ['🕐 Horaires','Quels sont vos horaires?']
+    ].forEach(function(q){
+      var b = document.createElement('button');
+      b.className = 'fg-qbtn';
+      b.textContent = q[0];
+      b.addEventListener('click', function(){
+        document.getElementById('fg-quick') && document.getElementById('fg-quick').remove();
+        send(q[1]);
+      });
+      qr.appendChild(b);
+    });
+    msgs.appendChild(qr);
+  }
+
+  // Send
+  sendB.addEventListener('click', fromInput);
+  input.addEventListener('keydown', function(e){ if(e.key==='Enter' && !e.shiftKey){ e.preventDefault(); fromInput(); }});
+
+  function fromInput(){
+    var t = input.value.trim();
+    if(!t || typing) return;
+    input.value = '';
+    var qr = document.getElementById('fg-quick');
+    if(qr) qr.remove();
+    send(t);
+  }
+
+  async function send(text){
+    addMsg('user', text);
+    history.push({role:'user', content:text});
+    var tid = showTyping();
+    typing = true; sendB.disabled = true;
+    try {
+      var r = await fetch('https://api.openai.com/v1/chat/completions',{
+        method:'POST',
+        headers:{'Content-Type':'application/json','Authorization':'Bearer '+apiKey},
+        body:JSON.stringify({model:'gpt-4o',messages:[{role:'system',content:SYSTEM},...history],temperature:.7,max_tokens:400})
+      });
+      if(!r.ok){ var e=await r.json(); throw new Error(e.error&&e.error.message||'Erreur '+r.status); }
+      var d = await r.json();
+      var reply = d.choices[0].message.content;
+      history.push({role:'assistant',content:reply});
+      removeTyping(tid);
+      addMsg('agent', fmt(reply));
+    } catch(e){
+      removeTyping(tid);
+      var m = '❌ Erreur: ' + e.message;
+      if(e.message.includes('401')){ m='❌ Clé API invalide. Veuillez la vérifier.'; apiKey=''; localStorage.removeItem('fg_key'); }
+      addMsg('agent', m, true);
+    } finally { typing=false; sendB.disabled=false; input.focus(); }
+  }
+
+  function addMsg(role, content, raw){
+    var m = document.createElement('div');
+    m.className = 'fg-msg' + (role==='user'?' fg-user':'');
+    if(role==='agent'){ var av=document.createElement('div'); av.className='fg-msg-av'; av.textContent='🤸'; m.appendChild(av); }
+    var b = document.createElement('div'); b.className='fg-bubble';
+    raw ? (b.innerHTML=content) : (b.innerHTML=content);
+    m.appendChild(b);
+    msgs.appendChild(m);
+    msgs.scrollTop = msgs.scrollHeight;
+  }
+
+  function fmt(t){ return t.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br/>'); }
+
+  function showTyping(){
+    var id='fg-t-'+Date.now();
+    var m=document.createElement('div'); m.className='fg-msg'; m.id=id;
+    m.innerHTML='<div class="fg-msg-av">🤸</div><div class="fg-bubble fg-typing"><span class="fg-dot-t"></span><span class="fg-dot-t"></span><span class="fg-dot-t"></span></div>';
+    msgs.appendChild(m); msgs.scrollTop=msgs.scrollHeight;
+    return id;
+  }
+  function removeTyping(id){ var el=document.getElementById(id); if(el) el.remove(); }
+})();
+</script>

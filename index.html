@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>flipgym Montréal | Dépassez Vos Limites</title>
+  <meta name="description" content="Club de gymnastique prestigieux à Montréal. Équipements de pointe, entraîneurs professionnels et programmes pour tous les niveaux." />
+  <link rel="icon" type="image/png" href="favicon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;800;900&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="chat.css?v=20260419-1" />
+  
+  <style>
+    /* ═══════════════════════════════════════
+       THÈME SPORTIF PROFESSIONNEL (Blanc & Bleu #10488B)
+    ═══════════════════════════════════════ */
+    :root {
+      --blue: #10488B;
+      --blue-hover: #0c3569;
+      --blue-light: rgba(16, 72, 139, 0.08);
+      --blue-gradient: linear-gradient(135deg, #10488B 0%, #1e5ca8 100%);
+      
+      --white: #ffffff;
+      --surface: #f8fbff;
+      
+      --text-dark: #0f172a;
+      --text-muted: #475569;
+      
+      --border: rgba(16, 72, 139, 0.1);
+      --shadow-sm: 0 4px 15px rgba(16, 72, 139, 0.05);
+      --shadow-lg: 0 20px 40px rgba(16, 72, 139, 0.1);
+      
+      --radius: 12px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: 'Inter', sans-serif; color: var(--text-dark); background: var(--white); overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    
+    ::selection { background: var(--blue); color: var(--white); }
+
+    /* ═══════════════════════════════════════
+       UTILITIES & TYPOGRAPHY
+    ═══════════════════════════════════════ */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 2; }
+    .section { padding: 90px 0; }
+    .section-bg { background: var(--surface); }
+
+    .tagline {
+      display: inline-block; font-family: 'Outfit', sans-serif;
+      font-size: 0.85rem; font-weight: 800; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--blue);
+      margin-bottom: 16px; background: var(--blue-light);
+      padding: 6px 16px; border-radius: 50px;
+    }
+    
+    .section-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900; line-height: 1.1;
+      margin-bottom: 20px; color: var(--text-dark);
+      letter-spacing: -0.5px;
+    }
+    .text-blue { color: var(--blue); }
+    
+    .section-sub { font-size: 1.1rem; color: var(--text-muted); line-height: 1.6; max-width: 600px; margin-bottom: 40px; }
+    .section-header.center { text-align: center; }
+    .section-header.center .section-sub { margin-left: auto; margin-right: auto; }
+
+    /* BOUTONS */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 14px 32px; border-radius: 50px;
+      font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 0.95rem; 
+      text-transform: uppercase; letter-spacing: 1px;
+      cursor: pointer; border: 2px solid transparent; transition: all 0.3s ease;
+      position: relative; overflow: hidden;
+    }
+    .btn-blue { background: var(--blue-gradient); color: var(--white); box-shadow: 0 8px 20px rgba(16,72,139,0.2); }
+    .btn-blue:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(16,72,139,0.3); }
+    .btn-outline { background: transparent; color: var(--blue); border-color: var(--border); }
+    .btn-outline:hover { background: var(--blue-light); border-color: var(--blue); }
+    .btn-white { background: var(--white); color: var(--blue); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+    .btn-white:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,0.2); }
+
+    /* ═══════════════════════════════════════
+       NAVBAR
+    ═══════════════════════════════════════ */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 20px 0; background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px); border-bottom: 1px solid transparent;
+      transition: all 0.3s ease;
+    }
+    .navbar.scrolled { padding: 12px 0; border-bottom-color: var(--border); box-shadow: var(--shadow-sm); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+    
+    .nav-logo {
+      display: inline-flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .nav-logo img {
+      width: auto;
+      height: 52px;
+      object-fit: contain;
+    }
+    .nav-logo-text { font-family: 'Outfit', sans-serif; font-size: 1.6rem; font-weight: 900; color: var(--text-dark); letter-spacing: 1px; }
+    .nav-logo-text span { color: var(--blue); }
+    .nav-toggle {
+      display: none;
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      border: 1px solid rgba(16,72,139,0.12);
+      background: rgba(255,255,255,0.92);
+      color: var(--blue);
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-direction: column;
+      gap: 5px;
+      box-shadow: 0 10px 22px rgba(16,72,139,0.08);
+    }
+    .nav-toggle span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      border-radius: 999px;
+      background: currentColor;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+    
+    .nav-links { display: flex; list-style: none; gap: 32px; }
+    .nav-item {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .nav-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Outfit', sans-serif; font-size: 0.95rem; font-weight: 600;
+      color: var(--text-muted); transition: color 0.2s;
+    }
+    .nav-link:hover { color: var(--blue); }
+    .nav-caret {
+      font-size: 0.7rem;
+      color: currentColor;
+      transition: transform 0.25s ease;
+    }
+    .nav-item:hover .nav-caret { transform: rotate(180deg); }
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 18px);
+      left: 0;
+      min-width: 230px;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.98);
+      border: 1px solid rgba(16,72,139,0.1);
+      border-radius: 18px;
+      box-shadow: 0 18px 36px rgba(15, 23, 42, 0.12);
+      list-style: none;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(8px);
+      transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+      backdrop-filter: blur(12px);
+    }
+    .nav-item:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .dropdown-link {
+      display: block;
+      padding: 12px 14px;
+      border-radius: 12px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.94rem;
+      font-weight: 500;
+      color: var(--text-dark);
+      transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    }
+    .dropdown-link:hover {
+      background: var(--blue-light);
+      color: var(--blue);
+      transform: translateX(4px);
+    }
+    
+    .nav-actions { display: flex; gap: 12px; }
+    .mobile-nav-cta { display: none; }
+
+    /* ═══════════════════════════════════════
+       HERO SPORTIF DYNAMIQUE
+    ═══════════════════════════════════════ */
+    .hero {
+      position: relative; min-height: calc(100vh - 110px);
+      display: flex; align-items: center;
+      background-image: url('home-hero.jpg?v=20260420-1');
+      background-size: cover; background-position: center;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        linear-gradient(90deg, rgba(7, 27, 56, 0.82) 0%, rgba(16, 72, 139, 0.56) 42%, rgba(16, 72, 139, 0.18) 100%),
+        linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(7,27,56,0.12) 100%);
+    }
+    .hero-content { position: relative; z-index: 2; max-width: 800px; padding-top: 56px; color: var(--white); }
+    
+    .hero-tagline { 
+      display: inline-block; font-family: 'Outfit', sans-serif; font-size: 0.9rem; font-weight: 800; 
+      letter-spacing: 2px; text-transform: uppercase; margin-bottom: 24px;
+      border-left: 4px solid var(--white); padding-left: 12px;
+    }
+    .hero-title {
+      font-family: 'Outfit', sans-serif; font-size: clamp(3rem, 6vw, 4.5rem);
+      font-weight: 900; line-height: 1.05; margin-bottom: 24px;
+      text-transform: uppercase; letter-spacing: -1px;
+    }
+    .hero-subtitle { font-size: 1.1rem; line-height: 1.6; margin-bottom: 40px; opacity: 0.9; }
+    
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    /* ═══════════════════════════════════════
+       STATS BAND
+    ═══════════════════════════════════════ */
+    .stats-band {
+      position: relative;
+      margin-top: -42px;
+      z-index: 3;
+      padding: 0 0 28px;
+    }
+    .stats-shell {
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.98), rgba(244,248,255,0.96));
+      border: 1px solid rgba(16,72,139,0.1);
+      border-radius: 28px;
+      box-shadow: 0 24px 60px rgba(16,72,139,0.12);
+      overflow: hidden;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .stat-item {
+      position: relative;
+      padding: 28px 26px;
+      text-align: center;
+    }
+    .stat-item:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      top: 22px;
+      right: 0;
+      bottom: 22px;
+      width: 1px;
+      background: linear-gradient(to bottom, rgba(16,72,139,0), rgba(16,72,139,0.12), rgba(16,72,139,0));
+    }
+    .stat-number-row {
+      display: inline-flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 4px;
+      margin-bottom: 8px;
+      font-family: 'Outfit', sans-serif;
+      color: var(--blue);
+    }
+    .stat-number {
+      font-size: clamp(2rem, 3vw, 2.75rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      font-variant-numeric: tabular-nums;
+    }
+    .stat-affix {
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1;
+      color: #3f6ea7;
+    }
+    .stat-suffix {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.94rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ═══════════════════════════════════════
+       NOS VALEURS (3D ELEVATION CARDS)
+    ═══════════════════════════════════════ */
+    #valeurs { background: var(--bg-light); padding: 120px 0; color: var(--text-dark); }
+    
+    .valeurs-3d-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; margin-top: 60px; }
+    .v-3d-card {
+      background: var(--white); border-radius: 24px; padding: 40px; 
+      box-shadow: 0 10px 30px rgba(16,72,139,0.05), 0 40px 60px rgba(16,72,139,0.05);
+      border: 1px solid rgba(16,72,139,0.05);
+      position: relative; overflow: hidden; z-index: 1;
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .v-3d-card:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 20px 40px rgba(16,72,139,0.1), 0 60px 80px rgba(16,72,139,0.15);
+      z-index: 2;
+    }
+    .v-shape {
+       position: absolute; top: -30px; right: -30px; width: 120px; height: 120px;
+       background: linear-gradient(135deg, rgba(16,72,139,0.08), rgba(16,72,139,0));
+       border-radius: 50%; z-index: -1; transition: transform 0.6s ease;
+    }
+    .v-3d-card:hover .v-shape { transform: scale(3); }
+    .v-3d-title { 
+      font-family: 'Outfit', sans-serif; font-size: 1.3rem; font-weight: 800; color: var(--text-dark); 
+      margin-bottom: 20px; display: flex; align-items: center; gap: 16px; 
+    }
+    .v-pill {
+       display: block; min-width: 8px; height: 32px; border-radius: 6px;
+       background: linear-gradient(to bottom, #60a5fa, var(--blue));
+       box-shadow: 0 6px 12px rgba(16,72,139,0.25); transition: transform 0.3s;
+    }
+    .v-3d-card:hover .v-pill { transform: scaleY(1.3); }
+    .v-3d-desc { color: var(--text-muted); line-height: 1.7; font-size: 0.95rem; }
+
+    /* ═══════════════════════════════════════
+       A PROPOS (BENTO GRID DESIGN)
+    ═══════════════════════════════════════ */
+    #apropos { padding: 120px 0; background: var(--white); }
+    .bento-grid { 
+      display: grid; grid-template-columns: 1.2fr 1fr; grid-template-rows: auto 1fr; 
+      gap: 28px; align-items: stretch;
+    }
+    .bento-box { 
+      background: var(--surface); border-radius: 28px; padding: 42px;
+      transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+      border: 1px solid rgba(16,72,139,0.08);
+      box-shadow: 0 18px 38px rgba(16,72,139,0.06);
+    }
+    .bento-box:hover { transform: translateY(-5px); }
+    
+    .bento-historique { 
+      grid-row: 1 / -1; background: var(--white); border: 1px solid var(--border); 
+      box-shadow: 0 20px 40px rgba(16,72,139,0.06); position: relative; overflow: hidden;
+    }
+    .bento-historique:hover { box-shadow: 0 30px 60px rgba(16,72,139,0.1); }
+    .bento-text { color: var(--text-muted); line-height: 1.7; font-size: 1rem; margin-bottom: 20px; }
+    .about-watermark {
+      position: absolute; right: -10px; bottom: -30px; font-size: 14rem;
+      font-family: 'Outfit', sans-serif; font-weight: 900; color: rgba(16,72,139,0.03);
+      line-height: 1; z-index: 0; user-select: none;
+    }
+    .about-content { position: relative; z-index: 1; }
+    .about-header { margin-bottom: 30px; max-width: 560px; }
+    .about-title { margin-bottom: 14px; font-size: clamp(2.2rem, 4vw, 3.25rem); }
+    .about-panel {
+      background: linear-gradient(180deg, rgba(16,72,139,0.035), rgba(16,72,139,0.015));
+      border: 1px solid rgba(16,72,139,0.07);
+      border-radius: 24px;
+      padding: 28px;
+      margin-bottom: 0;
+    }
+    .about-panel-title {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: var(--blue-light);
+      border: 1px solid rgba(16,72,139,0.12);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 20px;
+    }
+    .mission-stack {
+      display: grid;
+      grid-template-rows: auto 1fr;
+      gap: 0;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 22px 44px rgba(16,72,139,0.12);
+      border: 1px solid rgba(16,72,139,0.08);
+      background: var(--white);
+    }
+    .bento-mission-intro { 
+      background: linear-gradient(145deg, #10488B 0%, #1b5ea8 100%);
+      color: var(--white);
+      display: flex; flex-direction: column; justify-content: center;
+      border-radius: 0;
+      border: none;
+      box-shadow: none;
+      position: relative;
+    }
+    .bento-mission-intro::after {
+      content: '';
+      position: absolute;
+      left: 42px;
+      right: 42px;
+      bottom: 0;
+      height: 1px;
+      background: rgba(255,255,255,0.18);
+    }
+    .mission-eyebrow {
+      display: inline-flex; align-items: center; width: fit-content;
+      padding: 8px 14px; border-radius: 999px;
+      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.16);
+      font-family: 'Outfit', sans-serif; font-size: 0.78rem; font-weight: 800;
+      letter-spacing: 1.4px; text-transform: uppercase; margin-bottom: 20px;
+    }
+    .mission-body {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.02rem;
+      font-weight: 400;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.96);
+      margin: 0;
+      max-width: 520px;
+    }
+    
+    .bento-mission-points {
+      background: linear-gradient(180deg, #f9fbff 0%, #ffffff 100%);
+      border: none;
+      border-radius: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      box-shadow: none;
+    }
+    .m-point { 
+      background: linear-gradient(180deg, rgba(16,72,139,0.03), rgba(16,72,139,0.01));
+      border: 1px solid rgba(16,72,139,0.08); padding: 18px 20px;
+      border-radius: 18px; font-weight: 500; color: var(--text-dark); font-size: 0.96rem;
+      display: flex; align-items: flex-start; gap: 14px; box-shadow: none;
+      transition: all 0.3s;
+      line-height: 1.55;
+    }
+    .m-point:hover { 
+      background: var(--white); border-color: var(--blue); transform: translateX(8px);
+      box-shadow: 0 10px 20px rgba(16,72,139,0.08);
+    }
+    .m-icon {
+      display: flex; align-items: center; justify-content: center;
+      width: 38px; height: 38px; flex-shrink: 0;
+      background: var(--blue-light); border-radius: 12px; color: var(--blue);
+      font-family: 'Outfit', sans-serif; font-size: 0.95rem; font-weight: 800;
+      box-shadow: inset 0 0 0 1px rgba(16,72,139,0.08);
+    }
+    
+    @media (max-width: 992px) {
+      .bento-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+      .bento-historique { grid-row: auto; }
+      .bento-box { padding: 32px; }
+      .bento-mission-points { padding: 16px; }
+      .bento-mission-intro::after { left: 32px; right: 32px; }
+    }
+
+    /* ═══════════════════════════════════════
+       PROGRAMMES "PREMIUM CARDS"
+    ═══════════════════════════════════════ */
+    .prog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px; }
+    .card-premium {
+      background: var(--white); border-radius: 16px; overflow: hidden;
+      box-shadow: 0 10px 30px rgba(16,72,139,0.06); transition: all 0.4s ease;
+      display: flex; flex-direction: column; border: 1px solid rgba(16,72,139,0.05);
+      position: relative;
+    }
+    .card-premium::before {
+      content: ''; position: absolute; top: 0; left: 0; height: 100%; width: 4px;
+      background: var(--blue); transform: scaleY(0); transition: transform 0.3s ease; transform-origin: bottom;
+    }
+    .card-premium:hover {
+      transform: translateY(-5px); box-shadow: 0 20px 40px rgba(16,72,139,0.12);
+    }
+    .card-premium:hover::before { transform: scaleY(1); }
+    .cp-content { padding: 40px 30px; display: flex; flex-direction: column; flex: 1; }
+    .cp-title { font-family: 'Outfit', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--blue); margin-bottom: 12px; }
+    .cp-desc { color: var(--text-muted); line-height: 1.6; margin-bottom: 25px; flex: 1; font-size: 0.95rem; }
+    .cp-link { color: var(--text-dark); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; transition: gap 0.2s, color 0.2s; }
+    .cp-link:hover { gap: 12px; color: var(--blue); }
+
+
+
+    /* ═══════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════ */
+    .footer { background: #0a0f1d; color: var(--white); padding: 80px 0 30px; border-top: 10px solid var(--blue); }
+    .footer-grid { display: grid; grid-template-columns: 1.45fr 1fr 0.9fr 1fr; gap: 34px; margin-bottom: 48px; align-items: start; }
+    
+    .footer-brand .nav-logo-text { color: var(--white); margin-bottom: 20px; display: inline-block; }
+    .footer-brand .nav-logo {
+      margin-bottom: 20px;
+    }
+    .footer-brand .nav-logo img {
+      height: 58px;
+      filter: brightness(0) invert(1);
+    }
+    .footer-desc { color: rgba(255,255,255,0.66); line-height: 1.7; font-size: 0.95rem; max-width: 290px; margin-bottom: 18px; }
+    
+    .social-links { display: flex; gap: 12px; }
+    .social-link { 
+      display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; 
+      border-radius: 50%; background: rgba(255,255,255,0.05); color: var(--white);
+      transition: all 0.3s; 
+    }
+    .social-link:hover { background: var(--blue); transform: translateY(-4px); }
+    
+    .footer-title { font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 800; color: var(--white); margin-bottom: 24px; text-transform: uppercase; letter-spacing: 1px; }
+    
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: 12px; }
+    .footer-links a { color: rgba(255,255,255,0.6); font-size: 0.95rem; display: inline-block; transition: all 0.3s; }
+    .footer-links a:hover { color: var(--blue); transform: translateX(5px); }
+    .footer-contact-list { list-style: none; display: grid; gap: 14px; }
+    .footer-contact-list li { display: grid; gap: 4px; color: rgba(255,255,255,0.66); line-height: 1.6; }
+    .footer-contact-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.9);
+    }
+    .footer-contact-list a {
+      color: rgba(255,255,255,0.72);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .footer-contact-list a:hover { color: var(--blue); }
+    .footer-partners-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.02rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+    .footer-partner-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      align-items: center;
+    }
+    .footer-partner-card {
+      min-height: 62px;
+      padding: 4px 0;
+      border-radius: 0;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    .footer-partner-card img {
+      width: 170px;
+      height: 44px;
+      object-fit: contain;
+      display: block;
+      opacity: 0.8;
+      filter: brightness(0) invert(1);
+      image-rendering: auto;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+    .footer-partner-card.is-wide img {
+      width: 156px;
+      height: 40px;
+    }
+    .footer-partner-card.is-tall img {
+      width: 182px;
+      height: 48px;
+    }
+    .footer-partner-card:hover img {
+      opacity: 1;
+      transform: translateX(2px);
+    }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+    .footer-copy { color: rgba(255,255,255,0.4); font-size: 0.85rem; }
+    
+    @media (max-width: 768px) {
+      .container { padding: 0 18px; }
+      .navbar { padding: 12px 0; }
+      .nav-inner { align-items: center; flex-wrap: wrap; gap: 12px; }
+      .nav-toggle { display: inline-flex; margin-left: auto; }
+      .nav-actions { display: none; }
+      .nav-links {
+        display: none;
+        width: 100%;
+        margin-top: 12px;
+        padding: 18px;
+        gap: 16px;
+        flex-direction: column;
+        background: rgba(255,255,255,0.98);
+        border: 1px solid rgba(16,72,139,0.1);
+        border-radius: 22px;
+        box-shadow: 0 18px 36px rgba(15,23,42,0.12);
+      }
+      .navbar.menu-open .nav-links { display: flex; }
+      .navbar.menu-open .nav-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      .navbar.menu-open .nav-toggle span:nth-child(2) { opacity: 0; }
+      .navbar.menu-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+      .nav-item { width: 100%; align-items: flex-start; flex-direction: column; gap: 8px; }
+      .nav-link { width: 100%; justify-content: space-between; }
+      .dropdown-menu {
+        position: static;
+        min-width: 0;
+        width: 100%;
+        padding: 0 0 0 14px;
+        background: transparent;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        display: none;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .nav-item.mobile-open .dropdown-menu { display: flex; padding-top: 8px; }
+      .nav-item.mobile-open .nav-caret { transform: rotate(180deg); }
+      .dropdown-link {
+        padding: 8px 0;
+        border-radius: 0;
+        color: var(--text-muted);
+      }
+      .dropdown-link:hover { transform: none; background: transparent; }
+      .mobile-nav-cta {
+        display: inline-flex;
+        width: 100%;
+        justify-content: center;
+        margin-top: 4px;
+      }
+      .hero { min-height: auto; padding: 120px 0 72px; }
+      .hero-content { max-width: 100%; padding-top: 24px; text-align: center; }
+      .hero-tagline { margin-bottom: 18px; }
+      .hero-title { font-size: clamp(2.1rem, 9vw, 3rem) !important; line-height: 1.08; }
+      .hero-actions { justify-content: center; }
+      .hero-philosophy { grid-template-columns: 1fr !important; gap: 24px !important; }
+      .stats-band { margin-top: -24px; padding-bottom: 18px; }
+      .stats-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .stat-item { padding: 22px 18px; }
+      .section { padding: 72px 0; }
+      #apropos, #valeurs { padding: 72px 0; }
+      .bento-box, .v-3d-card, .cp-content { padding: 24px; }
+      .valeurs-3d-grid { grid-template-columns: 1fr; gap: 24px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .footer-links[style] { justify-content: center; flex-wrap: wrap; }
+    }
+
+    @media (max-width: 520px) {
+      .stats-grid { grid-template-columns: 1fr; }
+      .stat-item { border-bottom: 1px solid rgba(16,72,139,0.08); }
+      .stat-item:last-child { border-bottom: none; }
+      .stat-item::after { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="#" class="nav-logo" aria-label="flipgym Montréal">
+        <img src="logo-navbar.png" alt="flipgym de Montréal" />
+      </a>
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mainNav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-links" id="mainNav">
+        <li class="nav-item has-dropdown">
+          <a href="index.html" class="nav-link">Notre club <span class="nav-caret">▾</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="equipe.html" class="dropdown-link">Notre Équipe</a></li>
+            <li><a href="boutique.html" class="dropdown-link">Boutique</a></li>
+            <li><a href="actualite.html" class="dropdown-link">Actualité</a></li>
+          </ul>
+        </li>
+        <li class="nav-item has-dropdown">
+          <a href="recreatif-description.html" class="nav-link">Récréatif <span class="nav-caret">▾</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="recreatif-description.html" class="dropdown-link">Description des cours</a></li>
+            <li><a href="recreatif-horaires-tarifs.html" class="dropdown-link">Horaires & Tarifs</a></li>
+          </ul>
+        </li>
+        <li class="nav-item has-dropdown">
+          <a href="#programmes" class="nav-link">Compétitif <span class="nav-caret">▾</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="competitif-releve-defi.html" class="dropdown-link">Relève / Défi</a></li>
+            <li><a href="competitif-regional.html" class="dropdown-link">Régional</a></li>
+            <li><a href="competitif-provincial-sport-etudes.html" class="dropdown-link">Provincial / Sport Études</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a href="camp-de-jour.html" class="nav-link">Camp de jour</a></li>
+        <li class="nav-item has-dropdown">
+          <a href="services.html" class="nav-link">Services <span class="nav-caret">▾</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="services.html#auditions" class="dropdown-link">Auditions</a></li>
+            <li><a href="services.html#cours-prives" class="dropdown-link">Cours privé</a></li>
+            <li><a href="services.html#fetes" class="dropdown-link">Fêtes d'enfants</a></li>
+            <li><a href="services.html#location" class="dropdown-link">Location de gymnase</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a href="competitif-calendrier.html" class="nav-link">Calendrier</a></li>
+        <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+        <li class="nav-item mobile-nav-cta"><a href="https://www.qidigo.com/u/Club-Flipgym-de-Montreal/activities/session" class="btn btn-blue" target="_blank" rel="noreferrer">S'inscrire</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="https://www.qidigo.com/u/Club-Flipgym-de-Montreal/activities/session" class="btn btn-blue" style="padding: 10px 24px; font-size: 0.85rem;" target="_blank" rel="noreferrer">S'inscrire</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <span class="hero-tagline">Club flipgym de Montréal</span>
+        <h1 class="hero-title" style="text-transform: none; font-size: clamp(2.5rem, 5vw, 4rem); letter-spacing: -1px; margin-bottom: 24px;">Club de gymnastique compétitive et récréative</h1>
+        
+        <div class="hero-philosophy" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 40px; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 30px;">
+          <div>
+            <h5 style="color: var(--white); font-family: 'Outfit', sans-serif; font-size: 1rem; font-weight: 800; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 2px;">Notre vision</h5>
+            <p style="color: rgba(255,255,255,0.8); font-size: 0.95rem; line-height: 1.6;">Nous croyons que la gymnastique artistique est une discipline qui favorise le développement global de l’enfant et contribue à la création d’une communauté où la santé et le bien-être sont au cœur du quotidien.</p>
+          </div>
+          <div>
+            <h5 style="color: var(--white); font-family: 'Outfit', sans-serif; font-size: 1rem; font-weight: 800; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 2px;">Nos valeurs</h5>
+            <p style="color: rgba(255,255,255,0.8); font-size: 0.95rem; line-height: 1.6;">Accomplissement et dépassement personnels, estime de soi, respect de soi et des autres, persévérance, solidarité, passion.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- STATS BAND -->
+  <section class="stats-band" aria-label="Chiffres clés">
+    <div class="container">
+      <div class="stats-shell">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-number-row">
+              <span class="stat-number" data-target="1977">0</span>
+            </div>
+            <span class="stat-suffix">Depuis</span>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number-row">
+              <span class="stat-number" data-target="1200">0</span>
+              <span class="stat-affix">+</span>
+            </div>
+            <span class="stat-suffix">Inscriptions par année</span>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number-row">
+              <span class="stat-number" data-target="50">0</span>
+              <span class="stat-affix">+</span>
+            </div>
+            <span class="stat-suffix">Entraîneurs et assistantes certifiés</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- À PROPOS -->
+  <section id="apropos" class="section">
+    <div class="container">
+      <div class="bento-grid">
+        <!-- BENTO 1 : A PROPOS -->
+        <div class="bento-box bento-historique">
+          <div class="about-watermark">1977</div>
+          <div class="about-content">
+             <div class="about-header">
+               <h3 class="section-title about-title">À propos</h3>
+             </div>
+
+             <div class="about-panel">
+               <h4 class="about-panel-title">Historique</h4>
+               <p class="bento-text">Le club Flipgym de Montréal est établi à Rosemont depuis 1977. Nous croyons que la gymnastique suscite le désir de se dépasser afin de réaliser son plein potentiel. Avec le sourire, la discipline, la rigueur et l’effort, le jeune apprend à affronter l’adversité et à vaincre ses peurs afin de réussir des exploits.</p>
+               <p class="bento-text">La gymnastique est une discipline par laquelle le jeune construit sa confiance et son estime de lui au quotidien. Un environnement physique et psychologique stable et sécuritaire contribue à cet épanouissement en lui permettant de se sentir reconnu par ses pairs et, donc, valorisé.</p>
+               <p class="bento-text" style="margin-bottom: 0;">En pratiquant la gymnastique artistique, le jeune apprend à se connaître en relevant sans cesse de nouveaux défis. D’un mouvement à l’autre, la ténacité, la patience et le courage s’enracinent en lui pour la vie.</p>
+             </div>
+          </div>
+        </div>
+
+        <div class="mission-stack">
+          <!-- BENTO 2 : MISSION INTRO -->
+          <div class="bento-box bento-mission-intro">
+             <span class="mission-eyebrow">Notre mission</span>
+             <p class="mission-body">Former des jeunes confiants, actifs et solidaires. Promouvoir le bien-être physique et psychologique des enfants de notre communauté par la pratique de la gymnastique artistique dans un environnement sécuritaire, dynamique et stimulant, en leur offrant la possibilité de :</p>
+          </div>
+
+          <!-- BENTO 3 : MISSION POINTS -->
+          <div class="bento-mission-points">
+             <div class="m-point"><span class="m-icon">01</span> Reconnaître les bienfaits d’un mode de vie actif</div>
+             <div class="m-point"><span class="m-icon">02</span> Se créer une image positive par la réussite de mouvements gymniques complexes</div>
+             <div class="m-point"><span class="m-icon">03</span> Apprendre à œuvrer au sein d’une équipe</div>
+             <div class="m-point"><span class="m-icon">04</span> Évoluer en société avec d’autres enfants et adultes</div>
+             <div class="m-point"><span class="m-icon">05</span> Apprendre à faire face à l’échec comme à la réussite</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAMMES -->
+  <section id="programmes" class="section section-bg">
+    <div class="container">
+      <div class="section-header center">
+        <h2 class="section-title">Des Programmes Pour <span class="text-blue">Chaque Athlète</span></h2>
+        <p class="section-sub">De l'initiation à la compétition provinciale, notre équipe dédiée accompagne chaque enfant dans son développement sportif et personnel.</p>
+      </div>
+      
+      <div class="prog-grid">
+        <div class="card-premium">
+          <div class="cp-content">
+            <h3 class="cp-title">Secteur Récréatif</h3>
+            <p class="cp-desc">Une introduction parfaite à la gymnastique. Axé sur le développement moteur, le plaisir et l'acquisition des mouvements fondamentaux en toute sécurité.</p>
+            <a href="recreatif-description.html" class="cp-link">En savoir plus &rarr;</a>
+          </div>
+        </div>
+        
+        <div class="card-premium">
+          <div class="cp-content">
+            <h3 class="cp-title">Secteur Compétitif</h3>
+            <p class="cp-desc">Pour les gymnastes démontrant du potentiel et de l'ambition. Entraînement technique poussé et participation aux compétitions régionales et provinciales.</p>
+            <a href="competitif-releve-defi.html" class="cp-link">Découvrir le secteur &rarr;</a>
+          </div>
+        </div>
+        
+        <div class="card-premium">
+          <div class="cp-content">
+            <h3 class="cp-title">Camp de Jour</h3>
+            <p class="cp-desc">Des semaines inoubliables pour tous les âges, remplies de gymnastique, de jeux et de plaisir dans nos installations.</p>
+            <a href="camp-de-jour.html" class="cp-link">Découvrir nos camps &rarr;</a>
+          </div>
+        </div>
+        
+        <div class="card-premium">
+          <div class="cp-content">
+            <h3 class="cp-title">Services</h3>
+            <p class="cp-desc">Cours de perfectionnement privés, auditions, fêtes d'enfants sur mesure et location de nos locaux pour vos événements.</p>
+            <a href="services.html" class="cp-link">Voir nos services &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOS VALEURS -->
+  <section id="valeurs" class="section">
+    <div class="container">
+      <div class="section-header center">
+        <h2 class="section-title">Nos <span class="text-blue">Valeurs</span></h2>
+        <p class="section-sub">Découvrez les piliers d'excellence qui animent le Club flipgym et guident le développement de chaque gymnaste.</p>
+      </div>
+
+      <div class="valeurs-3d-grid">
+        <div class="v-3d-card">
+          <div class="v-shape"></div>
+          <h4 class="v-3d-title"><span class="v-pill"></span>Accomplissement et dépassement personnels</h4>
+          <p class="v-3d-desc">Toujours viser à s’améliorer afin de réaliser son plein potentiel. Apprendre à relever des défis, à affronter l’adversité et à vaincre ses peurs avec confiance, énergie, rigueur, discipline, effort et excellence.</p>
+        </div>
+        <div class="v-3d-card">
+          <div class="v-shape"></div>
+          <h4 class="v-3d-title"><span class="v-pill"></span>Respect de soi et des autres</h4>
+          <p class="v-3d-desc">Cultiver le respect de soi et de l’autre pour favoriser un environnement positif permettant de progresser ensemble.</p>
+        </div>
+        <div class="v-3d-card">
+          <div class="v-shape"></div>
+          <h4 class="v-3d-title"><span class="v-pill"></span>Persévérance</h4>
+          <p class="v-3d-desc">Toujours viser à s’améliorer afin de réaliser son plein potentiel. Apprendre à relever des défis, à affronter l’adversité et à vaincre ses peurs avec confiance, énergie, rigueur, discipline, effort et excellence.</p>
+        </div>
+        <div class="v-3d-card">
+          <div class="v-shape"></div>
+          <h4 class="v-3d-title"><span class="v-pill"></span>Solidarité</h4>
+          <p class="v-3d-desc">Promouvoir la coopération, l'entraide et la compétition positive par de petits gestes au quotidien, car la gymnastique est une discipline individuelle qui se pratique en équipe. Le succès de l’une devient le succès de toutes grâce à la collaboration, l'entraide et la saine compétition qui caractérisent notre Club.</p>
+        </div>
+        <div class="v-3d-card">
+          <div class="v-shape"></div>
+          <h4 class="v-3d-title"><span class="v-pill"></span>Passion</h4>
+          <p class="v-3d-desc">Nous sommes passionnés par la gymnastique. Au-delà de la technique gymnique, c’est d’abord le plaisir qui nous conduit au succès.</p>
+        </div>
+        <div class="v-3d-card">
+          <div class="v-shape"></div>
+          <h4 class="v-3d-title"><span class="v-pill"></span>Estime de soi</h4>
+          <p class="v-3d-desc">Renforcer la confiance et l'estime de soi chez les gymnastes. S'assurer de leur épanouissement en leur offrant de pratiquer la gymnastique dans un environnement stable et sécuritaire autant physiquement que psychologiquement, dans lequel elles se sentent valorisées.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- FOOTER ET CONTACT -->
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Colonne 1 : Marque -->
+        <div class="footer-brand">
+          <a href="#" class="nav-logo" aria-label="flipgym Montréal">
+            <img src="logo-navbar.png" alt="flipgym de Montréal" />
+          </a>
+          <p class="footer-desc">Gymnastique artistique récréative et compétitive à Montréal.</p>
+          <div class="social-links">
+            <a href="https://www.facebook.com/ClubDeGymnastiqueFlipgymDeMontreal/" class="social-link" aria-label="Facebook" target="_blank" rel="noreferrer">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/clubflipgym" class="social-link" aria-label="Instagram" target="_blank" rel="noreferrer">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+            <a href="https://www.tiktok.com/@club.flipgym" class="social-link" aria-label="TikTok" target="_blank" rel="noreferrer">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 15.66a6.34 6.34 0 0010.86 4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1.04-.52 4.9 4.9 0 01-1.29-1.26c-.24-.34-.43-.73-.55-1.12l-.08-.3z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-partners-title">Nos partenaires</h4>
+          <div class="footer-partner-grid">
+            <div class="footer-partner-card is-tall">
+              <img src="partenaire-rosemont-petite-patrie.png" alt="Rosemont La Petite-Patrie Montréal" />
+            </div>
+            <div class="footer-partner-card is-tall">
+              <img src="partenaire-gymnastique-quebec.png" alt="Gymnastique Québec" />
+            </div>
+            <div class="footer-partner-card is-wide">
+              <img src="partenaire-asso-camps-quebec.png" alt="Association des camps du Québec" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Colonne 3 : Liens Utiles -->
+        <div>
+          <h4 class="footer-title">Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="recreatif-description.html">Récréatif</a></li>
+            <li><a href="competitif-releve-defi.html">Compétitif</a></li>
+            <li><a href="camp-de-jour.html">Camp de jour</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Colonne 4 : Contact -->
+        <div>
+          <h4 class="footer-title">Nous joindre</h4>
+          <ul class="footer-contact-list">
+            <li><span class="footer-contact-label">Adresse</span><span>1600 Rue de Drucourt<br/>Montréal (QC) H2G 1N6</span></li>
+            <li><span class="footer-contact-label">Téléphone</span><a href="tel:5149482222">514 948-2222</a></li>
+            <li><span class="footer-contact-label">Courriel</span><a href="mailto:flipgym@flipgym.com">flipgym@flipgym.com</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copy">
+          &copy; 2026 Club de gymnastique flipgym de Montréal. Tous droits réservés.
+        </div>
+        <div class="footer-links" style="display: flex; gap: 20px;">
+          <a href="#" style="margin: 0; font-size: 0.85rem;">Politique de confidentialité</a>
+          <a href="#" style="margin: 0; font-size: 0.85rem;">Conditions générales</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="chat-fab" id="chatFab" role="button" aria-label="Ouvrir le chat flipgym" tabindex="0">
+    <div class="chat-fab-label" id="chatFabLabel">
+      <button class="chat-fab-label-close" id="chatFabLabelClose" type="button" aria-label="Masquer l'étiquette de Flippy">✕</button>
+      <span class="chat-fab-label-title">Flippy</span>
+      <span class="chat-fab-label-text">L’assistante virtuelle de flipgym</span>
+    </div>
+    <div class="fab-pulse"></div>
+    <span class="fab-icon"><img src="flora-avatar.png" alt="Avatar de Flippy" /></span>
+    <span class="fab-badge">1</span>
+  </div>
+
+  <div class="chat-window" id="chatWindow" role="dialog" aria-label="Chatbot flipgym">
+    <div class="chat-setup" id="chatSetup">
+      <div class="setup-header">
+        <img src="logo-navbar.png" alt="flipgym de Montréal" class="setup-logo-img" />
+        <p class="setup-subtitle">Notre agente virtuelle peut répondre à vos questions sur les programmes, inscriptions et horaires.</p>
+      </div>
+      <div class="setup-body">
+        <label for="apiKeyInput">Clé API OpenAI</label>
+        <input class="setup-input" type="password" id="apiKeyInput" placeholder="sk-proj-..." />
+        <p class="setup-hint">
+          Pour une démo locale, entrez votre clé ici.
+          <a href="https://platform.openai.com/api-keys" target="_blank" rel="noreferrer">Créer une clé API</a>
+        </p>
+      </div>
+      <button class="btn btn-blue w-full" id="startChatBtn" type="button">Démarrer le chat</button>
+    </div>
+
+    <div class="chat-main" id="chatMain" style="display: none;">
+      <div class="chat-header">
+        <div class="chat-agent-info">
+          <div class="agent-avatar"><img src="flora-avatar.png" alt="Avatar de Flippy" /></div>
+          <div>
+            <div class="agent-name">Flippy, agente flipgym</div>
+            <div class="agent-status"><span class="status-dot"></span>En ligne maintenant</div>
+          </div>
+        </div>
+        <button class="chat-close" id="chatClose" type="button" aria-label="Fermer le chat">✕</button>
+      </div>
+
+      <div class="chat-messages" id="chatMessages">
+        <div class="msg agent-msg">
+          <div class="msg-avatar"><img src="flora-avatar.png" alt="Avatar de Flippy" /></div>
+          <div class="msg-bubble">
+            Bonjour! Je suis Flippy, l’assistante virtuelle de flipgym. Je peux vous guider pour les cours, les inscriptions, les horaires et les services du club.
+          </div>
+        </div>
+        <div class="quick-replies" id="quickReplies">
+          <button class="quick-btn" type="button" data-q="Quels sont vos programmes récréatifs?">Programmes récréatifs</button>
+          <button class="quick-btn" type="button" data-q="Comment s'inscrire chez flipgym?">Inscription</button>
+          <button class="quick-btn" type="button" data-q="Quels sont vos horaires d'ouverture?">Horaires</button>
+        </div>
+      </div>
+
+      <div class="chat-input-area">
+        <input class="chat-input" type="text" id="chatInput" placeholder="Écrivez votre message..." autocomplete="off" />
+        <button class="send-btn" id="sendBtn" type="button" aria-label="Envoyer le message">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="agent.js?v=20260419-6"></script>
+</body>
+</html>
