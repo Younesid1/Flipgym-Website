@@ -218,6 +218,20 @@
       background: rgba(16,72,139,0.09);
       border-color: rgba(16,72,139,0.18);
     }
+    @media (hover: none) {
+      .calendar-nav-button,
+      .calendar-event {
+        -webkit-tap-highlight-color: transparent;
+      }
+      .calendar-nav-button:active {
+        transform: translateY(-1px);
+      }
+      .calendar-event:active {
+        transform: translateY(-1px);
+        box-shadow: 0 10px 20px rgba(16,72,139,0.12);
+        border-color: rgba(16,72,139,0.18);
+      }
+    }
     .calendar-nav-button:disabled {
       opacity: 0.45;
       cursor: default;

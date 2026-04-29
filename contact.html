@@ -490,6 +490,10 @@
       50% { transform: rotate(8.6deg) translate3d(8px, -12px, 0); }
       75% { transform: rotate(6.4deg) translate3d(-3px, -4px, 0); }
     }
+    @keyframes campMobileFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
     .camp-recreatif-photo {
       position: relative;
       overflow: hidden;
@@ -550,6 +554,33 @@
       z-index: 1;
       animation: campFloatC 7.2s ease-in-out infinite;
       animation-delay: 0.9s;
+    }
+
+    @media (hover: none) {
+      .anchor-link,
+      .program-title,
+      .contact-submit,
+      .camp-recreatif-photo {
+        -webkit-tap-highlight-color: transparent;
+      }
+      .anchor-link:active {
+        transform: translateY(-1px);
+      }
+      .program-title:active {
+        transform: translateY(-1px);
+        border-color: rgba(16,72,139,0.24);
+        box-shadow: 0 14px 28px rgba(16,72,139,0.12);
+      }
+      .contact-submit:active {
+        transform: translateY(-1px);
+        box-shadow: 0 14px 26px rgba(16,72,139,0.2);
+      }
+      .camp-recreatif-photo:active {
+        box-shadow: 0 20px 36px rgba(16,72,139,0.14);
+      }
+      .camp-recreatif-photo:active img {
+        transform: scale(1.03);
+      }
     }
     .camp-recreatif-sections {
       display: grid;
@@ -927,10 +958,16 @@
         width: 72vw !important;
         min-width: 220px;
         height: 200px !important;
-        transform: none !important;
-        animation: none !important;
+        transform: translateY(0) !important;
+        animation: campMobileFloat 5.8s ease-in-out infinite !important;
         flex: 0 0 auto;
         scroll-snap-align: start;
+      }
+      .camp-recreatif-photo:nth-child(2) {
+        animation-delay: 0.35s !important;
+      }
+      .camp-recreatif-photo:nth-child(3) {
+        animation-delay: 0.7s !important;
       }
       .anchor-band {
         grid-template-columns: 1fr;
