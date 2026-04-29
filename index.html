@@ -473,19 +473,20 @@
       .m-point:active {
         background: var(--white);
         border-color: var(--blue);
-        transform: translateX(4px);
-        box-shadow: 0 8px 18px rgba(16,72,139,0.08);
+        transform: translateX(8px) scale(1.015);
+        box-shadow: 0 14px 28px rgba(16,72,139,0.16);
       }
       .card-premium:active {
-        transform: translateY(-3px);
-        box-shadow: 0 16px 30px rgba(16,72,139,0.12);
+        transform: translateY(-7px) scale(1.02);
+        box-shadow: 0 24px 42px rgba(16,72,139,0.2);
       }
       .card-premium:active::before {
         transform: scaleY(1);
       }
       .cp-link:active {
-        gap: 11px;
+        gap: 15px;
         color: var(--blue);
+        letter-spacing: 0.02em;
       }
     }
 
