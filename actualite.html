@@ -368,6 +368,13 @@
       box-shadow: none !important;
       border: none !important;
     }
+    .instagram-embed-caption {
+      margin-top: 14px;
+      padding: 0 8px 4px;
+      font-size: 0.92rem;
+      line-height: 1.65;
+      color: var(--text-muted);
+    }
     .instagram-widget-note {
       margin-top: 4px;
       font-size: 0.84rem;
@@ -588,6 +595,7 @@
           </ul>
         </li>
         <li class="nav-item"><a href="competitif-calendrier.html" class="nav-link">Calendrier</a></li>
+        <li class="nav-item"><a href="spectacle.html" class="nav-link">Spectacle</a></li>
         <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
         <li class="nav-item mobile-nav-cta"><a href="https://www.qidigo.com/u/Club-Flipgym-de-Montreal/activities/session" class="nav-cta" target="_blank" rel="noreferrer">S'inscrire</a></li>
       </ul>
@@ -755,6 +763,7 @@
       instagramWidgetGrid.innerHTML = posts.map((post) => `
         <article class="instagram-embed-card">
           <blockquote class="instagram-media" data-instgrm-permalink="${escapeHtml(normalizeEmbedUrl(post.url))}" data-instgrm-version="14"></blockquote>
+          ${post.bio && post.bio !== 'Ajoutez ici la légende courte de la publication.' ? `<p class="instagram-embed-caption">${escapeHtml(post.bio)}</p>` : ''}
         </article>
       `).join('');
 
