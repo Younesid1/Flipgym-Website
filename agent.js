@@ -1,6 +1,6 @@
 /* ================================================
    flipgym Montréal — Agent IA
-   Propulsé par OpenAI GPT-4o
+   Assistant local base sur les informations du site
 ================================================ */
 
 // ─── CONFIGURATION MANUELLE DU CHATBOT ────────────────────────────────────
@@ -63,7 +63,7 @@ const FLORA_CONFIG = {
   values: ['Respect', 'Perseverance', 'Estime de soi', 'Accomplissement', 'Solidarite', 'Passion'],
   demo: {
     greeting: "Bonjour! Je suis Flippy, l’assistante virtuelle de flipgym. Je peux vous guider pour les cours, les inscriptions, les horaires et les services du club.",
-    fallback: "Je suis en mode demo local pour l'instant, donc mes reponses sont simulees. Je peux quand meme vous aider sur les horaires, les inscriptions, les programmes recreatifs ou competitifs, et les services du club.",
+    fallback: "Je n'ai pas l'information exacte pour cette question. Pour avoir une reponse fiable, contactez le club au 514 948-2222 ou par courriel a flipgym@flipgym.com.",
     recreationalFallback: "Le secteur recreatif comprend la petite enfance des 18 mois, puis des groupes 4-5 ans, 6-7 ans, 8-10 ans, 11 ans et +, ainsi que 16 ans et +. Si vous me donnez l'age exact de l'enfant, je peux vous repondre avec les groupes, horaires et prix de la session Printemps 2026.",
     competitiveReply: "Le secteur competitif fonctionne sur audition et comprend notamment Releve-Defi, le niveau regional et le provincial / sport-etudes. Pour une integration, le plus sur est de contacter directement le club afin d'obtenir les criteres exacts.",
     campReply: "flipgym propose des camps de jour recreatifs, releve et competitifs pendant l'ete. Le guide du parent et les details d'inscription sont generalement fournis sur le site du club.",
@@ -216,26 +216,15 @@ Valeurs: ${config.values.join(', ')}.
 - Si quelqu'un veut s'inscrire, donne le lien Qidigo.`;
 }
 
-// ─── SYSTÈME PROMPT ────────────────────────────────────────────────────────
-const SYSTEM_PROMPT = buildSystemPrompt(FLORA_CONFIG);
-
 // ─── STATE ─────────────────────────────────────────────────────────────────
-// ⬇️  COLLE TA CLÉ OpenAI ICI — le formulaire ne s'affichera plus jamais
-const PRESET_KEY = 'COLLE_TA_CLÉ_ICI';  // ex: 'sk-proj-abc123...'
-
-let apiKey = PRESET_KEY || localStorage.getItem('flipgym_key') || '';
 let conversationHistory = [];
 let isTyping = false;
-let demoMode = !apiKey || apiKey === 'COLLE_TA_CLÉ_ICI';
 let floraLastTopic = null;
 
 // ─── DOM REFS ──────────────────────────────────────────────────────────────
 const chatFab      = document.getElementById('chatFab');
 const chatWindow   = document.getElementById('chatWindow');
-const chatSetup    = document.getElementById('chatSetup');
 const chatMain     = document.getElementById('chatMain');
-const apiKeyInput  = document.getElementById('apiKeyInput');
-const startChatBtn = document.getElementById('startChatBtn');
 const chatMessages = document.getElementById('chatMessages');
 const chatInput    = document.getElementById('chatInput');
 const sendBtn      = document.getElementById('sendBtn');
@@ -307,15 +296,8 @@ chatFabLabelClose?.addEventListener('click', (event) => {
 function openChat() {
   chatWindow.classList.add('open');
   document.querySelector('.fab-badge').style.display = 'none';
-  // Si clé déjà définie ou mode démo → ouvre directement le chat
-  if ((apiKey && apiKey !== 'COLLE_TA_CLÉ_ICI') || demoMode) {
-    chatSetup.style.display = 'none';
-    chatMain.style.display = 'flex';
-    chatInput.focus();
-  } else {
-    chatSetup.style.display = 'flex';
-    chatMain.style.display = 'none';
-  }
+  chatMain.style.display = 'flex';
+  chatInput.focus();
 }
 
 function closeChat() {
@@ -333,57 +315,6 @@ document.addEventListener('keydown', (e) => {
     closeChat();
   }
 });
-
-// ─── START CHAT (fallback si pas de clé en dur) ────────────────────────────
-startChatBtn.addEventListener('click', () => {
-  const key = apiKeyInput.value.trim();
-  if (!key) {
-    demoMode = true;
-    apiKey = '';
-    localStorage.removeItem('flipgym_key');
-  } else {
-    if (!key.startsWith('sk-')) {
-      shake(apiKeyInput);
-      showSetupError('Veuillez entrer une clé OpenAI valide (commence par sk-) ou laisser vide pour le mode démo');
-      return;
-    }
-    demoMode = false;
-    apiKey = key;
-    localStorage.setItem('flipgym_key', key);
-  }
-  chatSetup.style.display = 'none';
-  chatMain.style.display = 'flex';
-  chatInput.focus();
-});
-
-// Load saved key
-const savedKey = localStorage.getItem('flipgym_key');
-if (savedKey) {
-  apiKey = savedKey;
-  apiKeyInput.value = savedKey;
-  demoMode = false;
-}
-
-function showSetupError(msg) {
-  let err = chatSetup.querySelector('.setup-error');
-  if (!err) {
-    err = document.createElement('p');
-    err.className = 'setup-error';
-    err.style.cssText = 'color:#f87171;font-size:0.82rem;margin-top:8px;font-family:var(--font-body);';
-    startChatBtn.insertAdjacentElement('afterend', err);
-  }
-  err.textContent = msg;
-}
-
-function shake(el) {
-  el.style.animation = 'none';
-  el.offsetHeight;
-  el.style.animation = 'shake 0.4s ease';
-  el.addEventListener('animationend', () => el.style.animation = '', { once: true });
-}
-const shakeStyle = document.createElement('style');
-shakeStyle.textContent = '@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}';
-document.head.appendChild(shakeStyle);
 
 // ─── QUICK REPLIES ─────────────────────────────────────────────────────────
 document.querySelectorAll('.quick-btn').forEach(btn => {
@@ -425,62 +356,15 @@ async function sendMessage(text) {
   sendBtn.disabled = true;
 
   try {
-    if (demoMode) {
-      const reply = getDemoReply(text);
-      await wait(650);
-      conversationHistory.push({ role: 'assistant', content: reply });
-      removeTyping(typingId);
-      appendMessage('agent', reply);
-      return;
-    }
-
-    if (!apiKey) { openChat(); return; }
-
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`
-      },
-      body: JSON.stringify({
-        model: 'gpt-4o',
-        messages: [
-          { role: 'system', content: SYSTEM_PROMPT },
-          ...conversationHistory
-        ],
-        temperature: 0.7,
-        max_tokens: 400
-      })
-    });
-
-    if (!response.ok) {
-      const err = await response.json();
-      throw new Error(err.error?.message || `Erreur API: ${response.status}`);
-    }
-
-    const data = await response.json();
-    const reply = data.choices[0].message.content;
-
-    // Add assistant reply to history
+    const reply = getDemoReply(text);
+    await wait(650);
     conversationHistory.push({ role: 'assistant', content: reply });
-
-    // Remove typing, show reply
     removeTyping(typingId);
     appendMessage('agent', reply);
 
   } catch (err) {
     removeTyping(typingId);
-    let friendlyMsg = '❌ Une erreur s\'est produite. ';
-    if (err.message.includes('401')) {
-      friendlyMsg += 'Clé API invalide. <button onclick="resetKey()" style="color:var(--primary-light);background:none;border:none;cursor:pointer;font-family:var(--font);text-decoration:underline;">Changer la clé</button>';
-      apiKey = '';
-      localStorage.removeItem('flipgym_key');
-    } else if (err.message.includes('429')) {
-      friendlyMsg += 'Limite de requêtes atteinte. Veuillez réessayer dans un moment.';
-    } else {
-      friendlyMsg += err.message;
-    }
-    appendMessage('agent', friendlyMsg, true);
+    appendMessage('agent', "Une erreur s'est produite. Veuillez reessayer dans un moment.");
   } finally {
     isTyping = false;
     sendBtn.disabled = false;
@@ -489,19 +373,13 @@ async function sendMessage(text) {
 }
 
 // ─── UI HELPERS ────────────────────────────────────────────────────────────
-function appendMessage(role, content, isHTML = false) {
+function appendMessage(role, content) {
   const msgEl = document.createElement('div');
   msgEl.className = `msg ${role === 'user' ? 'user-msg' : 'agent-msg'}`;
 
   const bubbleEl = document.createElement('div');
   bubbleEl.className = 'msg-bubble';
-
-  if (isHTML) {
-    bubbleEl.innerHTML = content;
-  } else {
-    // Convert markdown-like **bold** and line breaks
-    bubbleEl.innerHTML = formatText(content);
-  }
+  bubbleEl.appendChild(formatText(content));
 
   if (role === 'agent') {
     const avatarEl = document.createElement('div');
@@ -516,10 +394,38 @@ function appendMessage(role, content, isHTML = false) {
 }
 
 function formatText(text) {
-  return text
-    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-    .replace(/\*(.*?)\*/g, '<em>$1</em>')
-    .replace(/\n/g, '<br/>');
+  const fragment = document.createDocumentFragment();
+  const parts = String(text ?? '').split('\n');
+
+  parts.forEach((line, lineIndex) => {
+    if (lineIndex > 0) fragment.appendChild(document.createElement('br'));
+    appendInlineFormatting(fragment, line);
+  });
+
+  return fragment;
+}
+
+function appendInlineFormatting(parent, text) {
+  const pattern = /(\*\*[^*]+\*\*|\*[^*]+\*)/g;
+  let lastIndex = 0;
+  let match;
+
+  while ((match = pattern.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      parent.appendChild(document.createTextNode(text.slice(lastIndex, match.index)));
+    }
+
+    const token = match[0];
+    const isStrong = token.startsWith('**');
+    const el = document.createElement(isStrong ? 'strong' : 'em');
+    el.textContent = token.slice(isStrong ? 2 : 1, isStrong ? -2 : -1);
+    parent.appendChild(el);
+    lastIndex = match.index + token.length;
+  }
+
+  if (lastIndex < text.length) {
+    parent.appendChild(document.createTextNode(text.slice(lastIndex)));
+  }
 }
 
 function showTyping() {
@@ -549,25 +455,22 @@ function scrollToBottom() {
   chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
-function resetKey() {
-  apiKey = '';
-  demoMode = true;
-  localStorage.removeItem('flipgym_key');
-  chatSetup.style.display = 'flex';
-  chatMain.style.display = 'none';
-  apiKeyInput.value = '';
-}
-
 function wait(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 const DEMO_PROGRAMS = FLORA_CONFIG.demo.agePrograms;
+const CONTACT_FALLBACK = `Je n'ai pas l'information exacte pour cette question. Pour avoir une reponse fiable, contactez le club au ${FLORA_CONFIG.contact.phone} ou par courriel a ${FLORA_CONFIG.contact.email}.`;
+
+function contactFallback(topic = 'ce sujet') {
+  return `Je n'ai pas l'information exacte pour ${topic}. Pour eviter de vous donner une mauvaise information, contactez le club au ${FLORA_CONFIG.contact.phone} ou par courriel a ${FLORA_CONFIG.contact.email}.`;
+}
+
 const FLORA_KNOWLEDGE_BASE = [
   {
     id: 'activites',
-    keywords: ['activites', 'activités', 'propose', 'offrez', 'offrent', 'qu est ce que flipgym propose', 'que propose flipgym'],
-    answer: () => "Nous proposons des cours pour tous les ages et niveaux, que ce soit dans le secteur recreatif, releve ou competitif. Vous pouvez consulter la description de chaque niveau dans l'onglet specifique de chaque secteur sur notre site."
+    keywords: ['activites', 'activités', 'propose', 'offrez', 'offrent', 'qu est ce que flipgym propose', 'que propose flipgym', 'programmes offerts'],
+    answer: () => "flipgym offre des cours recreatifs, des programmes releve/competitifs, des camps de jour et plusieurs services comme les cours prives, fetes d'enfants et locations de gymnase."
   },
   {
     id: 'mission-valeurs',
@@ -576,22 +479,32 @@ const FLORA_KNOWLEDGE_BASE = [
   },
   {
     id: 'horaires',
-    keywords: ['horaire', 'horaires', 'heure', 'heures', 'ouvert', 'ouverture', 'ferme', 'fermeture'],
-    answer: () => `Nos heures d'ouverture sont ${FLORA_CONFIG.openingHours[0].toLowerCase()} et ${FLORA_CONFIG.openingHours[1].toLowerCase()}. Pour les horaires de cours precis, le mieux est de consulter Qidigo ou de nous appeler au ${FLORA_CONFIG.contact.phone}.`
+    keywords: ['horaire', 'horaires', 'heure', 'heures', 'ouvert', 'ouverture', 'ferme', 'fermeture', 'quand etes vous ouvert', 'quand êtes vous ouvert'],
+    answer: () => `Nos heures d'ouverture sont ${FLORA_CONFIG.openingHours[0].toLowerCase()} et ${FLORA_CONFIG.openingHours[1].toLowerCase()}. Pour les horaires de cours precis, consultez la page Horaires & Tarifs ou Qidigo.`
   },
   {
     id: 'inscription',
-    keywords: ['inscription', 'inscriptions', 'inscrire', 'inscris', 'qidigo', 'register', 'comment inscrire', 'comment puis je inscrire'],
-    answer: () => `Les inscriptions se font directement en ligne via la plateforme Qidigo, selon les periodes d'inscription. Vous pouvez verifier la disponibilite sur notre site. Voici le lien d'inscription : ${FLORA_CONFIG.contact.registrationUrl}`
+    keywords: ['inscription', 'inscriptions', 'inscrire', 'inscris', 'qidigo', 'register', 'comment inscrire', 'comment puis je inscrire', 'comment inscrire mon enfant', 'place disponible', 'places disponibles'],
+    answer: () => `Les inscriptions se font directement en ligne via Qidigo, selon les periodes d'inscription et les places disponibles. Voici le lien : ${FLORA_CONFIG.contact.registrationUrl}`
   },
   {
     id: 'session-commencee',
-    keywords: ['session commence', 'session a deja commence', 'session déjà commencée', 'inscrire en retard', 'session en cours', 'liste d attente', 'liste d\'attente'],
+    keywords: ['session commence', 'session a deja commence', 'session déjà commencée', 'inscrire en retard', 'session en cours', 'liste d attente', 'liste d\'attente', 'trop tard pour inscrire', 'encore possible inscrire'],
     answer: () => "Oui, il est possible de s'inscrire meme si la session a deja commence. Contactez-nous pour verifier s'il reste des places disponibles ou pour etre ajoute a la liste d'attente. Si une place se libere, vous beneficierez d'un rabais sur les cours que votre enfant a manques."
   },
   {
+    id: 'essai',
+    keywords: ['cours d essai', 'cours d\'essai', 'essayer un cours', 'essai gratuit', 'cours gratuit', 'premier cours essai'],
+    answer: () => contactFallback('les cours d essai et les possibilites d essai selon la session')
+  },
+  {
+    id: 'remboursement-annulation',
+    keywords: ['remboursement', 'rembourser', 'annulation', 'annuler inscription', 'annuler mon inscription', 'annuler une inscription', 'politique remboursement', 'credit', 'crédit', 'changer de groupe', 'transfert de groupe'],
+    answer: () => contactFallback('les remboursements, annulations ou changements de groupe')
+  },
+  {
     id: 'tarifs',
-    keywords: ['tarif', 'tarifs', 'prix', 'cout', 'coût', 'combien'],
+    keywords: ['tarif', 'tarifs', 'prix', 'cout', 'coût', 'combien', 'combien ca coute', 'combien ça coûte'],
     answer: () => FLORA_CONFIG.demo.pricingReply
   },
   {
@@ -610,9 +523,14 @@ const FLORA_KNOWLEDGE_BASE = [
     answer: () => "Les frais d'inscription sont payables en ligne. Pour l'achat des maillots, des gants ou des produits flipgym, vous pouvez vous procurer ces articles au bureau administratif. Nous acceptons les cartes de debit et de credit, ainsi que l'argent comptant."
   },
   {
+    id: 'boutique',
+    keywords: ['boutique', 'acheter maillot', 'acheter uniforme', 'hoodie', 'gourde', 'cuissard', 'tape', 'k-tape', 'produit flipgym', 'produits flipgym'],
+    answer: () => "La boutique flipgym propose notamment maillots, hoodies, gourdes, cuissards, tape, K-Tape et certains articles d'entrainement. L'achat se fait directement au bureau administratif du club."
+  },
+  {
     id: 'age-minimum',
-    keywords: ['quel age', 'quel âge', 'a partir de quel age', 'a partir de quel âge', '18 mois', 'age minimum', 'âge minimum'],
-    answer: () => "Nous acceptons les enfants des l'age de 18 mois. Pour plus de details, vous pouvez consulter l'onglet Recreatif sur notre site."
+    keywords: ['quel age', 'quel âge', 'a partir de quel age', 'a partir de quel âge', '18 mois', 'age minimum', 'âge minimum', 'mon enfant a quel age'],
+    answer: () => "Les cours commencent des 18 mois avec les groupes Parent-Enfant. Si vous me donnez l'age de votre enfant, je peux vous indiquer les groupes recreatifs correspondants."
   },
   {
     id: 'recreatif',
@@ -633,6 +551,11 @@ const FLORA_KNOWLEDGE_BASE = [
     id: 'competitif-autre-club',
     keywords: ['autre club', 'vient d un autre club', 'venant d un autre club', 'niveau competitif dans un autre club', 'integrer le programme competitif', 'intégrer le programme compétitif'],
     answer: () => "Pour evaluer l'integration de votre enfant au programme competitif de flipgym, merci de nous envoyer une demande d'inscription a l'adresse flipgym@flipgym.com. Veuillez preciser l'experience gymnique de votre enfant. Une audition privee sera ensuite organisee avec l'un de nos entraineurs pour evaluer ses competences et determiner son niveau."
+  },
+  {
+    id: 'audition',
+    keywords: ['audition', 'auditions', 'evaluation competitive', 'évaluation compétitive', 'tester niveau', 'evaluer niveau', 'évaluer niveau'],
+    answer: () => `${FLORA_SITE_KNOWLEDGE.services.auditions} Pour planifier ou valider une audition, contactez le club au ${FLORA_CONFIG.contact.phone} ou par courriel a ${FLORA_CONFIG.contact.email}.`
   },
   {
     id: 'camp-recreatif-detail',
@@ -685,6 +608,21 @@ const FLORA_KNOWLEDGE_BASE = [
     answer: () => `${FLORA_SITE_KNOWLEDGE.services.auditions} ${FLORA_SITE_KNOWLEDGE.services.privateLessons} ${FLORA_SITE_KNOWLEDGE.services.birthdays} ${FLORA_SITE_KNOWLEDGE.services.rental}`
   },
   {
+    id: 'cours-prives',
+    keywords: ['cours prive', 'cours privé', 'cours prives', 'cours privés', 'entrainement personnalise', 'entraînement personnalisé', 'coach prive', 'coach privé'],
+    answer: () => `${FLORA_SITE_KNOWLEDGE.services.privateLessons} Pour faire une demande, contactez le club au ${FLORA_CONFIG.contact.phone} ou par courriel a ${FLORA_CONFIG.contact.email}.`
+  },
+  {
+    id: 'fetes-enfants',
+    keywords: ['fete enfant', 'fête enfant', 'fetes enfants', 'fêtes enfants', 'anniversaire', 'party', 'fete d enfant', 'fête d enfant'],
+    answer: () => `${FLORA_SITE_KNOWLEDGE.services.birthdays} Pour verifier les disponibilites, contactez le club au ${FLORA_CONFIG.contact.phone} ou par courriel a ${FLORA_CONFIG.contact.email}.`
+  },
+  {
+    id: 'location-gymnase',
+    keywords: ['location gymnase', 'louer gymnase', 'location du gymnase', 'louer le gym', 'evenement corporatif', 'événement corporatif'],
+    answer: () => `${FLORA_SITE_KNOWLEDGE.services.rental} Pour une demande de location, contactez le club au ${FLORA_CONFIG.contact.phone} ou par courriel a ${FLORA_CONFIG.contact.email}.`
+  },
+  {
     id: 'contact',
     keywords: ['telephone', 'téléphone', 'courriel', 'email', 'adresse', 'contact', 'appeler', 'ecrire', 'écrire'],
     answer: () => `Vous pouvez nous joindre au ${FLORA_CONFIG.contact.phone}, par courriel a ${FLORA_CONFIG.contact.email}, ou venir au club au ${FLORA_CONFIG.contact.address}.`
@@ -696,13 +634,38 @@ const FLORA_KNOWLEDGE_BASE = [
   },
   {
     id: 'absence',
-    keywords: ['absence', 'absent', 'manquer un cours', 'peut pas assister', 'ne peut pas assister', 'rater un cours'],
-    answer: () => "Merci de nous informer par courriel ou par telephone si votre enfant ne peut pas assister a un cours."
+    keywords: ['absence', 'absent', 'manquer un cours', 'peut pas assister', 'ne peut pas assister', 'rater un cours', 'cours manque', 'cours manqué'],
+    answer: () => `Merci de nous informer par courriel ou par telephone si votre enfant ne peut pas assister a un cours. Vous pouvez nous joindre au ${FLORA_CONFIG.contact.phone} ou a ${FLORA_CONFIG.contact.email}.`
+  },
+  {
+    id: 'reprise-cours',
+    keywords: ['reprendre un cours', 'reprise de cours', 'cours de reprise', 'cours manque repris', 'cours manqué repris'],
+    answer: () => contactFallback('les reprises de cours')
+  },
+  {
+    id: 'retard',
+    keywords: ['retard', 'en retard', 'arriver en retard', 'retard cours'],
+    answer: () => "Si vous pensez arriver en retard, le mieux est de contacter directement le club afin que l'equipe puisse vous guider selon le cours et le contexte."
+  },
+  {
+    id: 'stationnement',
+    keywords: ['stationnement', 'parking', 'se stationner', 'voiture'],
+    answer: () => contactFallback('le stationnement')
+  },
+  {
+    id: 'objets-perdus',
+    keywords: ['objet perdu', 'objets perdus', 'perdu', 'perdue', 'retrouver un objet', 'bouteille perdue', 'vetement perdu', 'vêtement perdu'],
+    answer: () => `Pour un objet perdu, contactez le club au ${FLORA_CONFIG.contact.phone} ou par courriel a ${FLORA_CONFIG.contact.email}. Decrivez l'objet, le cours et la date approximative.`
+  },
+  {
+    id: 'emploi',
+    keywords: ['emploi', 'emplois', 'travail', 'travailler', 'postuler', 'cv', 'entraineur', 'entraîneur'],
+    answer: () => `Pour les opportunites d'emploi ou pour envoyer votre candidature, contactez le club par courriel a ${FLORA_CONFIG.contact.email}.`
   },
   {
     id: 'spectacle',
-    keywords: ['evenement', 'événement', 'demonstration', 'démonstration', 'spectacle', 'fin d annee', 'fin d année', 'juin'],
-    answer: () => "Oui, chaque annee, nous organisons un spectacle de fin d'annee en juin, ou nos membres peuvent presenter leurs progres et performances devant leurs familles et amis."
+    keywords: ['evenement', 'événement', 'demonstration', 'démonstration', 'spectacle', 'fin d annee', 'fin d année', 'juin', 'billet spectacle', 'billetterie', 'ordre de passage'],
+    answer: () => "Le spectacle de fin d'annee 2026 aura lieu en juin. Les informations importantes, la billetterie et l'ordre de passage sont disponibles sur la page Spectacle du site. Pour une question precise sur le spectacle, contactez le club."
   },
   {
     id: 'salutation',

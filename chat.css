@@ -160,67 +160,6 @@
   to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-.chat-setup {
-  padding: 32px 28px;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.setup-header { text-align: center; }
-
-.setup-logo-img {
-  height: 48px;
-  width: auto;
-  margin: 0 auto 12px;
-  display: block;
-}
-
-.setup-subtitle {
-  color: #5a7394;
-  font-size: 0.9rem;
-  font-family: "Inter", sans-serif;
-}
-
-.setup-body label {
-  display: block;
-  font-weight: 600;
-  font-size: 0.9rem;
-  margin-bottom: 8px;
-  color: #0d1b2e;
-}
-
-.setup-input {
-  width: 100%;
-  background: #f5f8fc;
-  border: 1.5px solid rgba(16, 72, 139, 0.15);
-  border-radius: 10px;
-  padding: 12px 16px;
-  color: #0d1b2e;
-  font-family: "Outfit", sans-serif;
-  font-size: 0.9rem;
-  outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-.setup-input:focus {
-  border-color: #10488b;
-  box-shadow: 0 0 0 3px rgba(16, 72, 139, 0.12);
-}
-
-.setup-hint {
-  margin-top: 10px;
-  font-size: 0.78rem;
-  color: #5a7394;
-  font-family: "Inter", sans-serif;
-  line-height: 1.6;
-}
-
-.setup-hint a {
-  color: #10488b;
-  font-weight: 600;
-}
-
 .chat-main {
   display: flex;
   flex-direction: column;
