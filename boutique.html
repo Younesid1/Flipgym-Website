@@ -308,7 +308,10 @@
       aspect-ratio: 1 / 1;
       object-fit: contain;
       filter: drop-shadow(0 18px 36px rgba(16,72,139,0.12));
-      transition: transform 0.35s ease;
+      transition: transform 0.35s ease, opacity 0.2s ease;
+    }
+    .product-tile-media img.is-switching {
+      opacity: 0;
     }
     .product-tile:hover .product-tile-media img {
       transform: scale(1.03);
@@ -543,7 +546,6 @@
         <li class="nav-item has-dropdown">
           <a href="services.html" class="nav-link">Services <span class="nav-caret">▾</span></a>
           <ul class="dropdown-menu">
-            <li><a href="services.html#auditions" class="dropdown-link">Auditions</a></li>
             <li><a href="services.html#cours-prives" class="dropdown-link">Cours privé</a></li>
             <li><a href="services.html#fetes" class="dropdown-link">Fêtes d'enfants</a></li>
             <li><a href="services.html#location" class="dropdown-link">Location de gymnase</a></li>
@@ -573,9 +575,9 @@
         <span class="catalog-eyebrow">Boutique en club</span>
 
         <div class="catalog-grid">
-          <a href="boutique-maillot-recreatif.html" class="product-tile" aria-label="Voir la fiche produit du maillot récréatif">
+          <a href="boutique-maillot-recreatif.html" class="product-tile" data-back-image="boutique-maillot-recreatif-back-transparent.png" aria-label="Voir la fiche produit du maillot récréatif">
             <div class="product-tile-media">
-              <img src="boutique-maillot-recreatif-front-transparent.png" alt="Maillot récréatif flipgym" />
+              <img src="boutique-maillot-recreatif-front-transparent.png" alt="Maillot récréatif flipgym - avant" data-front-alt="Maillot récréatif flipgym - avant" data-back-alt="Maillot récréatif flipgym - dos" />
             </div>
             <div class="product-tile-copy">
               <h2 class="product-tile-title">Maillot récréatif</h2>
@@ -583,9 +585,9 @@
             </div>
           </a>
 
-          <a href="boutique-hoodie-flipgym.html" class="product-tile" aria-label="Voir la fiche produit du hoodie flipgym bleu">
+          <a href="boutique-hoodie-flipgym.html" class="product-tile" data-back-image="boutique-hoodie-bleu-dos-transparent.png" aria-label="Voir la fiche produit du hoodie flipgym bleu">
             <div class="product-tile-media">
-              <img src="boutique-hoodie-bleu-transparent.png" alt="Hoodie flipgym bleu" />
+              <img src="boutique-hoodie-bleu-transparent.png" alt="Hoodie flipgym bleu - avant" data-front-alt="Hoodie flipgym bleu - avant" data-back-alt="Hoodie flipgym bleu - dos" />
             </div>
             <div class="product-tile-copy">
               <h2 class="product-tile-title">Hoodie flipgym - Bleu</h2>
@@ -593,9 +595,9 @@
             </div>
           </a>
 
-          <a href="boutique-hoodie-flipgym-gris.html" class="product-tile" aria-label="Voir la fiche produit du hoodie flipgym gris">
+          <a href="boutique-hoodie-flipgym-gris.html" class="product-tile" data-back-image="boutique-hoodie-gris-dos-transparent.png" aria-label="Voir la fiche produit du hoodie flipgym gris">
             <div class="product-tile-media">
-              <img src="boutique-hoodie-gris-transparent.png" alt="Hoodie flipgym gris" />
+              <img src="boutique-hoodie-gris-transparent.png" alt="Hoodie flipgym gris - avant" data-front-alt="Hoodie flipgym gris - avant" data-back-alt="Hoodie flipgym gris - dos" />
             </div>
             <div class="product-tile-copy">
               <h2 class="product-tile-title">Hoodie flipgym - Gris</h2>
@@ -603,9 +605,9 @@
             </div>
           </a>
 
-          <a href="boutique-kit-entrainement-garcon.html" class="product-tile" aria-label="Voir la fiche produit du kit d’entraînement garçon">
+          <a href="boutique-kit-entrainement-garcon.html" class="product-tile" data-back-image="boutique-kit-entrainement-garcon-dos-transparent.png" aria-label="Voir la fiche produit du kit d’entraînement garçon">
             <div class="product-tile-media">
-              <img src="boutique-kit-entrainement-garcon-transparent.png" alt="Kit d’entraînement garçon flipgym" />
+              <img src="boutique-kit-entrainement-garcon-transparent.png" alt="Kit d’entraînement garçon flipgym - avant" data-front-alt="Kit d’entraînement garçon flipgym - avant" data-back-alt="Kit d’entraînement garçon flipgym - dos" />
             </div>
             <div class="product-tile-copy">
               <h2 class="product-tile-title">Kit d’entraînement garçon</h2>
@@ -772,6 +774,58 @@
           document.querySelectorAll('#mainNav .has-dropdown.mobile-open').forEach((item) => item.classList.remove('mobile-open'));
         }
       });
+    });
+
+    document.querySelectorAll('.product-tile[data-back-image]').forEach((tile) => {
+      const image = tile.querySelector('.product-tile-media img');
+      if (!image) return;
+
+      const frontImage = image.getAttribute('src');
+      const backImage = tile.dataset.backImage;
+      const frontAlt = image.dataset.frontAlt || image.getAttribute('alt') || '';
+      const backAlt = image.dataset.backAlt || frontAlt;
+
+      if (!frontImage || !backImage) return;
+
+      const preload = new Image();
+      preload.src = backImage;
+      let swapTimer;
+
+      const swapImage = (src, alt, delay = 120) => {
+        window.clearTimeout(swapTimer);
+        if (image.getAttribute('src') === src) {
+          image.classList.remove('is-switching');
+          return;
+        }
+        swapTimer = window.setTimeout(() => {
+          image.classList.add('is-switching');
+          window.setTimeout(() => {
+            image.src = src;
+            image.alt = alt;
+            image.classList.remove('is-switching');
+          }, 120);
+        }, delay);
+      };
+
+      const showBack = () => swapImage(backImage, backAlt, 520);
+      const showFront = () => {
+        window.clearTimeout(swapTimer);
+        if (image.getAttribute('src') === frontImage) {
+          image.classList.remove('is-switching');
+          return;
+        }
+        image.classList.add('is-switching');
+        swapTimer = window.setTimeout(() => {
+          image.src = frontImage;
+          image.alt = frontAlt;
+          image.classList.remove('is-switching');
+        }, 110);
+      };
+
+      tile.addEventListener('mouseenter', showBack);
+      tile.addEventListener('mouseleave', showFront);
+      tile.addEventListener('focusin', showBack);
+      tile.addEventListener('focusout', showFront);
     });
   </script>
 </body>

@@ -4,47 +4,44 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>flipgym Montréal | Actualité</title>
-  <meta name="description" content="Suivez l'actualité de flipgym Montréal et découvrez les dernières nouvelles du club ainsi que nos publications Instagram." />
+  <meta name="description" content="Suivez les dernières nouvelles du Club de gymnastique flipgym de Montréal et les publications Instagram officielles." />
   <link rel="icon" type="image/png" href="favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script>
+    if (window.location.protocol === 'file:') {
+      window.location.replace('http://127.0.0.1:4173/actualite.html');
+    }
+  </script>
   <style>
     :root {
       --blue: #10488B;
-      --blue-deep: #0c3569;
+      --blue-deep: #0a356a;
       --blue-light: rgba(16, 72, 139, 0.08);
       --blue-soft: #edf5fd;
-      --blue-gradient: linear-gradient(135deg, #10488B 0%, #1d5fa9 100%);
+      --accent: #f37b4f;
       --white: #ffffff;
-      --surface: #f8fbff;
+      --surface: #f7fbff;
       --text-dark: #0f172a;
-      --text-muted: #4d6278;
-      --border: rgba(16, 72, 139, 0.1);
-      --shadow-sm: 0 12px 30px rgba(16, 72, 139, 0.06);
-      --shadow-lg: 0 28px 70px rgba(16, 72, 139, 0.12);
+      --text-muted: #50657d;
+      --border: rgba(16, 72, 139, 0.12);
+      --shadow-sm: 0 12px 30px rgba(16, 72, 139, 0.07);
+      --shadow-lg: 0 28px 70px rgba(16, 72, 139, 0.14);
+      --radius: 8px;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
       font-family: 'Inter', sans-serif;
       color: var(--text-dark);
-      background:
-        radial-gradient(circle at top left, rgba(16,72,139,0.05), transparent 24%),
-        radial-gradient(circle at top right, rgba(16,72,139,0.035), transparent 20%),
-        linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+      background: linear-gradient(180deg, #ffffff 0%, var(--surface) 64%, #ffffff 100%);
       overflow-x: hidden;
     }
-
     a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
+    img { display: block; max-width: 100%; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
     .navbar {
       position: fixed;
@@ -53,7 +50,7 @@
       right: 0;
       z-index: 1000;
       padding: 20px 0;
-      background: rgba(255,255,255,0.93);
+      background: rgba(255,255,255,0.94);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid transparent;
       transition: all 0.3s ease;
@@ -63,17 +60,9 @@
       border-bottom-color: var(--border);
       box-shadow: 0 4px 15px rgba(16,72,139,0.05);
     }
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
-    .nav-logo img {
-      width: auto;
-      height: 52px;
-      object-fit: contain;
-    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .nav-logo { display: inline-flex; align-items: center; flex-shrink: 0; }
+    .nav-logo img { width: auto; height: 52px; object-fit: contain; }
     .nav-toggle {
       display: none;
       width: 46px;
@@ -98,11 +87,7 @@
       transition: transform 0.25s ease, opacity 0.25s ease;
     }
     .nav-links { display: flex; list-style: none; gap: 32px; }
-    .nav-item {
-      position: relative;
-      display: flex;
-      align-items: center;
-    }
+    .nav-item { position: relative; display: flex; align-items: center; }
     .nav-link {
       display: inline-flex;
       align-items: center;
@@ -115,11 +100,7 @@
     }
     .nav-link:hover,
     .nav-link.active { color: var(--blue); }
-    .nav-caret {
-      font-size: 0.7rem;
-      color: currentColor;
-      transition: transform 0.25s ease;
-    }
+    .nav-caret { font-size: 0.7rem; transition: transform 0.25s ease; }
     .nav-item:hover .nav-caret { transform: rotate(180deg); }
     .dropdown-menu {
       position: absolute;
@@ -139,27 +120,18 @@
       backdrop-filter: blur(12px);
       z-index: 1005;
     }
-    .nav-item:hover .dropdown-menu {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
+    .nav-item:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
     .dropdown-link {
       display: block;
       padding: 12px 14px;
       border-radius: 12px;
-      font-family: 'Inter', sans-serif;
       font-size: 0.94rem;
       font-weight: 500;
       color: var(--text-dark);
       transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
     }
     .dropdown-link:hover,
-    .dropdown-link.active {
-      background: var(--blue-light);
-      color: var(--blue);
-      transform: translateX(4px);
-    }
+    .dropdown-link.active { background: var(--blue-light); color: var(--blue); transform: translateX(4px); }
     .nav-actions { display: flex; gap: 12px; }
     .mobile-nav-cta { display: none; }
     .nav-cta {
@@ -168,7 +140,7 @@
       justify-content: center;
       padding: 10px 24px;
       border-radius: 999px;
-      background: var(--blue-gradient);
+      background: linear-gradient(135deg, var(--blue) 0%, #1d5fa9 100%);
       color: var(--white);
       font-family: 'Outfit', sans-serif;
       font-size: 0.85rem;
@@ -178,15 +150,9 @@
       box-shadow: 0 8px 20px rgba(16,72,139,0.2);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-    .nav-cta:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 26px rgba(16,72,139,0.28);
-    }
+    .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(16,72,139,0.28); }
 
-    .page {
-      padding: 136px 0 88px;
-    }
-
+    .page { padding: 136px 0 88px; }
     .hero {
       margin-bottom: 34px;
     }
@@ -239,166 +205,126 @@
       letter-spacing: -0.05em;
       margin-bottom: 18px;
       text-transform: uppercase;
-    }
-    .news-feed {
-      display: grid;
-      gap: 26px;
-    }
-    .widget-shell {
-      display: grid;
-      gap: 24px;
-      padding: 26px;
-      border-radius: 30px;
-      background: rgba(255,255,255,0.94);
-      border: 1px solid rgba(16,72,139,0.08);
-      box-shadow: var(--shadow-lg);
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .widget-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-    .widget-brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-    .widget-badge {
-      width: 54px;
-      height: 54px;
-      border-radius: 18px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, #10488B 0%, #1b67bb 100%);
       color: var(--white);
-      box-shadow: 0 12px 24px rgba(16,72,139,0.16);
     }
-    .widget-badge svg {
-      width: 24px;
-      height: 24px;
-      fill: currentColor;
+    .instagram-section {
+      position: relative;
+      padding: 10px 0 8px;
     }
-    .widget-meta {
-      display: grid;
-      gap: 4px;
+    .instagram-section::before {
+      content: "";
+      position: absolute;
+      top: -18px;
+      left: 50%;
+      width: min(760px, 70vw);
+      height: 1px;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, transparent, rgba(16,72,139,0.18), transparent);
     }
-    .widget-kicker {
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.76rem;
-      font-weight: 800;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--blue);
-    }
-    .widget-handle {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 800;
-      color: var(--text-dark);
-    }
-    .widget-description {
-      font-size: 0.95rem;
-      line-height: 1.7;
-      color: var(--text-muted);
-    }
-    .widget-status {
-      margin-top: 6px;
-      font-size: 0.82rem;
-      line-height: 1.5;
-      color: rgba(77, 98, 120, 0.78);
-    }
-    .widget-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-    .widget-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 44px;
-      padding: 0 18px;
-      border-radius: 999px;
-      background: rgba(16,72,139,0.08);
-      color: var(--blue);
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.78rem;
-      font-weight: 800;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      white-space: nowrap;
-      transition: transform 0.2s ease, background 0.2s ease;
-    }
-    .widget-link:hover {
-      transform: translateY(-1px);
-      background: rgba(16,72,139,0.12);
-    }
-    .widget-grid {
+    .feed-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 22px;
-      align-items: start;
+      gap: 30px;
+      align-items: stretch;
     }
-    .instagram-embed-card {
+    .post-card {
+      position: relative;
+      display: block;
       min-width: 0;
-      padding: 16px;
-      border-radius: 26px;
-      background: rgba(255,255,255,0.98);
-      border: 1px solid rgba(16,72,139,0.08);
-      box-shadow: 0 18px 38px rgba(16,72,139,0.08);
-      transition: transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease;
+      overflow: hidden;
+      border-radius: 8px;
+      background: var(--blue-soft);
+      border: 1px solid rgba(16,72,139,0.11);
+      box-shadow:
+        0 26px 60px rgba(16,72,139,0.11),
+        inset 0 1px 0 rgba(255,255,255,0.9);
+      transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
     }
-    .instagram-embed-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(16,72,139,0.14);
-      box-shadow: 0 24px 44px rgba(16,72,139,0.12);
+    .post-card:hover {
+      transform: translateY(-7px);
+      border-color: rgba(16,72,139,0.24);
+      box-shadow:
+        0 34px 78px rgba(16,72,139,0.17),
+        inset 0 1px 0 rgba(255,255,255,0.95);
     }
-    .instagram-embed-card blockquote.instagram-media {
-      min-width: 0 !important;
-      width: 100% !important;
-      max-width: 540px !important;
-      margin: 0 auto !important;
-      border-radius: 22px !important;
-      box-shadow: none !important;
-      border: none !important;
+    .post-card:focus-visible {
+      outline: 3px solid rgba(16,72,139,0.3);
+      outline-offset: 4px;
     }
-    .instagram-embed-caption {
-      margin-top: 14px;
-      padding: 0 8px 4px;
-      font-size: 0.92rem;
-      line-height: 1.65;
-      color: var(--text-muted);
+    .post-media {
+      position: relative;
+      display: block;
+      aspect-ratio: 1 / 1;
+      background: var(--blue-soft);
+      overflow: hidden;
+      color: var(--blue);
     }
-    .instagram-widget-note {
-      margin-top: 4px;
-      font-size: 0.84rem;
-      line-height: 1.6;
-      color: rgba(77, 98, 120, 0.78);
+    .post-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.45s ease, filter 0.45s ease;
     }
-
-    @media (hover: none) {
-      .widget-link,
-      .instagram-embed-card {
-        -webkit-tap-highlight-color: transparent;
-      }
-      .widget-link:active {
-        transform: translateY(-3px) scale(1.01);
-        background: rgba(16,72,139,0.18);
-        box-shadow: 0 12px 24px rgba(16,72,139,0.14);
-      }
-      .instagram-embed-card:active {
-        transform: translateY(-6px) scale(1.015);
-        border-color: rgba(16,72,139,0.22);
-        box-shadow: 0 24px 40px rgba(16,72,139,0.18);
-      }
+    .post-card:hover .post-media img {
+      filter: saturate(1.05) contrast(1.02);
+      transform: scale(1.045);
     }
-
+    .post-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.08), transparent 26%),
+        linear-gradient(0deg, rgba(5,24,51,0.1), transparent 34%);
+      pointer-events: none;
+    }
+    .post-placeholder {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      padding: 26px;
+      color: var(--blue);
+      text-align: center;
+    }
+    .post-placeholder svg {
+      width: 54px;
+      height: 54px;
+      fill: currentColor;
+    }
+    .post-body {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 2;
+      padding: 44px 22px 22px;
+      background:
+        linear-gradient(180deg, transparent 0%, rgba(7,27,56,0.72) 34%, rgba(7,27,56,0.92) 100%);
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.24s ease, transform 0.24s ease;
+    }
+    .post-card:hover .post-body,
+    .post-card:focus-visible .post-body {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .post-caption {
+      color: var(--white);
+      font-size: 0.95rem;
+      font-weight: 600;
+      line-height: 1.55;
+      text-shadow: 0 1px 12px rgba(0,0,0,0.22);
+      white-space: pre-line;
+    }
+    .post-caption.is-clamped {
+      display: -webkit-box;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 8;
+    }
+    .empty-state { display: none; }
     .footer { background: #0a0f1d; color: var(--white); padding: 80px 0 30px; border-top: 10px solid var(--blue); }
     .footer-grid { display: grid; grid-template-columns: 1.45fr 1fr 0.9fr 1fr; gap: 34px; margin-bottom: 48px; align-items: start; }
     .footer-brand .nav-logo { margin-bottom: 20px; }
@@ -426,11 +352,7 @@
       text-transform: uppercase;
       color: rgba(255,255,255,0.9);
     }
-    .footer-contact-list a {
-      color: rgba(255,255,255,0.72);
-      text-decoration: none;
-      transition: color 0.2s ease;
-    }
+    .footer-contact-list a { color: rgba(255,255,255,0.72); transition: color 0.2s ease; }
     .footer-contact-list a:hover { color: var(--blue); }
     .footer-partners-title {
       font-family: 'Outfit', sans-serif;
@@ -441,25 +363,12 @@
       color: var(--white);
       margin-bottom: 20px;
     }
-    .footer-partner-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
-      align-items: center;
-    }
-    .footer-partner-card {
-      min-height: 62px;
-      padding: 4px 0;
-      background: transparent;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-    }
+    .footer-partner-grid { display: grid; grid-template-columns: 1fr; gap: 16px; align-items: center; }
+    .footer-partner-card { min-height: 62px; padding: 4px 0; display: flex; align-items: center; justify-content: flex-start; }
     .footer-partner-card img {
       width: 170px;
       height: 44px;
       object-fit: contain;
-      display: block;
       opacity: 0.8;
       filter: brightness(0) invert(1);
       transition: opacity 0.2s ease, transform 0.2s ease;
@@ -471,9 +380,7 @@
     .footer-copy { color: rgba(255,255,255,0.4); font-size: 0.85rem; }
 
     @media (max-width: 980px) {
-      .footer-grid {
-        grid-template-columns: 1fr;
-      }
+      .footer-grid { grid-template-columns: 1fr; }
       .nav-inner { flex-wrap: wrap; align-items: center; }
       .nav-toggle { display: inline-flex; margin-left: auto; }
       .nav-actions { display: none; }
@@ -513,23 +420,11 @@
       }
       .nav-item.mobile-open .dropdown-menu { display: flex; padding-top: 8px; }
       .nav-item.mobile-open .nav-caret { transform: rotate(180deg); }
-      .dropdown-link {
-        padding: 8px 0;
-        border-radius: 0;
-        color: var(--text-muted);
-      }
+      .dropdown-link { padding: 8px 0; border-radius: 0; color: var(--text-muted); }
       .dropdown-link:hover,
-      .dropdown-link.active {
-        transform: none;
-      }
-      .mobile-nav-cta {
-        display: inline-flex;
-        width: 100%;
-        justify-content: center;
-        margin-top: 4px;
-      }
-      .widget-shell { max-width: 980px; }
-      .widget-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .dropdown-link.active { transform: none; }
+      .mobile-nav-cta { display: inline-flex; width: 100%; justify-content: center; margin-top: 4px; }
+      .feed-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
     @media (max-width: 640px) {
@@ -537,12 +432,8 @@
       .page { padding: 122px 0 72px; }
       .hero-shell { padding: 24px; border-radius: 24px; }
       .hero-title { font-size: clamp(2.2rem, 11vw, 3.4rem); }
-      .widget-shell { padding: 20px; border-radius: 24px; }
-      .widget-grid { grid-template-columns: 1fr; }
-      .widget-head {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+      .feed-grid { grid-template-columns: 1fr; }
+      .post-body { padding: 42px 20px 20px; }
       .nav-logo img,
       .footer-brand img { height: 48px; }
       .footer-bottom { flex-direction: column; text-align: center; }
@@ -588,7 +479,6 @@
         <li class="nav-item has-dropdown">
           <a href="services.html" class="nav-link">Services <span class="nav-caret">▾</span></a>
           <ul class="dropdown-menu">
-            <li><a href="services.html#auditions" class="dropdown-link">Auditions</a></li>
             <li><a href="services.html#cours-prives" class="dropdown-link">Cours privé</a></li>
             <li><a href="services.html#fetes" class="dropdown-link">Fêtes d'enfants</a></li>
             <li><a href="services.html#location" class="dropdown-link">Location de gymnase</a></li>
@@ -609,34 +499,15 @@
     <div class="container">
       <section class="hero">
         <div class="hero-shell">
-        <div class="hero-kicker">Notre club</div>
-        <h1 class="hero-title">Actualité</h1>
-      </div>
+          <div class="hero-kicker">Notre club</div>
+          <h1 class="hero-title">Actualité</h1>
+        </div>
       </section>
 
-      <section>
-        <section class="news-feed" aria-labelledby="actualite-feed-title">
-          <div class="widget-shell">
-            <div class="widget-head">
-              <div class="widget-brand">
-                <div class="widget-badge" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-                </div>
-                <div class="widget-meta">
-                  <div class="widget-kicker">Publications Instagram</div>
-                  <div class="widget-handle" id="actualite-feed-title">@clubflipgym</div>
-                  <p class="widget-description">Les dernières publications du club, affichées via l’embed officiel Instagram.</p>
-                  <p class="widget-status" id="instagramWidgetStatus">Chargement des publications officielles…</p>
-                </div>
-              </div>
-              <div class="widget-actions">
-                <a href="https://www.instagram.com/clubflipgym" class="widget-link" target="_blank" rel="noreferrer">Voir Instagram</a>
-              </div>
-            </div>
-
-            <div class="widget-grid" id="instagramWidgetGrid"></div>
-          </div>
-        </section>
+      <section class="instagram-section" id="instagram-feed" aria-label="Publications Instagram">
+        <div class="feed-grid" id="feedGrid"></div>
+        <div class="empty-state" id="emptyState">
+        </div>
       </section>
     </div>
   </main>
@@ -645,7 +516,7 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href="#" class="nav-logo" aria-label="flipgym Montréal">
+          <a href="index.html" class="nav-logo" aria-label="flipgym Montréal">
             <img src="logo-navbar.png" alt="flipgym de Montréal" />
           </a>
           <p class="footer-desc">Gymnastique artistique récréative et compétitive à Montréal.</p>
@@ -695,16 +566,15 @@
     </div>
   </footer>
 
-  <script async src="https://www.instagram.com/embed.js"></script>
   <script src="actualite-feed.js"></script>
   <script>
     const navbar = document.getElementById('navbar');
     const navToggle = document.getElementById('navToggle');
     const mobileNavLinks = document.querySelectorAll('#mainNav a');
     const mobileDropdownTriggers = document.querySelectorAll('#mainNav .has-dropdown > .nav-link');
-    const instagramWidgetGrid = document.getElementById('instagramWidgetGrid');
-    const instagramWidgetStatus = document.getElementById('instagramWidgetStatus');
-    const INSTAGRAM_POSTS = Array.isArray(window.FLIPGYM_INSTAGRAM_POSTS) ? window.FLIPGYM_INSTAGRAM_POSTS : [];
+    const feedGrid = document.getElementById('feedGrid');
+    const loadingGrid = document.getElementById('loadingGrid');
+    const instagramConfig = window.FLIPGYM_INSTAGRAM || {};
 
     window.addEventListener('scroll', () => {
       navbar.classList.toggle('scrolled', window.scrollY > 20);
@@ -752,40 +622,80 @@
         .replaceAll("'", '&#39;');
     }
 
-    function normalizeEmbedUrl(url) {
-      const cleanUrl = String(url || '').trim();
-      if (!cleanUrl) return '';
-      return cleanUrl.includes('?') ? cleanUrl : `${cleanUrl}?utm_source=ig_embed&utm_campaign=loading`;
+    function truncate(value, maxLength = 140) {
+      const text = String(value || '').replace(/\s+/g, ' ').trim();
+      return text.length > maxLength ? `${text.slice(0, maxLength - 1).trim()}…` : text;
     }
 
-    function renderInstagramEmbeds(posts) {
-      if (!instagramWidgetGrid) return;
-      instagramWidgetGrid.innerHTML = posts.map((post) => `
-        <article class="instagram-embed-card">
-          <blockquote class="instagram-media" data-instgrm-permalink="${escapeHtml(normalizeEmbedUrl(post.url))}" data-instgrm-version="14"></blockquote>
-          ${post.bio && post.bio !== 'Ajoutez ici la légende courte de la publication.' ? `<p class="instagram-embed-caption">${escapeHtml(post.bio)}</p>` : ''}
-        </article>
-      `).join('');
-
-      if (window.instgrm?.Embeds?.process) {
-        window.instgrm.Embeds.process();
-      }
+    function normalizePosts(payload) {
+      const items = Array.isArray(payload) ? payload : payload?.data || payload?.posts || [];
+      return items
+        .map((item) => ({
+          id: item.id || item.permalink || item.url,
+          permalink: item.permalink || item.url,
+          caption: item.caption || item.bio || item.title || '',
+          mediaUrl: item.media_url || item.mediaUrl || item.image || item.thumbnail_url || item.thumbnailUrl || '',
+          mediaType: item.media_type || item.mediaType || 'IMAGE',
+          timestamp: item.timestamp || item.date || item.created_time || ''
+        }))
+        .filter((item) => item.permalink)
+        .slice(0, 9);
     }
 
-    function loadInstagramWidget() {
-      if (!instagramWidgetGrid) return;
-      const posts = INSTAGRAM_POSTS.filter((post) => post.url).slice(0, 9);
-      renderInstagramEmbeds(posts);
-      if (instagramWidgetStatus) {
-        instagramWidgetStatus.textContent = 'Les publications sont affichées via le widget officiel Instagram.';
-      }
-
-      if (!posts.length && instagramWidgetStatus) {
-        instagramWidgetStatus.textContent = 'Ajoute des liens de publications Instagram pour afficher le feed ici.';
-      }
+    function instagramIcon() {
+      return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>';
     }
 
-    loadInstagramWidget();
+    function renderPosts(posts) {
+      if (loadingGrid) loadingGrid.style.display = 'none';
+      feedGrid.classList.toggle('is-empty', posts.length === 0);
+      feedGrid.innerHTML = posts.map((post) => {
+        const media = post.mediaUrl
+          ? `<img src="${escapeHtml(post.mediaUrl)}" alt="${escapeHtml(truncate(post.caption) || 'Publication Instagram Flipgym')}" loading="lazy" />`
+          : `<div class="post-placeholder">${instagramIcon()}</div>`;
+
+        return `
+          <a class="post-card" href="${escapeHtml(post.permalink)}" target="_blank" rel="noreferrer" aria-label="Ouvrir la publication Instagram">
+            <span class="post-media">
+              ${media}
+            </span>
+            ${post.caption ? `<span class="post-body"><span class="post-caption is-clamped">${escapeHtml(truncate(post.caption))}</span></span>` : ''}
+          </a>
+        `;
+      }).join('');
+    }
+
+    async function fetchInstagramPosts() {
+      const endpoint = String(instagramConfig.apiEndpoint || '').trim();
+      if (!endpoint) return null;
+
+      const response = await fetch(endpoint, {
+        headers: { 'Accept': 'application/json' },
+        cache: 'no-store'
+      });
+      if (!response.ok) throw new Error(`Instagram API ${response.status}`);
+      return response.json();
+    }
+
+    async function loadFeed() {
+      try {
+        const apiPayload = await fetchInstagramPosts();
+        const apiPosts = normalizePosts(apiPayload);
+        if (apiPosts.length) {
+          renderPosts(apiPosts);
+          return;
+        }
+      } catch (error) {
+        console.info('Feed Instagram API indisponible, fallback local utilisé.', error);
+        if (feedGrid.children.length) return;
+      }
+
+      if (feedGrid.children.length) return;
+      const fallbackPosts = normalizePosts(instagramConfig.fallbackPosts || []);
+      renderPosts(fallbackPosts);
+    }
+
+    loadFeed();
   </script>
 </body>
 </html>

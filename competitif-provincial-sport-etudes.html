@@ -287,6 +287,76 @@
       color: var(--text-dark);
       text-align: center;
     }
+    .audition-cta {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 24px;
+      align-items: center;
+      margin: -14px 0 42px;
+      padding: 24px 28px;
+      border-radius: 28px;
+      background: linear-gradient(135deg, rgba(16,72,139,0.96), rgba(29,95,169,0.9));
+      color: var(--white);
+      box-shadow: 0 24px 52px rgba(16,72,139,0.18);
+      overflow: hidden;
+      position: relative;
+    }
+    .audition-cta::after {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      right: -54px;
+      bottom: -84px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+    }
+    .audition-cta-kicker {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.74rem;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      opacity: 0.72;
+      margin-bottom: 8px;
+    }
+    .audition-cta-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(1.35rem, 2vw, 1.85rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
+    .audition-cta-text {
+      margin-top: 8px;
+      color: rgba(255,255,255,0.78);
+      line-height: 1.6;
+      max-width: 680px;
+    }
+    .audition-cta-button {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 13px 22px;
+      border-radius: 999px;
+      background: var(--white);
+      color: var(--blue);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      box-shadow: 0 14px 28px rgba(5,18,38,0.16);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      white-space: nowrap;
+    }
+    .audition-cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 34px rgba(5,18,38,0.22);
+    }
 
     .program-section {
       margin-bottom: 40px;
@@ -629,6 +699,10 @@
       .anchor-band {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
+      .audition-cta {
+        grid-template-columns: 1fr;
+        margin-top: -10px;
+      }
     }
 
     @media (max-width: 640px) {
@@ -649,6 +723,12 @@
       }
       .anchor-band {
         grid-template-columns: 1fr;
+      }
+      .audition-cta {
+        padding: 22px;
+      }
+      .audition-cta-button {
+        width: 100%;
       }
       .nav-logo img,
       .footer-brand img {
@@ -696,7 +776,6 @@
         <li class="nav-item has-dropdown">
           <a href="services.html" class="nav-link">Services <span class="nav-caret">▾</span></a>
           <ul class="dropdown-menu">
-            <li><a href="services.html#auditions" class="dropdown-link">Auditions</a></li>
             <li><a href="services.html#cours-prives" class="dropdown-link">Cours privé</a></li>
             <li><a href="services.html#fetes" class="dropdown-link">Fêtes d'enfants</a></li>
             <li><a href="services.html#location" class="dropdown-link">Location de gymnase</a></li>
@@ -737,6 +816,14 @@
         </a>
       </nav>
 
+      <section class="audition-cta" aria-label="Demande d'audition compétitive">
+        <div>
+          <h2 class="audition-cta-title">Votre enfant souhaite rejoindre le secteur compétitif ?</h2>
+          <p class="audition-cta-text">Une audition est nécessaire pour évaluer son niveau et l'orienter vers le bon groupe.</p>
+        </div>
+        <a href="competitif-audition.html" class="audition-cta-button">Demander une audition</a>
+      </section>
+
       <section class="program-section" id="provincial">
         <div class="program-header">
           <div class="program-label">Secteur Provincial / Sport Études</div>
@@ -750,6 +837,7 @@
               <div class="course-meta">
                 <span class="meta-chip">11 h 30 / semaine</span>
                 <span class="meta-chip">2 groupes de soir</span>
+                <span class="meta-chip">Sur recommandation</span>
               </div>
             </div>
             <div class="course-copy">Le programme provincial comporte les catégories Nintro à N8, divisées en différentes catégories d’âge. Ce secteur se base sur le programme provincial de la Fédération de gymnastique du Québec. Ayant des exigences bien précises, il demande aux athlètes plusieurs qualités physiques telles que la force, la puissance ainsi que la flexibilité. Il s’adresse aux gymnastes ayant une qualité d’exécution ainsi qu’une éthique de travail exemplaire. Ce secteur est la porte d’entrée vers le secteur national. C’est également dans ce secteur que nous sélectionnons les gymnastes pour nos groupes sport-études. Nous avons présentement 2 groupes de soir s’entraînant 11 h 30 par semaine.<br/><br/>Le circuit de compétition provincial implique minimalement 2 compétitions par année. Dépendamment du classement de l’athlète, elle sera invitée à participer à une 3e et/ou 4e compétition durant l’année. La finalité des catégories Nintro à N6 est la Coupe Provinciale où les meilleures athlètes de la province s’affrontent. Nous invitons également nos athlètes du secteur provincial à participer à l’International Gymnix. Cette compétition est facultative, mais fortement recommandée à nos athlètes.</div>
@@ -794,6 +882,7 @@
               <div class="course-meta">
                 <span class="meta-chip">12 ans et +</span>
                 <span class="meta-chip">N7 minimum</span>
+                <span class="meta-chip">Sur recommandation</span>
                 <span class="meta-chip">Évaluation obligatoire</span>
               </div>
             </div>

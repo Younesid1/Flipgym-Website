@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>flipgym Montréal | Notre équipe</title>
-  <meta name="description" content="Découvrez l'équipe flipgym Montréal, de l'administration à l'encadrement technique." />
+  <title>flipgym Montréal | Audition compétitive</title>
+  <meta name="description" content="Demande d'audition pour intégrer le secteur compétitif de flipgym Montréal." />
   <link rel="icon" type="image/png" href="favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -190,7 +190,7 @@
     .hero {
       margin-bottom: 34px;
     }
-    .hero-shell {
+    .hero-frame {
       position: relative;
       overflow: hidden;
       border-radius: 34px;
@@ -201,7 +201,7 @@
       box-shadow: var(--shadow-lg);
       color: var(--white);
     }
-    .hero-shell::after {
+    .hero-frame::after {
       content: "";
       position: absolute;
       inset: auto -50px -70px auto;
@@ -221,7 +221,7 @@
       letter-spacing: 0.16em;
       text-transform: uppercase;
       color: rgba(255,255,255,0.78);
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
     .hero-kicker::before {
       content: "";
@@ -231,15 +231,18 @@
       background: currentColor;
     }
     .hero-title {
-      max-width: 760px;
       font-family: 'Outfit', sans-serif;
       font-size: clamp(2.6rem, 6vw, 4.6rem);
       font-weight: 900;
       line-height: 0.96;
       letter-spacing: -0.05em;
-      margin-bottom: 18px;
       text-transform: uppercase;
       color: var(--white);
+      max-width: 760px;
+      position: relative;
+      display: block;
+      width: auto;
+      white-space: nowrap;
     }
     .anchor-band {
       display: grid;
@@ -424,18 +427,6 @@
       line-height: 1.85;
       color: var(--text-muted);
     }
-    .course-copy a {
-      color: var(--blue);
-      font-weight: 700;
-      text-decoration: underline;
-      text-decoration-thickness: 2px;
-      text-underline-offset: 3px;
-      transition: color 0.2s ease, opacity 0.2s ease;
-    }
-    .course-copy a:hover {
-      color: var(--blue-deep);
-      opacity: 0.9;
-    }
     .course-copy::before {
       content: "";
       position: absolute;
@@ -446,258 +437,159 @@
       border-radius: 999px;
       background: linear-gradient(180deg, rgba(16,72,139,0.35), rgba(16,72,139,0.04));
     }
-    .camp-recreatif-layout {
+
+    .audition-intro {
       display: grid;
-      gap: 24px;
-    }
-    .camp-recreatif-story {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 330px;
-      gap: 20px;
+      grid-template-columns: minmax(280px, 0.58fr) minmax(0, 1.42fr);
+      gap: 30px;
       align-items: start;
+      margin-bottom: 44px;
     }
-    .camp-recreatif-intro {
-      font-size: 1.04rem;
-      line-height: 1.9;
-      color: var(--text-muted);
-    }
-    .camp-recreatif-collage {
-      position: relative;
-      min-height: 300px;
-      padding: 10px 8px 14px;
-    }
-    @keyframes campFloatA {
-      0%, 100% { transform: rotate(-5deg) translate3d(0, 0, 0); }
-      25% { transform: rotate(-6.4deg) translate3d(-8px, -8px, 0); }
-      50% { transform: rotate(-3.8deg) translate3d(10px, -16px, 0); }
-      75% { transform: rotate(-5.8deg) translate3d(-5px, -6px, 0); }
-    }
-    @keyframes campFloatB {
-      0%, 100% { transform: rotate(4deg) translate3d(0, 0, 0); }
-      25% { transform: rotate(5.4deg) translate3d(8px, -8px, 0); }
-      50% { transform: rotate(2.8deg) translate3d(-9px, -14px, 0); }
-      75% { transform: rotate(4.8deg) translate3d(4px, -5px, 0); }
-    }
-    @keyframes campFloatC {
-      0%, 100% { transform: rotate(7deg) translate3d(0, 0, 0); }
-      25% { transform: rotate(5.8deg) translate3d(-6px, -6px, 0); }
-      50% { transform: rotate(8.6deg) translate3d(8px, -12px, 0); }
-      75% { transform: rotate(6.4deg) translate3d(-3px, -4px, 0); }
-    }
-    .camp-recreatif-photo {
+    .audition-card,
+    .audition-form-panel {
+      border-radius: 30px;
       position: relative;
       overflow: hidden;
-      border-radius: 24px;
-      background: #dfe9f5;
-      border: 1px solid rgba(16,72,139,0.12);
-      box-shadow: 0 18px 34px rgba(16,72,139,0.1);
-      transition: box-shadow 0.32s ease, filter 0.32s ease;
-      will-change: transform;
     }
-    .camp-recreatif-photo::after {
+    .audition-card {
+      min-height: 0;
+      padding: 28px 30px 28px 34px;
+      display: grid;
+      align-content: start;
+      gap: 0;
+      background: rgba(255,255,255,0.78);
+      border: 1px solid rgba(16,72,139,0.09);
+      box-shadow: 0 18px 42px rgba(16,72,139,0.07);
+    }
+    .audition-card::before {
       content: "";
       position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      border: 1px solid rgba(255,255,255,0.4);
-      pointer-events: none;
+      inset: 26px auto 26px 0;
+      width: 6px;
+      border-radius: 0 999px 999px 0;
+      background: linear-gradient(180deg, #10488B, rgba(16,72,139,0.24));
     }
-    .camp-recreatif-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.4s ease;
-    }
-    .camp-recreatif-photo:hover {
-      box-shadow: 0 24px 42px rgba(16,72,139,0.15);
-      filter: saturate(1.05);
-    }
-    .camp-recreatif-photo:hover img {
-      transform: scale(1.03);
-    }
-    .camp-recreatif-photo:nth-child(1) {
+    .audition-form-panel::before {
+      content: "";
       position: absolute;
-      top: 0;
-      right: 6px;
-      width: 220px;
-      height: 220px;
-      z-index: 3;
-      animation: campFloatA 7s ease-in-out infinite;
+      inset: 0 0 auto;
+      height: 6px;
+      background: linear-gradient(90deg, #10488B, rgba(16,72,139,0.2), rgba(16,72,139,0.04));
     }
-    .camp-recreatif-photo:nth-child(2) {
-      position: absolute;
-      top: 98px;
-      left: 2px;
-      width: 176px;
-      height: 176px;
-      z-index: 2;
-      animation: campFloatB 7.8s ease-in-out infinite;
-      animation-delay: 0.45s;
-    }
-    .camp-recreatif-photo:nth-child(3) {
-      position: absolute;
-      bottom: 2px;
-      right: 24px;
-      width: 156px;
-      height: 156px;
+    .audition-lead {
+      position: relative;
       z-index: 1;
-      animation: campFloatC 7.2s ease-in-out infinite;
-      animation-delay: 0.9s;
+      font-family: 'Inter', sans-serif;
+      font-size: 1.02rem;
+      font-weight: 500;
+      line-height: 1.85;
+      letter-spacing: 0;
+      color: var(--text-muted);
     }
-    .camp-recreatif-sections {
+    .audition-form-panel {
+      padding: 36px;
+      background: rgba(255,255,255,0.98);
+      border: 1px solid rgba(16,72,139,0.09);
+      box-shadow: 0 24px 58px rgba(16,72,139,0.1);
+    }
+    .audition-form {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 22px;
     }
-    .camp-recreatif-section {
-      padding: 0;
-      background: transparent;
-    }
-    .camp-section-title {
-      margin-bottom: 14px;
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.08rem;
-      font-weight: 800;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--text-dark);
-    }
-    .camp-section-title::after {
-      content: "";
-      display: block;
-      width: 56px;
-      height: 3px;
-      margin-top: 10px;
-      border-radius: 999px;
-      background: var(--blue);
-    }
-    .camp-subblock {
-      padding: 16px 0 0;
-      border-top: 1px solid rgba(16,72,139,0.1);
-    }
-    .camp-subblock + .camp-subblock {
-      margin-top: 18px;
-    }
-    .camp-subtitle {
-      margin-bottom: 10px;
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 800;
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-      color: var(--blue);
-    }
-    .camp-lines {
+    .form-section {
       display: grid;
-      gap: 10px;
-      color: var(--text-muted);
-      line-height: 1.75;
+      gap: 18px;
+      padding: 0 0 22px;
+      border-bottom: 1px solid rgba(16,72,139,0.08);
     }
-    .camp-line {
-      padding-left: 16px;
-      position: relative;
+    .form-section:last-of-type {
+      border-bottom: none;
+      padding-bottom: 4px;
     }
-    .camp-line::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0.78em;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: rgba(16,72,139,0.55);
-    }
-    .camp-contact-note {
-      max-width: 900px;
-      padding-top: 20px;
-      border-top: 1px solid rgba(16,72,139,0.1);
-      line-height: 1.85;
-      color: var(--text-muted);
-    }
-    .camp-contact-note strong {
-      color: var(--text-dark);
-      font-weight: 700;
-    }
-
-    .camp-card-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 24px;
-      margin-top: 8px;
-    }
-    .camp-card {
-      position: relative;
-      padding: 30px 28px;
-      border-radius: 30px;
-      border: 1px solid rgba(16,72,139,0.08);
-      background:
-        radial-gradient(circle at top right, rgba(16,72,139,0.08), transparent 34%),
-        linear-gradient(180deg, rgba(255,255,255,0.98), rgba(243,248,253,0.96));
-      box-shadow: 0 18px 42px rgba(16,72,139,0.08);
-      overflow: hidden;
-    }
-    .camp-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 30px;
-      border: 1px solid rgba(255,255,255,0.65);
-      pointer-events: none;
-    }
-    .camp-card-kicker {
+    .form-section-title {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      margin-bottom: 16px;
+      width: fit-content;
+      min-height: 30px;
+      padding: 6px 11px;
+      border-radius: 999px;
+      background: rgba(16,72,139,0.07);
       font-family: 'Outfit', sans-serif;
       font-size: 0.76rem;
-      font-weight: 800;
+      font-weight: 900;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--blue);
     }
-    .camp-card-kicker::before {
-      content: "";
-      width: 26px;
-      height: 2px;
-      border-radius: 999px;
-      background: currentColor;
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
     }
-    .camp-card-title {
+    .form-field {
+      display: grid;
+      gap: 9px;
+    }
+    .form-field.full {
+      grid-column: 1 / -1;
+    }
+    .form-field label {
       font-family: 'Outfit', sans-serif;
-      font-size: 1.75rem;
-      line-height: 1.05;
+      font-size: 0.82rem;
       font-weight: 800;
       color: var(--text-dark);
-      margin-bottom: 16px;
+      letter-spacing: 0.01em;
     }
-    .camp-card-copy {
-      font-size: 1rem;
-      line-height: 1.82;
-      color: var(--text-muted);
-    }
-    .camp-card-copy strong {
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      width: 100%;
+      border: 1px solid rgba(16,72,139,0.11);
+      border-radius: 14px;
+      background: #ffffff;
       color: var(--text-dark);
-      font-weight: 700;
+      font: inherit;
+      padding: 14px 15px;
+      outline: none;
+      box-shadow: 0 10px 24px rgba(16,72,139,0.04);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, transform 0.2s ease;
     }
-    .camp-card-groups {
-      display: grid;
-      gap: 10px;
-      margin-top: 18px;
+    .form-field textarea {
+      min-height: 132px;
+      resize: vertical;
+      line-height: 1.6;
     }
-    .camp-card-group {
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus {
+      background: #ffffff;
+      border-color: rgba(16,72,139,0.34);
+      box-shadow: 0 0 0 4px rgba(16,72,139,0.08), 0 14px 28px rgba(16,72,139,0.08);
+      transform: translateY(-1px);
+    }
+    .audition-submit {
       display: inline-flex;
       align-items: center;
-      min-height: 42px;
-      padding: 10px 14px;
-      border-radius: 16px;
-      background: rgba(255,255,255,0.82);
-      border: 1px solid rgba(16,72,139,0.08);
-      color: var(--text-dark);
+      justify-content: center;
+      justify-self: end;
+      min-height: 52px;
+      padding: 14px 28px;
+      border: none;
+      border-radius: 999px;
+      background: var(--blue-gradient);
+      color: var(--white);
       font-family: 'Outfit', sans-serif;
-      font-size: 0.92rem;
-      font-weight: 700;
+      font-size: 0.86rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 14px 26px rgba(16,72,139,0.22);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .audition-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 34px rgba(16,72,139,0.28);
     }
 
     .footer { background: #0a0f1d; color: var(--white); padding: 80px 0 30px; border-top: 10px solid var(--blue); }
@@ -791,7 +683,7 @@
     }
     .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
     .footer-copy { color: rgba(255,255,255,0.4); font-size: 0.85rem; }
-    
+
     @media (max-width: 1080px) {
       .anchor-band {
         grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -799,6 +691,7 @@
     }
 
     @media (max-width: 980px) {
+      .audition-intro,
       .program-header,
       .course-item,
       .footer-grid {
@@ -870,27 +763,23 @@
       .anchor-band {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
-      .camp-recreatif-story {
-        grid-template-columns: 1fr;
+      .audition-intro {
+        gap: 22px;
       }
-      .camp-recreatif-collage {
-        min-height: 280px;
-        margin-top: 4px;
-      }
-      .camp-card-grid {
-        grid-template-columns: 1fr;
-      }
-      .camp-recreatif-sections {
-        grid-template-columns: 1fr;
+      .audition-card {
+        min-height: 0;
       }
     }
 
     @media (max-width: 640px) {
       .container { padding: 0 18px; }
       .page { padding: 122px 0 72px; }
-      .hero-shell { padding: 24px; border-radius: 24px; }
       .hero-title {
-        font-size: clamp(2.2rem, 11vw, 3.4rem);
+        font-size: clamp(2.3rem, 11vw, 3.5rem);
+        line-height: 1;
+        width: auto;
+        white-space: normal;
+        text-wrap: balance;
       }
       .program-section {
         padding: 24px;
@@ -898,333 +787,30 @@
       .program-title {
         width: 100%;
       }
-      .camp-recreatif-collage {
-        min-height: auto;
-        display: flex;
-        gap: 12px;
-        overflow-x: auto;
-        padding: 4px 2px 8px;
-        scroll-snap-type: x proximity;
-      }
-      .camp-recreatif-photo {
-        position: relative !important;
-        inset: auto !important;
-        width: 72vw !important;
-        min-width: 220px;
-        height: 200px !important;
-        transform: none !important;
-        animation: none !important;
-        flex: 0 0 auto;
-        scroll-snap-align: start;
-      }
       .anchor-band {
         grid-template-columns: 1fr;
+      }
+      .audition-card,
+      .audition-form-panel {
+        padding: 24px;
+        border-radius: 26px;
+      }
+      .audition-card::before {
+        inset: 22px auto 22px 0;
+        border-radius: 0 999px 999px 0;
+      }
+      .audition-lead {
+        font-size: 1rem;
+      }
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+      .audition-submit {
+        justify-self: stretch;
       }
       .nav-logo img,
       .footer-brand img {
         height: 48px;
-      }
-    }
-
-    .services-shell {
-      display: grid;
-      gap: 28px;
-    }
-    .services-hero {
-      display: block;
-    }
-    .services-hero-main {
-      position: relative;
-      overflow: hidden;
-      padding: 54px 42px 46px;
-      border-radius: 40px;
-      background:
-        radial-gradient(circle at top right, rgba(255,255,255,0.14), transparent 24%),
-        radial-gradient(circle at bottom left, rgba(255,255,255,0.09), transparent 22%),
-        linear-gradient(145deg, #0d3a72 0%, #114b90 48%, #1f67af 100%);
-      color: var(--white);
-      box-shadow: 0 30px 70px rgba(16,72,139,0.18);
-    }
-    .services-hero-main::after {
-      content: "";
-      position: absolute;
-      inset: auto -30px -90px auto;
-      width: 260px;
-      height: 260px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.08);
-    }
-    .services-hero-main::before {
-      content: "";
-      position: absolute;
-      top: -32px;
-      left: -22px;
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.12);
-    }
-    .services-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 18px;
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.82rem;
-      font-weight: 800;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.76);
-    }
-    .services-eyebrow::before {
-      content: "";
-      width: 34px;
-      height: 2px;
-      border-radius: 999px;
-      background: currentColor;
-    }
-    .services-title {
-      font-family: 'Outfit', sans-serif;
-      font-size: clamp(3.4rem, 6vw, 5.8rem);
-      line-height: 0.9;
-      font-weight: 900;
-      letter-spacing: -0.04em;
-      text-transform: uppercase;
-      color: var(--white);
-      max-width: none;
-      white-space: nowrap;
-    }
-    .services-stack {
-      display: grid;
-      gap: 24px;
-    }
-    .service-panel {
-      display: grid;
-      grid-template-columns: 230px minmax(0, 1fr);
-      gap: 28px;
-      padding: 28px;
-      border-radius: 32px;
-      border: 1px solid rgba(16,72,139,0.08);
-      background: rgba(255,255,255,0.92);
-      box-shadow: 0 18px 40px rgba(16,72,139,0.07);
-      scroll-margin-top: 110px;
-    }
-    .service-panel.alt {
-      background:
-        radial-gradient(circle at top right, rgba(16,72,139,0.06), transparent 26%),
-        linear-gradient(180deg, rgba(248,251,255,0.98), rgba(255,255,255,0.96));
-    }
-    .service-side {
-      display: grid;
-      align-content: start;
-      gap: 14px;
-    }
-    .service-chip {
-      display: inline-flex;
-      width: fit-content;
-      align-items: center;
-      padding: 8px 14px;
-      border-radius: 999px;
-      background: rgba(16,72,139,0.08);
-      color: var(--blue);
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.76rem;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-    .service-side h2 {
-      font-family: 'Outfit', sans-serif;
-      font-size: clamp(1.65rem, 2.5vw, 2.2rem);
-      line-height: 1.02;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      color: var(--text-dark);
-    }
-    .service-side p {
-      font-size: 0.94rem;
-      line-height: 1.75;
-      color: var(--text-muted);
-    }
-    .service-body {
-      display: grid;
-      gap: 18px;
-    }
-    .service-text {
-      font-size: 1rem;
-      line-height: 1.9;
-      color: var(--text-muted);
-    }
-    .service-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-    }
-    .service-cardlet {
-      padding: 18px 18px 16px;
-      border-radius: 22px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(245,249,255,0.96));
-      border: 1px solid rgba(16,72,139,0.08);
-    }
-    .service-cardlet strong {
-      display: block;
-      margin-bottom: 8px;
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 800;
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-      color: var(--blue);
-    }
-    .service-cardlet span {
-      display: block;
-      color: var(--text-muted);
-      line-height: 1.7;
-      font-size: 0.95rem;
-    }
-    .service-note {
-      padding: 16px 18px;
-      border-radius: 20px;
-      background: rgba(16,72,139,0.05);
-      border: 1px solid rgba(16,72,139,0.08);
-      color: var(--text-muted);
-      line-height: 1.8;
-    }
-    .service-note strong {
-      color: var(--text-dark);
-    }
-
-    @media (max-width: 1080px) {
-      .anchor-band {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-      }
-    }
-    @media (max-width: 980px) {
-      .service-panel,
-      .service-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-    @media (max-width: 640px) {
-      .services-hero-main,
-      .service-panel {
-        padding: 22px;
-      }
-    }
-
-    .team-shell {
-      display: grid;
-      gap: 38px;
-    }
-    .team-section {
-      display: grid;
-      gap: 24px;
-    }
-    .team-section-head {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 18px;
-      padding-bottom: 14px;
-      border-bottom: 1px solid rgba(16,72,139,0.1);
-    }
-    .team-section-kicker {
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 800;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--blue);
-      margin-bottom: 8px;
-    }
-    .team-section-title {
-      font-family: 'Outfit', sans-serif;
-      font-size: clamp(2rem, 3vw, 2.8rem);
-      line-height: 0.98;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      color: var(--text-dark);
-    }
-    .team-section-note {
-      max-width: 34ch;
-      font-size: 0.95rem;
-      line-height: 1.75;
-      color: var(--text-muted);
-      text-align: right;
-    }
-    .team-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 24px;
-    }
-    .team-card {
-      position: relative;
-      overflow: hidden;
-      padding: 16px 16px 20px;
-      border-radius: 30px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.98), rgba(244,248,253,0.96));
-      border: 1px solid rgba(16,72,139,0.08);
-      box-shadow: 0 20px 44px rgba(16,72,139,0.08);
-    }
-    .team-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 30px;
-      border: 1px solid rgba(255,255,255,0.64);
-      pointer-events: none;
-    }
-    .team-portrait {
-      position: relative;
-      overflow: hidden;
-      border-radius: 22px;
-      aspect-ratio: 0.84 / 1;
-      background: linear-gradient(180deg, #d7e9fb, #b8d7f1);
-      margin-bottom: 18px;
-    }
-    .team-portrait img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-    }
-    .team-name {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.35rem;
-      line-height: 1.08;
-      font-weight: 800;
-      color: var(--text-dark);
-      margin-bottom: 6px;
-    }
-    .team-role {
-      font-size: 0.94rem;
-      line-height: 1.6;
-      color: var(--text-muted);
-    }
-
-    @media (max-width: 1080px) {
-      .team-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-    }
-    @media (max-width: 980px) {
-      .team-section-head {
-        grid-template-columns: 1fr;
-        display: grid;
-      }
-      .team-section-note {
-        text-align: left;
-      }
-    }
-    @media (max-width: 640px) {
-      .team-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-    @media (max-width: 520px) {
-      .team-grid {
-        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -1242,9 +828,9 @@
       </button>
       <ul class="nav-links" id="mainNav">
         <li class="nav-item has-dropdown">
-          <a href="index.html" class="nav-link active">Notre club <span class="nav-caret">▾</span></a>
+          <a href="index.html" class="nav-link">Notre club <span class="nav-caret">▾</span></a>
           <ul class="dropdown-menu">
-            <li><a href="equipe.html" class="dropdown-link active">Notre Équipe</a></li>
+            <li><a href="equipe.html" class="dropdown-link">Notre Équipe</a></li>
             <li><a href="boutique.html" class="dropdown-link">Boutique</a></li>
             <li><a href="actualite.html" class="dropdown-link">Actualité</a></li>
           </ul>
@@ -1257,7 +843,7 @@
           </ul>
         </li>
         <li class="nav-item has-dropdown">
-          <a href="competitif-provincial-sport-etudes.html" class="nav-link">Compétitif <span class="nav-caret">▾</span></a>
+          <a href="competitif-releve-defi.html" class="nav-link active">Compétitif <span class="nav-caret">▾</span></a>
           <ul class="dropdown-menu">
             <li><a href="competitif-releve-defi.html" class="dropdown-link">Relève / Défi</a></li>
             <li><a href="competitif-regional.html" class="dropdown-link">Régional</a></li>
@@ -1286,64 +872,102 @@
 
   <main class="page">
     <div class="container">
-      <div class="team-shell">
-        <section class="hero">
-          <div class="hero-shell">
-            <div class="hero-kicker">Notre club</div>
-            <h1 class="hero-title">Notre équipe</h1>
-          </div>
-        </section>
+      <section class="hero">
+        <div class="hero-frame">
+          <div class="hero-kicker">Secteur compétitif</div>
+          <h1 class="hero-title">Audition</h1>
+        </div>
+      </section>
 
-        <section class="team-section" id="administration">
-          <div class="team-section-head">
-            <div>
-              <h2 class="team-section-title">Administration</h2>
+      <section class="audition-intro">
+        <article class="audition-card">
+          <p class="audition-lead">Les parents souhaitant inscrire leur enfant au secteur compétitif de gymnastique peuvent nous contacter par téléphone, par courriel ou en remplissant le formulaire.</p>
+        </article>
+
+        <article class="audition-form-panel" id="formulaire-audition">
+          <form class="audition-form" id="auditionForm">
+            <div class="form-section">
+              <div class="form-section-title">Parent</div>
+              <div class="form-grid">
+                <div class="form-field">
+                  <label for="parentName">Prénom et nom du parent</label>
+                  <input id="parentName" name="parentName" type="text" required />
+                </div>
+                <div class="form-field">
+                  <label for="parentPhone">Téléphone</label>
+                  <input id="parentPhone" name="parentPhone" type="tel" required />
+                </div>
+                <div class="form-field full">
+                  <label for="parentEmail">Courriel</label>
+                  <input id="parentEmail" name="parentEmail" type="email" required />
+                </div>
+              </div>
             </div>
-          </div>
 
-          <div class="team-grid">
-            <article class="team-card">
-              <div class="team-portrait">
-                <img src="equipe-emily-st-hilaire-chumbe.jpg" alt="Portrait d'Emily St-Hilaire Chumbe" />
+            <div class="form-section">
+              <div class="form-section-title">Gymnaste</div>
+              <div class="form-grid">
+                <div class="form-field">
+                  <label for="childName">Prénom et nom de l'enfant</label>
+                  <input id="childName" name="childName" type="text" required />
+                </div>
+                <div class="form-field">
+                  <label for="childBirth">Date de naissance</label>
+                  <input id="childBirth" name="childBirth" type="date" required />
+                </div>
+                <div class="form-field">
+                  <label for="currentLevel">Niveau actuel</label>
+                  <select id="currentLevel" name="currentLevel" required>
+                    <option value="">Choisir</option>
+                    <option>Récréatif</option>
+                    <option>Pré-Défi</option>
+                    <option>Défi 1</option>
+                    <option>Défi 2</option>
+                    <option>Défi 3</option>
+                    <option>Défi 4</option>
+                    <option>Défi 5</option>
+                    <option>Défi 6</option>
+                    <option>Relève 8-10 R</option>
+                    <option>R1-R2</option>
+                    <option>R3</option>
+                    <option>R4-R5</option>
+                    <option>Nintro à N8</option>
+                    <option>Sport-études</option>
+                    <option>Autre / je ne sais pas</option>
+                  </select>
+                </div>
+                <div class="form-field">
+                  <label for="currentClub">Club actuel</label>
+                  <input id="currentClub" name="currentClub" type="text" />
+                </div>
+                <div class="form-field full">
+                  <label for="desiredProgram">Programme souhaité</label>
+                  <select id="desiredProgram" name="desiredProgram" required>
+                    <option value="">Choisir</option>
+                    <option>Relève / Défi</option>
+                    <option>Régional</option>
+                    <option>Provincial</option>
+                    <option>Sport-études</option>
+                    <option>Je souhaite être conseillé</option>
+                  </select>
+                </div>
               </div>
-              <h3 class="team-name">Emily St-Hilaire Chumbe</h3>
-              <p class="team-role">Directrice technique</p>
-            </article>
+            </div>
 
-            <article class="team-card">
-              <div class="team-portrait">
-                <img src="equipe-younes-aydi.jpg" alt="Portrait de Younes Aydi" />
+            <div class="form-section">
+              <div class="form-section-title">Message</div>
+              <div class="form-grid">
+                <div class="form-field full">
+                  <label for="auditionMessage">Question ou information utile</label>
+                  <textarea id="auditionMessage" name="auditionMessage" placeholder="Expérience, disponibilités, objectifs ou toute information importante."></textarea>
+                </div>
               </div>
-              <h3 class="team-name">Younes Aydi</h3>
-              <p class="team-role">Directeur Administratif</p>
-            </article>
+            </div>
 
-            <article class="team-card">
-              <div class="team-portrait">
-                <img src="equipe-felicia-beauchamp.jpg" alt="Portrait de Felicia Beauchamp" />
-              </div>
-              <h3 class="team-name">Felicia Beauchamp</h3>
-              <p class="team-role">Coordonnatrice du secteur récréatif et du camp de jour / Entraîneur, secteur provincial et sport-études</p>
-            </article>
-
-            <article class="team-card">
-              <div class="team-portrait">
-                <img src="equipe-flora-baron.jpg" alt="Portrait de Flora Baron" />
-              </div>
-              <h3 class="team-name">Flora Baron</h3>
-              <p class="team-role">Responsable du secteur régional/ Entraîneur, secteur provincial et sport-études</p>
-            </article>
-
-            <article class="team-card">
-              <div class="team-portrait">
-                <img src="equipe-gabryelle-boudreault-lafortune.jpg" alt="Portrait de Gabryelle Boudreault-Lafortune" />
-              </div>
-              <h3 class="team-name">Gabryelle Boudreault-Lafortune</h3>
-              <p class="team-role">Responsable secteur relève / Entraîneur, secteur Défi</p>
-            </article>
-          </div>
-        </section>
-      </div>
+            <button class="audition-submit" type="submit">Envoyer la demande</button>
+          </form>
+        </article>
+      </section>
     </div>
   </main>
 
@@ -1423,6 +1047,7 @@
     const navToggle = document.getElementById('navToggle');
     const mobileNavLinks = document.querySelectorAll('#mainNav a');
     const mobileDropdownTriggers = document.querySelectorAll('#mainNav .has-dropdown > .nav-link');
+    const auditionForm = document.getElementById('auditionForm');
 
     window.addEventListener('scroll', () => {
       navbar.classList.toggle('scrolled', window.scrollY > 20);
@@ -1459,6 +1084,30 @@
           document.querySelectorAll('#mainNav .has-dropdown.mobile-open').forEach((item) => item.classList.remove('mobile-open'));
         }
       });
+    });
+
+    auditionForm?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const fields = [
+        ['Parent', 'parentName'],
+        ['Téléphone', 'parentPhone'],
+        ['Courriel', 'parentEmail'],
+        ['Enfant', 'childName'],
+        ['Date de naissance', 'childBirth'],
+        ['Niveau actuel', 'currentLevel'],
+        ['Club actuel', 'currentClub'],
+        ['Programme souhaité', 'desiredProgram'],
+        ['Question / information', 'auditionMessage']
+      ];
+
+      const details = fields.map(([label, id]) => {
+        const value = document.getElementById(id)?.value.trim() || 'Non précisé';
+        return `${label}: ${value}`;
+      }).join('\n');
+
+      const mailSubject = encodeURIComponent('Demande d’audition compétitive');
+      const mailBody = encodeURIComponent(`Bonjour,\n\nVoici une demande d'audition compétitive:\n\n${details}`);
+      window.location.href = `mailto:flipgym@flipgym.com?subject=${mailSubject}&body=${mailBody}`;
     });
   </script>
 </body>
