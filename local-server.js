@@ -150,6 +150,7 @@ function getContentType(filePath) {
   const extension = path.extname(filePath).toLowerCase();
   const types = {
     '.css': 'text/css; charset=utf-8',
+    '.avif': 'image/avif',
     '.gif': 'image/gif',
     '.html': 'text/html; charset=utf-8',
     '.jpg': 'image/jpeg',

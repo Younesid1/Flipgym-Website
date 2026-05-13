@@ -1236,7 +1236,7 @@
     }
     .sponsors-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
+      grid-template-columns: minmax(0, 1.15fr) repeat(2, minmax(240px, 0.85fr));
       gap: 22px;
       align-items: stretch;
     }
@@ -1324,6 +1324,15 @@
         radial-gradient(circle at top right, rgba(182,108,55,0.12), transparent 34%),
         linear-gradient(135deg, rgba(255,255,255,0.98), rgba(246,249,253,0.94));
     }
+    .sponsor-card.is-bmr {
+      --logo-width: 300px;
+      min-height: 228px;
+      align-self: end;
+      border-color: rgba(182,108,55,0.28);
+      background:
+        radial-gradient(circle at top right, rgba(182,108,55,0.12), transparent 34%),
+        linear-gradient(135deg, rgba(255,255,255,0.98), rgba(246,249,253,0.94));
+    }
     .sponsor-card.is-boomtown {
       --logo-width: 380px;
       min-height: 312px;
@@ -1340,7 +1349,8 @@
       border-color: rgba(176,188,202,0.78);
       box-shadow: 0 10px 22px rgba(72,91,114,0.16);
     }
-    .sponsor-card.is-courtside .sponsor-tier {
+    .sponsor-card.is-courtside .sponsor-tier,
+    .sponsor-card.is-bmr .sponsor-tier {
       color: #5e331c;
       background: linear-gradient(135deg, #fff8f1, #c98b5e 52%, #f5d4ba);
       border-color: rgba(182,108,55,0.48);
@@ -2789,6 +2799,10 @@
               <span class="sponsor-tier">Commanditaire bronze</span>
               <img src="commanditaire-courtside.png" alt="Courtside Conseils" />
             </article>
+            <article class="sponsor-card is-bmr reveal">
+              <span class="sponsor-tier">Commanditaire bronze</span>
+              <img src="commanditaire-bmr-express.avif" alt="BMR Express Quincaillerie de Marseille" />
+            </article>
           </div>
         </div>
       </div>
@@ -2802,42 +2816,42 @@
         </div>
 
         <div class="gallery-wrap">
-          <article class="gallery-card large reveal" style="--shot: url('spectacle-2025-1.jpg'); background-position: center 46%;">
+          <article class="gallery-card large reveal" style="--shot: url('spectacle-2025-1-optimized.avif'); background-position: center 46%;">
             <div class="gallery-copy">
               <div class="gallery-tag">Édition 2025</div>
             </div>
           </article>
-          <article class="gallery-card tall reveal" style="--shot: url('spectacle-2025-4.jpg'); background-position: center 48%;">
+          <article class="gallery-card tall reveal" style="--shot: url('spectacle-2025-4-optimized.avif'); background-position: center 48%;">
             <div class="gallery-copy">
               <div class="gallery-tag">Édition 2025</div>
             </div>
           </article>
-          <article class="gallery-card medium reveal" style="--shot: url('spectacle-2025-2.jpg'); background-position: center 50%;">
+          <article class="gallery-card medium reveal" style="--shot: url('spectacle-2025-2-optimized.avif'); background-position: center 50%;">
             <div class="gallery-copy">
               <div class="gallery-tag">Édition 2025</div>
             </div>
           </article>
-          <article class="gallery-card square reveal" style="--shot: url('spectacle-2025-3.jpg'); background-position: center 42%;">
+          <article class="gallery-card square reveal" style="--shot: url('spectacle-2025-3-optimized.avif'); background-position: center 42%;">
             <div class="gallery-copy">
               <div class="gallery-tag">Édition 2025</div>
             </div>
           </article>
-          <article class="gallery-card wide reveal" style="--shot: url('spectacle-2024-4.jpg'); background-position: center 48%;">
+          <article class="gallery-card wide reveal" style="--shot: url('spectacle-2024-4-optimized.avif'); background-position: center 48%;">
             <div class="gallery-copy">
               <div class="gallery-tag">Édition 2024</div>
             </div>
           </article>
-          <article class="gallery-card medium reveal" style="--shot: url('spectacle-2024-2.jpg'); background-position: center 48%;">
+          <article class="gallery-card medium reveal" style="--shot: url('spectacle-2024-2-optimized.avif'); background-position: center 48%;">
             <div class="gallery-copy">
               <div class="gallery-tag">Édition 2024</div>
             </div>
           </article>
-          <article class="gallery-card square reveal" style="--shot: url('spectacle-2024-3.jpg'); background-position: center 50%;">
+          <article class="gallery-card square reveal" style="--shot: url('spectacle-2024-3-optimized.avif'); background-position: center 50%;">
             <div class="gallery-copy">
               <div class="gallery-tag">Édition 2024</div>
             </div>
           </article>
-          <article class="gallery-card tall reveal" style="--shot: url('spectacle-2024-1.jpg'); background-position: center 52%;">
+          <article class="gallery-card tall reveal" style="--shot: url('spectacle-2024-1-optimized.avif'); background-position: center 52%;">
             <div class="gallery-copy">
               <div class="gallery-tag">Édition 2024</div>
             </div>
