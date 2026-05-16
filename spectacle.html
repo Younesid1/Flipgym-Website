@@ -1702,6 +1702,10 @@
     .ticketing-buy-button:disabled {
       opacity: 1;
     }
+    .ticketing-actions .hero-btn {
+      min-width: 230px;
+      white-space: nowrap;
+    }
     .price-card {
       position: relative;
       overflow: hidden;
@@ -1893,6 +1897,19 @@
       background: var(--blue-gradient);
       box-shadow: 0 18px 34px rgba(16,72,139,0.18);
     }
+    .schedule-actions {
+      display: grid;
+      gap: 12px;
+    }
+    .schedule-actions .schedule-cta {
+      width: 100%;
+    }
+    .schedule-actions .schedule-cta.secondary {
+      color: var(--blue);
+      background: rgba(255,255,255,0.78);
+      border: 1px solid rgba(16,72,139,0.16);
+      box-shadow: 0 14px 28px rgba(16,72,139,0.08);
+    }
     .first-show-shell {
       background:
         radial-gradient(circle at top left, rgba(16,72,139,0.08), transparent 32%),
@@ -1938,6 +1955,26 @@
       display: grid;
       gap: 16px;
     }
+    .first-show-poster {
+      overflow: hidden;
+      border-radius: 24px;
+      background: var(--blue-night);
+      border: 1px solid rgba(16,72,139,0.12);
+      box-shadow: 0 32px 82px rgba(8,35,77,0.22);
+      width: min(100%, 520px);
+      padding: 10px;
+    }
+    .first-show-poster img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 18px;
+    }
+    .first-show-poster .hero-btn {
+      width: calc(100% - 32px);
+      margin: 16px;
+      min-width: 0;
+    }
     .first-show-card {
       padding: 24px;
       border-radius: 24px;
@@ -1961,7 +1998,8 @@
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 10px;
-      max-width: 540px;
+      max-width: none;
+      margin-bottom: 8px;
     }
     .time-pill {
       position: relative;
@@ -2553,6 +2591,7 @@
       }
     }
   </script>
+  <link rel="stylesheet" href="mobile-footer.css" />
 </head>
 <body>
   <nav class="navbar" id="navbar">
@@ -2676,7 +2715,8 @@
             <div class="ticketing-intro-row">
               <p class="section-sub">Les billets sont requis pour assister au spectacle annuel et à Mon premier spectacle. La vente débute le 15 mai à 10 h et se termine le 12 juin à 9 h.</p>
               <div class="ticketing-actions">
-                <button class="hero-btn primary ticketing-buy-button" type="button" disabled>Acheter mes billets</button>
+                <a href="https://www.zeffy.com/fr-CA/ticketing/comedies-musicales-2" class="hero-btn primary" target="_blank" rel="noreferrer">Spectacle 12-13 juin</a>
+                <a href="https://www.zeffy.com/fr-CA/ticketing/mon-premier-spectacle" class="hero-btn secondary" target="_blank" rel="noreferrer">Mon premier spectacle</a>
               </div>
             </div>
           </div>
@@ -2739,7 +2779,10 @@
             </div>
           </div>
 
-          <a href="ordre-passage-spectacle-2026.pdf" class="schedule-cta" target="_blank" rel="noreferrer">Voir l’ordre de passage</a>
+          <div class="schedule-actions">
+            <a href="https://www.zeffy.com/fr-CA/ticketing/comedies-musicales-2" class="schedule-cta" target="_blank" rel="noreferrer">Acheter les billets</a>
+            <a href="ordre-passage-spectacle-2026.pdf" class="schedule-cta secondary" target="_blank" rel="noreferrer">Voir l’ordre de passage</a>
+          </div>
         </div>
       </div>
     </section>
@@ -2754,12 +2797,16 @@
                 <h2 class="section-title">Mon premier spectacle</h2>
                 <p class="section-sub">Une démonstration pensée pour les plus jeunes, dans un cadre rassurant, amusant et festif.</p>
               </div>
+              <article class="first-show-poster" aria-label="Affiche de Mon premier spectacle">
+                <img src="mon-premier-spectacle-poster.avif" alt="Affiche de Mon premier spectacle, dimanche 14 juin" />
+                <a href="https://www.zeffy.com/fr-CA/ticketing/mon-premier-spectacle" class="hero-btn primary" target="_blank" rel="noreferrer">Acheter les billets</a>
+              </article>
+            </div>
+            <div class="first-show-details">
               <article class="first-show-times" aria-label="Créneaux de Mon premier spectacle">
                 <div class="time-pill">14 juin · 9 h à 10 h 30</div>
                 <div class="time-pill">14 juin · 10 h 30 à 12 h</div>
               </article>
-            </div>
-            <div class="first-show-details">
               <article class="first-show-card">
                 <span class="schedule-label">Bloc 1 · 9 h à 10 h 30</span>
                 <div class="schedule-list">
