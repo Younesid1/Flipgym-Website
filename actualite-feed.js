@@ -3,13 +3,17 @@ window.FLIPGYM_INSTAGRAM = {
   profileUrl: "https://www.instagram.com/clubflipgym",
 
   /*
-    Branche ici ton endpoint serveur quand il est prêt.
-    Exemple attendu: /api/instagram-feed
+    GitHub Pages ne peut pas executer une API privee.
+    La page essaie donc l'API locale/serveur, puis une cache JSON generee
+    par GitHub Actions, puis les publications fallback.
 
     Important: ne mets jamais le token Instagram directement dans ce fichier,
     parce qu'il est public dans le navigateur.
   */
-  apiEndpoint: "/api/instagram-feed",
+  apiEndpoints: [
+    "/api/instagram-feed",
+    "instagram-feed-cache.json"
+  ],
 
   fallbackPosts: [
     {

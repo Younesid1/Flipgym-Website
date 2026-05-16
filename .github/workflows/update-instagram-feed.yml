@@ -1,0 +1,34 @@
+name: Update Instagram Feed
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 */6 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  update-instagram-feed:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Update Instagram cache
+        run: node scripts/update-instagram-cache.js
+        env:
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+          INSTAGRAM_USER_ID: ${{ secrets.INSTAGRAM_USER_ID }}
+
+      - name: Commit cache
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Update Instagram feed cache
+          file_pattern: instagram-feed-cache.json assets/instagram/*

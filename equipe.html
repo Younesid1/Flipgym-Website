@@ -1202,6 +1202,50 @@
       line-height: 1.6;
       color: var(--text-muted);
     }
+    .team-section .team-card {
+      padding: 10px 10px 18px;
+      border-radius: 20px;
+      background: #fff;
+      border-color: rgba(16,72,139,0.12);
+      box-shadow: 0 22px 54px rgba(9,31,58,0.12);
+    }
+    .team-section .team-card::before {
+      border-radius: 20px;
+      border-color: rgba(255,255,255,0.72);
+    }
+    .team-section .team-portrait {
+      margin-bottom: 16px;
+      border-radius: 14px;
+      border: 0;
+      background: #d8ecfb;
+    }
+    .team-section .team-portrait img {
+      transition: transform 0.45s ease, filter 0.45s ease;
+    }
+    .team-section .team-card:hover .team-portrait img {
+      transform: scale(1.025);
+      filter: saturate(1.03) contrast(1.02);
+    }
+    .team-section .team-meta {
+      display: grid;
+      gap: 6px;
+      padding: 0 6px;
+    }
+    .team-section .team-card > .team-name,
+    .team-section .team-card > .team-role {
+      padding: 0 6px;
+    }
+    .team-section .team-name {
+      margin-bottom: 0;
+      color: #10243d;
+      font-size: 1.2rem;
+      line-height: 1.12;
+    }
+    .team-section .team-role {
+      font-size: 0.9rem;
+      line-height: 1.45;
+      color: #5d6f82;
+    }
 
     @media (max-width: 1080px) {
       .team-grid {
@@ -1304,42 +1348,274 @@
           <div class="team-grid">
             <article class="team-card">
               <div class="team-portrait">
-                <img src="equipe-emily-st-hilaire-chumbe-optimized.avif" alt="Portrait d'Emily St-Hilaire Chumbe" />
+                <img src="equipe-emily-st-hilaire-chumbe-themed.avif" alt="Portrait d'Emily St-Hilaire Chumbe" />
               </div>
-              <h3 class="team-name">Emily St-Hilaire Chumbe</h3>
-              <p class="team-role">Directrice technique</p>
+              <div class="team-meta">
+                <h3 class="team-name">Emily St-Hilaire Chumbe</h3>
+                <p class="team-role">Directrice technique</p>
+              </div>
             </article>
 
             <article class="team-card">
               <div class="team-portrait">
-                <img src="equipe-younes-aydi-optimized.avif" alt="Portrait de Younes Aydi" />
+                <img src="equipe-younes-aydi-themed.avif" alt="Portrait de Younes Aydi" />
               </div>
-              <h3 class="team-name">Younes Aydi</h3>
-              <p class="team-role">Directeur Administratif</p>
+              <div class="team-meta">
+                <h3 class="team-name">Younes Aydi</h3>
+                <p class="team-role">Directeur Administratif</p>
+              </div>
             </article>
 
             <article class="team-card">
               <div class="team-portrait">
-                <img src="equipe-felicia-beauchamp-optimized.avif" alt="Portrait de Felicia Beauchamp" />
+                <img src="equipe-felicia-beauchamp-themed.avif" alt="Portrait de Felicia Beauchamp" />
               </div>
-              <h3 class="team-name">Felicia Beauchamp</h3>
-              <p class="team-role">Coordonnatrice du secteur récréatif et du camp de jour / Entraîneur, secteur provincial et sport-études</p>
+              <div class="team-meta">
+                <h3 class="team-name">Felicia Beauchamp</h3>
+                <p class="team-role">Coordonnatrice du secteur récréatif et du camp de jour / Entraîneur, secteur provincial et sport-études</p>
+              </div>
             </article>
 
             <article class="team-card">
               <div class="team-portrait">
-                <img src="equipe-flora-baron-optimized.avif" alt="Portrait de Flora Baron" />
+                <img src="equipe-flora-baron-themed.avif" alt="Portrait de Flora Baron" />
               </div>
-              <h3 class="team-name">Flora Baron</h3>
-              <p class="team-role">Responsable du secteur régional/ Entraîneur, secteur provincial et sport-études</p>
+              <div class="team-meta">
+                <h3 class="team-name">Flora Baron</h3>
+                <p class="team-role">Responsable du secteur régional/ Entraîneur, secteur provincial et sport-études</p>
+              </div>
             </article>
 
             <article class="team-card">
               <div class="team-portrait">
-                <img src="equipe-gabryelle-boudreault-lafortune-optimized.avif" alt="Portrait de Gabryelle Boudreault-Lafortune" />
+                <img src="equipe-gabryelle-boudreault-lafortune-themed.avif" alt="Portrait de Gabryelle Boudreault-Lafortune" />
               </div>
-              <h3 class="team-name">Gabryelle Boudreault-Lafortune</h3>
-              <p class="team-role">Responsable secteur relève / Entraîneur, secteur Défi</p>
+              <div class="team-meta">
+                <h3 class="team-name">Gabryelle Boudreault-Lafortune</h3>
+                <p class="team-role">Responsable secteur relève / Entraîneur, secteur Défi</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="team-section" id="secteur-competitif">
+          <div class="team-section-head">
+            <div>
+              <h2 class="team-section-title">Secteur compétitif</h2>
+            </div>
+          </div>
+
+          <div class="team-grid">
+            <article class="team-card">
+              <div class="team-portrait">
+                <img src="equipe-sarah-bergeron-themed.avif" alt="Portrait de Sarah Bergeron" />
+              </div>
+              <h3 class="team-name">Sarah Bergeron</h3>
+              <p class="team-role">Entraîneur, secteur sport-études</p>
+            </article>
+
+            <article class="team-card">
+              <div class="team-portrait">
+                <img src="equipe-marie-potvin-brouillette-themed.avif" alt="Portrait de Marie Potvin-Brouillette" />
+              </div>
+              <h3 class="team-name">Marie Potvin-Brouillette</h3>
+              <p class="team-role">Entraîneur, secteur régional</p>
+            </article>
+
+            <article class="team-card">
+              <div class="team-portrait">
+                <img src="equipe-margot-tremblay-themed.avif" alt="Portrait de Margot Tremblay" />
+              </div>
+              <h3 class="team-name">Margot Tremblay</h3>
+              <p class="team-role">Entraîneur, secteur régional</p>
+            </article>
+
+            <article class="team-card">
+              <div class="team-portrait">
+                <img src="equipe-chloe-desmarais-themed.avif" alt="Portrait de Chloë Desmarais" />
+              </div>
+              <h3 class="team-name">Chloë Desmarais</h3>
+              <p class="team-role">Entraîneur, secteur régional</p>
+            </article>
+
+            <article class="team-card">
+              <div class="team-portrait">
+                <img src="equipe-omar-kamali-themed.avif" alt="Portrait d'Omar Kamali" />
+              </div>
+              <h3 class="team-name">Omar Kamali</h3>
+              <p class="team-role">Entraîneur, secteur régional</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="team-section" id="secteur-releve-defi">
+          <div class="team-section-head">
+            <div>
+              <h2 class="team-section-title">Secteur Relève-Défi</h2>
+            </div>
+          </div>
+
+          <div class="team-grid">
+            <article class="team-card">
+              <div class="team-portrait">
+                <img src="equipe-zolia-thibault-dorval-themed.avif" alt="Portrait de Zolia Thibault-Dorval" />
+              </div>
+              <h3 class="team-name">Zolia Thibault-Dorval</h3>
+              <p class="team-role">Entraîneur, secteur relève</p>
+            </article>
+
+            <article class="team-card">
+              <div class="team-portrait">
+                <img src="equipe-sofia-tassinario-themed.avif" alt="Portrait de Sofia Tassinario" />
+              </div>
+              <h3 class="team-name">Sofia Tassinario</h3>
+              <p class="team-role">Entraîneur, secteur relève</p>
+            </article>
+
+            <article class="team-card">
+              <div class="team-portrait">
+                <img src="equipe-maia-bahij-najm-themed.avif" alt="Portrait de Maïa Bahij Najm" />
+              </div>
+              <h3 class="team-name">Maïa Bahij Najm</h3>
+              <p class="team-role">Entraîneur, secteur relève</p>
+            </article>
+
+            <article class="team-card">
+              <div class="team-portrait">
+                <img src="equipe-beatrice-hasegawa-themed.avif" alt="Portrait de Beatrice Hasegawa" />
+              </div>
+              <h3 class="team-name">Beatrice Hasegawa</h3>
+              <p class="team-role">Entraîneur, secteur relève et récréatif</p>
+            </article>
+
+            <article class="team-card">
+              <div class="team-portrait">
+                <img src="equipe-clara-harrod-themed.avif" alt="Portrait de Clara Harrod" />
+              </div>
+              <h3 class="team-name">Clara Harrod</h3>
+              <p class="team-role">Entraîneur, secteur relève et récréatif</p>
+            </article>
+
+            <article class="team-card">
+              <div class="team-portrait">
+                <img src="equipe-imogen-rempel-themed.avif" alt="Portrait d'Imogen Rempel" />
+              </div>
+              <h3 class="team-name">Imogen Rempel</h3>
+              <p class="team-role">Entraîneur, secteur relève et récréatif</p>
+            </article>
+
+            <article class="team-card">
+              <div class="team-portrait">
+                <img src="equipe-orelie-fortin-themed.avif" alt="Portrait d'Orélie Fortin" />
+              </div>
+              <h3 class="team-name">Orélie Fortin</h3>
+              <p class="team-role">Entraîneur, secteur Défi</p>
+            </article>
+
+            <article class="team-card">
+              <div class="team-portrait">
+                <img src="equipe-rose-didier-sidorov-themed.avif" alt="Portrait de Rose Didier Sidorov" />
+              </div>
+              <h3 class="team-name">Rose Didier Sidorov</h3>
+              <p class="team-role">Entraîneur, secteur Défi</p>
+            </article>
+
+            <article class="team-card">
+              <div class="team-portrait">
+                <img src="equipe-clara-chea-themed.avif" alt="Portrait de Clara Chea" />
+              </div>
+              <h3 class="team-name">Clara Chea</h3>
+              <p class="team-role">Entraîneur, secteur Défi et récréatif</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="team-section" id="secteur-recreatif">
+          <div class="team-section-head">
+            <div>
+              <h2 class="team-section-title">Secteur récréatif</h2>
+            </div>
+          </div>
+
+          <div class="team-grid">
+            <article class="team-card">
+              <div class="team-portrait">
+                <img src="equipe-anais-mark-themed.avif" alt="Portrait d'Anaïs Mark" />
+              </div>
+              <h3 class="team-name">Anaïs Mark</h3>
+              <p class="team-role">Entraîneur, secteur récréatif</p>
+            </article>
+
+            <article class="team-card">
+              <div class="team-portrait">
+                <img src="equipe-anna-pinto-kelly-themed.avif" alt="Portrait d'Anna Pinto-Kelly" />
+              </div>
+              <h3 class="team-name">Anna Pinto-Kelly</h3>
+              <p class="team-role">Entraîneur, secteur récréatif</p>
+            </article>
+
+            <article class="team-card">
+              <div class="team-portrait">
+                <img src="equipe-alicia-pinho-themed.avif" alt="Portrait d'Alicia Pinho" />
+              </div>
+              <h3 class="team-name">Alicia Pinho</h3>
+              <p class="team-role">Entraîneur, secteur récréatif</p>
+            </article>
+
+            <article class="team-card">
+              <div class="team-portrait">
+                <img src="equipe-ysis-st-jean-lanouette-themed.avif" alt="Portrait de Ysis St-Jean Lanouette" />
+              </div>
+              <h3 class="team-name">Ysis St-Jean Lanouette</h3>
+              <p class="team-role">Entraîneur, secteur récréatif</p>
+            </article>
+
+            <article class="team-card">
+              <div class="team-portrait">
+                <img src="equipe-alice-talbot-themed.avif" alt="Portrait d'Alice Talbot" />
+              </div>
+              <h3 class="team-name">Alice Talbot</h3>
+              <p class="team-role">Entraîneur, secteur récréatif</p>
+            </article>
+
+            <article class="team-card">
+              <div class="team-portrait">
+                <img src="equipe-emma-vienneau-themed.avif" alt="Portrait d'Emma Vienneau" />
+              </div>
+              <h3 class="team-name">Emma Vienneau</h3>
+              <p class="team-role">Entraîneur, secteur récréatif</p>
+            </article>
+
+            <article class="team-card">
+              <div class="team-portrait">
+                <img src="equipe-zoe-armstrong-themed.avif" alt="Portrait de Zoé Armstrong" />
+              </div>
+              <h3 class="team-name">Zoé Armstrong</h3>
+              <p class="team-role">Entraîneur, secteur récréatif</p>
+            </article>
+
+            <article class="team-card">
+              <div class="team-portrait">
+                <img src="equipe-koraly-boulais-lavoie-themed.avif" alt="Portrait de Koraly Boulais-Lavoie" />
+              </div>
+              <h3 class="team-name">Koraly Boulais-Lavoie</h3>
+              <p class="team-role">Entraîneur, secteur récréatif</p>
+            </article>
+
+            <article class="team-card">
+              <div class="team-portrait">
+                <img src="equipe-charlotte-vidal-themed.avif" alt="Portrait de Charlotte Vidal" />
+              </div>
+              <h3 class="team-name">Charlotte Vidal</h3>
+              <p class="team-role">Entraîneur, secteur récréatif</p>
+            </article>
+
+            <article class="team-card">
+              <div class="team-portrait">
+                <img src="equipe-emma-cauchi-henri-themed.avif" alt="Portrait d'Emma Cauchi Henri" />
+              </div>
+              <h3 class="team-name">Emma Cauchi Henri</h3>
+              <p class="team-role">Entraîneur, secteur récréatif</p>
             </article>
           </div>
         </section>
