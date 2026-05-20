@@ -65,7 +65,7 @@ const FLORA_CONFIG = {
   values: ['Respect', 'Perseverance', 'Estime de soi', 'Accomplissement', 'Solidarite', 'Passion'],
   demo: {
     greeting: "Bonjour! Je suis Flippy, l’assistante virtuelle de flipgym. Je peux vous guider pour les cours, les inscriptions, les horaires et les services du club.",
-    fallback: "Je n'ai pas l'information exacte pour cette question. Pour avoir une reponse fiable, contactez le club au 514 948-2222, par courriel a flipgym@flipgym.com, ou via le formulaire de contact.",
+    fallback: "Je ne suis pas certaine d'avoir la bonne reponse pour cette question. Je peux vous aider avec les inscriptions, cours recreatifs, auditions, camps, maillots, absences, services et infos pratiques du club. Pour une reponse precise, contactez-nous au 514 948-2222, par courriel a flipgym@flipgym.com, ou via le formulaire contact.html#formulaire-contact.",
     recreationalFallback: "Le secteur recreatif comprend la petite enfance des 18 mois, puis des groupes 4-5 ans, 6-7 ans, 8-10 ans, 11 ans et +, ainsi que 16 ans et +. Si vous me donnez l'age exact de l'enfant, je peux vous repondre avec les groupes, horaires et prix de la session Printemps 2026.",
     competitiveReply: "Le secteur competitif fonctionne sur audition et comprend notamment Releve-Defi, le niveau regional et le provincial / sport-etudes. Pour une integration, le plus sur est de contacter directement le club afin d'obtenir les criteres exacts.",
     campReply: "flipgym propose des camps de jour recreatifs, releve et competitifs pendant l'ete. Le guide du parent et les details d'inscription sont generalement fournis sur le site du club.",
@@ -475,10 +475,10 @@ function wait(ms) {
 }
 
 const DEMO_PROGRAMS = FLORA_CONFIG.demo.agePrograms;
-const CONTACT_FALLBACK = `Je n'ai pas l'information exacte pour cette question. Pour avoir une reponse fiable, contactez le club au ${FLORA_CONFIG.contact.phone} ou par courriel a ${FLORA_CONFIG.contact.email}.`;
+const CONTACT_FALLBACK = `Je ne suis pas certaine d'avoir la bonne reponse pour cette question. Pour une reponse fiable, contactez le club au ${FLORA_CONFIG.contact.phone}, par courriel a ${FLORA_CONFIG.contact.email}, ou via le formulaire ${FLORA_CONFIG.contact.contactFormUrl}.`;
 
 function contactFallback(topic = 'ce sujet') {
-  return `Je n'ai pas l'information exacte pour ${topic}. Pour eviter de vous donner une mauvaise information, contactez le club au ${FLORA_CONFIG.contact.phone} ou par courriel a ${FLORA_CONFIG.contact.email}.`;
+  return `Je ne suis pas certaine d'avoir la bonne reponse pour ${topic}. Pour eviter de vous donner une mauvaise information, contactez le club au ${FLORA_CONFIG.contact.phone}, par courriel a ${FLORA_CONFIG.contact.email}, ou via le formulaire ${FLORA_CONFIG.contact.contactFormUrl}.`;
 }
 
 const FLORA_KNOWLEDGE_BASE = [

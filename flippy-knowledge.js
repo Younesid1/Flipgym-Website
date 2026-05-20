@@ -26,8 +26,19 @@ window.FLIPPY_KNOWLEDGE_BASE = [
     category: 'inscriptions',
     priority: 85,
     keywords: ['inscription', 'inscrire mon enfant', 'inscrire', 'qidigo', 'places disponibles', 'place disponible', 'session', 'comment inscrire'],
-    answer: "Les inscriptions se font en ligne sur Qidigo, selon les periodes d'inscription et les places disponibles. Si une session est deja commencee, contactez le club pour verifier les options restantes ou la liste d'attente.",
+    answer: "Bien sûr. Quel âge a votre enfant? Avec son âge, je pourrai mieux vous orienter vers le bon groupe récréatif. Les inscriptions se finalisent ensuite en ligne sur Qidigo, selon les périodes d'inscription et les places disponibles.",
     links: [
+      { label: 'Inscription Qidigo', url: '{registrationUrl}' }
+    ]
+  },
+  {
+    id: 'niveau-non-debutant',
+    category: 'inscriptions',
+    priority: 130,
+    keywords: ['pas debutant', 'pas débutant', 'pas debutante', 'pas débutante', "n'est pas debutante", "n'est pas débutante", 'nest pas debutante', 'nest pas débutante', 'non debutant', 'non débutant', 'non debutante', 'non débutante', 'niveau intermediaire', 'niveau intermédiaire', 'intermediaire', 'intermédiaire', 'deja fait de la gym', 'déjà fait de la gym', 'vient d un autre club', 'vient d’un autre club', 'autre club', 'club avant', 'ancien club'],
+    answer: "Le niveau intermédiaire est sur invitation seulement. Vous avez le choix d'inscrire votre fille dans le niveau débutant pour débuter la session et, si les entraîneurs voient qu'elle a un niveau plus élevé que débutant, nous pourrons lui changer de niveau. Sinon, l'autre option est de passer une audition privée au coût de 40 $, où un entraîneur évaluera le niveau de votre enfant.",
+    links: [
+      { label: "Formulaire d'audition", url: '{auditionFormUrl}' },
       { label: 'Inscription Qidigo', url: '{registrationUrl}' }
     ]
   },
@@ -43,7 +54,7 @@ window.FLIPPY_KNOWLEDGE_BASE = [
     category: 'competitif',
     priority: 100,
     keywords: ['audition', 'demande audition', 'evaluation competitive', 'évaluation compétitive', 'tester niveau', 'evaluer niveau', 'évaluer niveau', 'autre club', 'integrer competitif', 'intégrer compétitif'],
-    answer: "Pour demander une audition competitive, remplissez le formulaire d'audition. Indiquez l'experience gymnique de l'enfant, son niveau actuel, son club actuel s'il y a lieu, et le programme vise. L'equipe pourra ensuite vous recontacter pour la suite.",
+    answer: "Pour demander une audition compétitive, remplissez le formulaire d'audition. Indiquez l'expérience gymnique de l'enfant, son niveau actuel, son club actuel s'il y a lieu, et le programme visé. L'équipe pourra ensuite vous recontacter pour la suite.",
     links: [
       { label: "Formulaire d'audition", url: '{auditionFormUrl}' }
     ]
@@ -61,8 +72,8 @@ window.FLIPPY_KNOWLEDGE_BASE = [
   {
     id: 'tenue-maillot',
     category: 'recreatif',
-    priority: 80,
-    keywords: ['maillot', 'uniforme', 'quoi porter', 'tenue', 'vetement', 'vêtement', 'justaucorps'],
+    priority: 120,
+    keywords: ['maillot', 'uniforme', 'quoi porter', 'quoi elle doit porter', 'quoi il doit porter', 'porter pour son cours', 'porter pour le cours', 'tenue', 'vetement', 'vêtement', 'justaucorps'],
     answer: "Le maillot d'entrainement flipgym est obligatoire a partir du groupe 4-5 ans. Si l'enfant n'en possede pas, il peut etre achete au bureau administratif au cout de 45 $. Tous les modeles de maillots flipgym sont acceptes."
   },
   {
@@ -75,15 +86,15 @@ window.FLIPPY_KNOWLEDGE_BASE = [
   {
     id: 'absence',
     category: 'vie-du-club',
-    priority: 70,
-    keywords: ['absence', 'absent', 'manquer un cours', 'rater un cours', 'ne peut pas assister', 'cours manque', 'cours manqué'],
+    priority: 95,
+    keywords: ['absence', 'absent', 'manquer un cours', 'manque un cours', 'manqué un cours', 'a manque un cours', 'a manqué un cours', 'rater un cours', 'ne peut pas assister', 'cours manque', 'cours manqué'],
     answer: "Si votre enfant doit manquer un cours, merci d'en informer le club par telephone ou par courriel. Indiquez le nom de l'enfant, le groupe, la date et la raison de l'absence si necessaire."
   },
   {
     id: 'reprise-cours',
     category: 'vie-du-club',
-    priority: 75,
-    keywords: ['reprise', 'reprendre un cours', 'cours de reprise', 'cours manque repris', 'cours manqué repris'],
+    priority: 110,
+    keywords: ['reprise', 'reprendre un cours', 'peut le reprendre', 'peut on le reprendre', 'peut-on le reprendre', 'cours de reprise', 'cours manque repris', 'cours manqué repris', 'manque un cours reprendre', 'manqué un cours reprendre'],
     answer: "Les possibilites de reprise peuvent varier selon la session, les groupes et les places disponibles. Contactez le club pour verifier ce qui est possible pour votre situation.",
     links: [
       { label: 'Formulaire de contact', url: '{contactFormUrl}' }
@@ -92,8 +103,8 @@ window.FLIPPY_KNOWLEDGE_BASE = [
   {
     id: 'annulation-remboursement',
     category: 'inscriptions',
-    priority: 80,
-    keywords: ['annulation', 'annuler inscription', 'remboursement', 'rembourser', 'credit', 'crédit', 'changer de groupe', 'transfert'],
+    priority: 120,
+    keywords: ['annulation', 'annuler inscription', 'annuler mon inscription', 'annuler une inscription', 'remboursement', 'rembourser', 'credit', 'crédit', 'changer de groupe', 'transfert'],
     answer: "Pour une annulation, un remboursement, un credit ou un changement de groupe, contactez directement le club. Ces demandes dependent de la session, du moment de la demande et de la situation du participant.",
     links: [
       { label: 'Formulaire de contact', url: '{contactFormUrl}' }
@@ -122,9 +133,9 @@ window.FLIPPY_KNOWLEDGE_BASE = [
   {
     id: 'fetes-enfants',
     category: 'services',
-    priority: 80,
-    keywords: ['fete enfant', 'fête enfant', 'anniversaire', 'party', 'fetes enfants', 'fêtes enfants'],
-    answer: "Les fetes d'enfants chez flipgym comprennent des activites dirigees dans le gymnase et un temps de jeu libre encadre. Pour verifier les disponibilites, contactez le club.",
+    priority: 120,
+    keywords: ['fete enfant', 'fête enfant', 'fete d enfant', 'fête d enfant', "fete d'enfant", "fête d'enfant", 'reserver une fete', 'réserver une fête', 'reservation fete', 'réservation fête', 'anniversaire', 'party', 'fetes enfants', 'fêtes enfants'],
+    answer: "Les fêtes d'enfants chez flipgym comprennent 1 heure d'activités dirigées sur les appareils avec un entraîneur, puis 30 minutes de jeu libre encadré. Le tarif est de 250 $ pour 10 enfants, puis 10 $ par enfant supplémentaire. Pour vérifier les disponibilités, contactez le club.",
     links: [
       { label: 'Fetes d’enfants', url: 'services.html#fetes' }
     ]
@@ -162,8 +173,8 @@ window.FLIPPY_KNOWLEDGE_BASE = [
   {
     id: 'objets-perdus',
     category: 'vie-du-club',
-    priority: 75,
-    keywords: ['objet perdu', 'objets perdus', 'perdu', 'perdue', 'bouteille perdue', 'vetement perdu', 'vêtement perdu'],
+    priority: 130,
+    keywords: ['objet perdu', 'objets perdus', 'perdu', 'perdue', 'gourde perdue', 'perdu une gourde', 'perdu ma gourde', 'bouteille perdue', 'perdu une bouteille', 'vetement perdu', 'vêtement perdu'],
     answer: "Pour un objet perdu, contactez le club en decrivant l'objet, le cours, la date approximative et le nom de l'enfant. L'equipe pourra verifier si l'objet a ete retrouve."
   },
   {
