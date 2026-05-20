@@ -725,16 +725,51 @@ function normalizeForMatch(text) {
     .replace(/[\u0300-\u036f]/g, '');
 }
 
+function fillFlippyTemplate(text) {
+  const values = {
+    phone: FLORA_CONFIG.contact.phone,
+    email: FLORA_CONFIG.contact.email,
+    address: FLORA_CONFIG.contact.address,
+    website: FLORA_CONFIG.contact.website,
+    registrationUrl: FLORA_CONFIG.contact.registrationUrl,
+    contactFormUrl: FLORA_CONFIG.contact.contactFormUrl,
+    auditionFormUrl: FLORA_CONFIG.contact.auditionFormUrl
+  };
+
+  return String(text ?? '').replace(/\{([a-zA-Z0-9_]+)\}/g, (match, key) => values[key] || match);
+}
+
+function resolveKnowledgeAnswer(entry, text) {
+  const rawAnswer = typeof entry.answer === 'function' ? entry.answer(text) : entry.answer;
+  let answer = fillFlippyTemplate(rawAnswer);
+
+  if (Array.isArray(entry.links) && entry.links.length) {
+    const links = entry.links
+      .map((link) => {
+        const label = fillFlippyTemplate(link.label || 'Lien utile');
+        const url = fillFlippyTemplate(link.url || '');
+        return url ? `${label} : ${url}` : '';
+      })
+      .filter(Boolean);
+
+    if (links.length) answer = `${answer}\n\n${links.join('\n')}`;
+  }
+
+  return answer;
+}
+
 function findKnowledgeBaseMatch(text) {
   const normalized = normalizeForMatch(text);
+  const externalKnowledge = Array.isArray(window.FLIPPY_KNOWLEDGE_BASE) ? window.FLIPPY_KNOWLEDGE_BASE : [];
+  const knowledgeEntries = [...externalKnowledge, ...FLORA_KNOWLEDGE_BASE];
   let bestMatch = null;
 
-  for (const entry of FLORA_KNOWLEDGE_BASE) {
+  for (const entry of knowledgeEntries) {
     for (const keyword of entry.keywords) {
       const normalizedKeyword = normalizeForMatch(keyword);
       if (!normalized.includes(normalizedKeyword)) continue;
 
-      const score = normalizedKeyword.length;
+      const score = normalizedKeyword.length + Number(entry.priority || 0);
       if (!bestMatch || score > bestMatch.score) {
         bestMatch = { entry, score };
       }
@@ -745,7 +780,7 @@ function findKnowledgeBaseMatch(text) {
 
   return {
     id: bestMatch.entry.id,
-    answer: bestMatch.entry.answer(text)
+    answer: resolveKnowledgeAnswer(bestMatch.entry, text)
   };
 }
 
