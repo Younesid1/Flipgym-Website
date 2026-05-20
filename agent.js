@@ -13,8 +13,10 @@ const FLORA_CONFIG = {
     address: '1600 Rue de Drucourt, Montreal (QC) H2G 1N6 — Quartier Rosemont',
     phone: '514 948-2222',
     email: 'flipgym@flipgym.com',
-    website: 'flipgym.com',
-    registrationUrl: 'qidigo.com/u/Club-Flipgym-de-Montreal/activities/session'
+    website: 'https://flipgym.com',
+    registrationUrl: 'https://www.qidigo.com/u/Club-Flipgym-de-Montreal/activities/session',
+    contactFormUrl: 'contact.html#formulaire-contact',
+    auditionFormUrl: 'competitif-audition.html#formulaire-audition'
   },
   openingHours: [
     'Lundi au vendredi : 13h a 20h',
@@ -63,7 +65,7 @@ const FLORA_CONFIG = {
   values: ['Respect', 'Perseverance', 'Estime de soi', 'Accomplissement', 'Solidarite', 'Passion'],
   demo: {
     greeting: "Bonjour! Je suis Flippy, l’assistante virtuelle de flipgym. Je peux vous guider pour les cours, les inscriptions, les horaires et les services du club.",
-    fallback: "Je n'ai pas l'information exacte pour cette question. Pour avoir une reponse fiable, contactez le club au 514 948-2222 ou par courriel a flipgym@flipgym.com.",
+    fallback: "Je n'ai pas l'information exacte pour cette question. Pour avoir une reponse fiable, contactez le club au 514 948-2222, par courriel a flipgym@flipgym.com, ou via le formulaire de contact.",
     recreationalFallback: "Le secteur recreatif comprend la petite enfance des 18 mois, puis des groupes 4-5 ans, 6-7 ans, 8-10 ans, 11 ans et +, ainsi que 16 ans et +. Si vous me donnez l'age exact de l'enfant, je peux vous repondre avec les groupes, horaires et prix de la session Printemps 2026.",
     competitiveReply: "Le secteur competitif fonctionne sur audition et comprend notamment Releve-Defi, le niveau regional et le provincial / sport-etudes. Pour une integration, le plus sur est de contacter directement le club afin d'obtenir les criteres exacts.",
     campReply: "flipgym propose des camps de jour recreatifs, releve et competitifs pendant l'ete. Le guide du parent et les details d'inscription sont generalement fournis sur le site du club.",
@@ -406,7 +408,7 @@ function formatText(text) {
 }
 
 function appendInlineFormatting(parent, text) {
-  const pattern = /(\*\*[^*]+\*\*|\*[^*]+\*)/g;
+  const pattern = /(\*\*[^*]+\*\*|\*[^*]+\*|https?:\/\/[^\s]+|[A-Za-z0-9_-]+\.html#[^\s.,)]+)/g;
   let lastIndex = 0;
   let match;
 
@@ -416,9 +418,22 @@ function appendInlineFormatting(parent, text) {
     }
 
     const token = match[0];
-    const isStrong = token.startsWith('**');
-    const el = document.createElement(isStrong ? 'strong' : 'em');
-    el.textContent = token.slice(isStrong ? 2 : 1, isStrong ? -2 : -1);
+    let el;
+
+    if (token.startsWith('http') || token.includes('.html#')) {
+      el = document.createElement('a');
+      el.href = token;
+      el.textContent = token;
+      if (token.startsWith('http')) {
+        el.target = '_blank';
+        el.rel = 'noreferrer';
+      }
+    } else {
+      const isStrong = token.startsWith('**');
+      el = document.createElement(isStrong ? 'strong' : 'em');
+      el.textContent = token.slice(isStrong ? 2 : 1, isStrong ? -2 : -1);
+    }
+
     parent.appendChild(el);
     lastIndex = match.index + token.length;
   }
@@ -544,18 +559,18 @@ const FLORA_KNOWLEDGE_BASE = [
   },
   {
     id: 'competitif',
-    keywords: ['competitif', 'compétitif', 'audition', 'releve', 'relève', 'defi', 'défi', 'regional', 'régional', 'provincial', 'sport-etudes', 'sport études'],
+    keywords: ['competitif', 'compétitif', 'releve', 'relève', 'defi', 'défi', 'regional', 'régional', 'provincial', 'sport-etudes', 'sport études'],
     answer: () => FLORA_CONFIG.demo.competitiveReply
   },
   {
     id: 'competitif-autre-club',
     keywords: ['autre club', 'vient d un autre club', 'venant d un autre club', 'niveau competitif dans un autre club', 'integrer le programme competitif', 'intégrer le programme compétitif'],
-    answer: () => "Pour evaluer l'integration de votre enfant au programme competitif de flipgym, merci de nous envoyer une demande d'inscription a l'adresse flipgym@flipgym.com. Veuillez preciser l'experience gymnique de votre enfant. Une audition privee sera ensuite organisee avec l'un de nos entraineurs pour evaluer ses competences et determiner son niveau."
+    answer: () => `Pour evaluer l'integration de votre enfant au programme competitif de flipgym, vous pouvez remplir le formulaire d'audition ici : ${FLORA_CONFIG.contact.auditionFormUrl}. Veuillez preciser l'experience gymnique de votre enfant; l'equipe pourra ensuite organiser une audition privee pour evaluer ses competences et determiner son niveau.`
   },
   {
     id: 'audition',
     keywords: ['audition', 'auditions', 'evaluation competitive', 'évaluation compétitive', 'tester niveau', 'evaluer niveau', 'évaluer niveau'],
-    answer: () => `${FLORA_SITE_KNOWLEDGE.services.auditions} Pour planifier ou valider une audition, contactez le club au ${FLORA_CONFIG.contact.phone} ou par courriel a ${FLORA_CONFIG.contact.email}.`
+    answer: () => `${FLORA_SITE_KNOWLEDGE.services.auditions} Pour faire une demande, remplissez le formulaire d'audition ici : ${FLORA_CONFIG.contact.auditionFormUrl}. Vous pouvez aussi contacter le club au ${FLORA_CONFIG.contact.phone} ou par courriel a ${FLORA_CONFIG.contact.email}.`
   },
   {
     id: 'camp-recreatif-detail',
@@ -625,7 +640,7 @@ const FLORA_KNOWLEDGE_BASE = [
   {
     id: 'contact',
     keywords: ['telephone', 'téléphone', 'courriel', 'email', 'adresse', 'contact', 'appeler', 'ecrire', 'écrire'],
-    answer: () => `Vous pouvez nous joindre au ${FLORA_CONFIG.contact.phone}, par courriel a ${FLORA_CONFIG.contact.email}, ou venir au club au ${FLORA_CONFIG.contact.address}.`
+    answer: () => `Vous pouvez nous joindre au ${FLORA_CONFIG.contact.phone}, par courriel a ${FLORA_CONFIG.contact.email}, via le formulaire ${FLORA_CONFIG.contact.contactFormUrl}, ou venir au club au ${FLORA_CONFIG.contact.address}.`
   },
   {
     id: 'equipe',
