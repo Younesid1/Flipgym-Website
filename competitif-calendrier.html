@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>flipgym Montréal | Calendrier compétitif</title>
+  <title>flipgym Montréal | Calendrier</title>
   <meta name="description" content="Calendrier GymQC du secteur compétitif de flipgym Montréal, filtré pour la gymnastique artistique féminine." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://www.flipgym.com/competitif-calendrier.html" />
   <meta property="og:locale" content="fr_CA" />
   <meta property="og:site_name" content="flipgym Montréal" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="flipgym Montréal | Calendrier compétitif" />
+  <meta property="og:title" content="flipgym Montréal | Calendrier" />
   <meta property="og:description" content="Calendrier GymQC du secteur compétitif de flipgym Montréal, filtré pour la gymnastique artistique féminine." />
   <meta property="og:url" content="https://www.flipgym.com/competitif-calendrier.html" />
   <meta property="og:image" content="https://www.flipgym.com/home-hero-optimized.avif" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="flipgym Montréal | Calendrier compétitif" />
+  <meta name="twitter:title" content="flipgym Montréal | Calendrier" />
   <meta name="twitter:description" content="Calendrier GymQC du secteur compétitif de flipgym Montréal, filtré pour la gymnastique artistique féminine." />
   <meta name="twitter:image" content="https://www.flipgym.com/home-hero-optimized.avif" />
   <link rel="icon" type="image/png" href="favicon.png" />
@@ -197,17 +197,17 @@
     }
 
     .page {
-      padding: 118px 0 56px;
+      padding: 122px 0 64px;
     }
-    .calendar-shell { display: grid; gap: 24px; }
+    .calendar-shell { display: grid; gap: 18px; }
     .calendar-nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      padding: 16px 18px;
-      border-radius: 24px;
-      background: rgba(255,255,255,0.96);
+      padding: 12px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.9);
       border: 1px solid rgba(16,72,139,0.08);
       box-shadow: var(--shadow-sm);
     }
@@ -215,11 +215,11 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
       border: 1px solid rgba(16,72,139,0.12);
-      background: rgba(16,72,139,0.04);
+      background: var(--white);
       color: var(--blue);
       font-size: 1.2rem;
       font-weight: 800;
@@ -255,9 +255,9 @@
       flex: 1;
       text-align: center;
       font-family: 'Outfit', sans-serif;
-      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      font-size: clamp(1rem, 2vw, 1.18rem);
       font-weight: 800;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
       color: var(--text-dark);
     }
@@ -269,28 +269,23 @@
       display: none;
     }
     .calendar-month-label {
-      display: inline-flex;
+      display: none;
       align-items: center;
-      min-height: 44px;
-      padding: 0 20px;
-      border-radius: 999px;
-      background: rgba(16,72,139,0.08);
       color: var(--blue);
       font-family: 'Outfit', sans-serif;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       font-weight: 800;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      width: fit-content;
     }
     .calendar-board {
       display: grid;
       gap: 0;
       background: rgba(255,255,255,0.97);
       border: 1px solid rgba(16,72,139,0.08);
-      border-radius: 30px;
+      border-radius: 22px;
       overflow: hidden;
-      box-shadow: var(--shadow-sm);
+      box-shadow: 0 18px 48px rgba(16,72,139,0.08);
     }
     .calendar-weekdays,
     .calendar-days {
@@ -298,20 +293,20 @@
       grid-template-columns: repeat(7, minmax(0, 1fr));
     }
     .calendar-weekday {
-      padding: 16px 10px;
-      background: rgba(16,72,139,0.05);
+      padding: 14px 10px;
+      background: rgba(248,251,255,0.96);
       border-bottom: 1px solid rgba(16,72,139,0.08);
       font-family: 'Outfit', sans-serif;
-      font-size: 0.78rem;
+      font-size: 0.72rem;
       font-weight: 800;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--blue);
       text-align: center;
     }
     .calendar-cell {
-      min-height: 155px;
-      padding: 14px 12px 12px;
+      min-height: 142px;
+      padding: 12px 11px 11px;
       border-right: 1px solid rgba(16,72,139,0.08);
       border-bottom: 1px solid rgba(16,72,139,0.08);
       background: rgba(255,255,255,0.96);
@@ -326,18 +321,18 @@
       border-bottom: none;
     }
     .calendar-cell.is-empty {
-      background: rgba(248,251,255,0.82);
+      background: rgba(248,251,255,0.58);
     }
     .calendar-cell.is-muted .calendar-date {
       color: rgba(77,98,120,0.42);
     }
     .calendar-cell.has-event {
       background:
-        linear-gradient(180deg, rgba(255,255,255,0.98), rgba(244,248,255,0.96));
+        linear-gradient(180deg, rgba(255,255,255,0.99), rgba(248,251,255,0.96));
     }
     .calendar-date {
       font-family: 'Outfit', sans-serif;
-      font-size: 1.18rem;
+      font-size: 0.98rem;
       font-weight: 800;
       line-height: 1;
       color: var(--text-dark);
@@ -348,30 +343,42 @@
       margin-top: 2px;
     }
     .calendar-event {
+      position: relative;
       display: grid;
-      gap: 5px;
-      padding: 10px 10px 11px;
-      border-radius: 16px;
-      background: rgba(16,72,139,0.08);
+      gap: 4px;
+      padding: 9px 10px 10px 12px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.84);
       border: 1px solid rgba(16,72,139,0.08);
       color: var(--text-dark);
+      box-shadow: 0 8px 18px rgba(16,72,139,0.06);
       transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }
+    .calendar-event::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 10px;
+      bottom: 10px;
+      width: 3px;
+      border-radius: 999px;
+      background: var(--blue);
     }
     .calendar-event:hover {
       transform: translateY(-1px);
       border-color: rgba(16,72,139,0.16);
-      background: rgba(16,72,139,0.11);
+      background: var(--white);
     }
     .calendar-event-title {
       font-family: 'Outfit', sans-serif;
-      font-size: 0.82rem;
+      font-size: 0.78rem;
       font-weight: 800;
       line-height: 1.2;
       color: var(--text-dark);
     }
     .calendar-event-meta {
       font-family: 'Outfit', sans-serif;
-      font-size: 0.66rem;
+      font-size: 0.61rem;
       font-weight: 800;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -576,11 +583,11 @@
       .container { padding: 0 18px; }
       .page { padding: 112px 0 46px; }
       .calendar-nav {
-        padding: 14px 14px;
+        padding: 10px;
       }
       .calendar-nav-button {
-        width: 42px;
-        height: 42px;
+        width: 40px;
+        height: 40px;
       }
       .calendar-weekdays,
       .calendar-days {
