@@ -1320,6 +1320,26 @@
       object-fit: contain;
       filter: drop-shadow(0 14px 18px rgba(4,14,30,0.12));
     }
+    .sponsor-link {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: min(100%, var(--logo-width, 420px));
+      transition: transform 0.2s ease;
+    }
+    .sponsor-link:hover {
+      transform: translateY(-2px);
+    }
+    .sponsor-link:focus-visible {
+      outline: 3px solid rgba(16,72,139,0.42);
+      outline-offset: 8px;
+      border-radius: 14px;
+    }
+    .sponsor-link img {
+      width: 100%;
+    }
     .sponsor-card.is-courtside {
       --logo-width: 520px;
       min-height: 228px;
@@ -2845,15 +2865,21 @@
           <div class="sponsors-grid" aria-label="Commanditaires officiels du spectacle 2026">
             <article class="sponsor-card is-boomtown reveal">
               <span class="sponsor-tier">Commanditaire argent</span>
-              <img src="commanditaire-boomtown.avif" alt="Atelier Boom Town" />
+              <a class="sponsor-link" href="https://www.boom-town.ca/" target="_blank" rel="noreferrer" aria-label="Visiter le site d'Atelier Boom Town">
+                <img src="commanditaire-boomtown.avif" alt="Atelier Boom Town" />
+              </a>
             </article>
             <article class="sponsor-card is-courtside reveal">
               <span class="sponsor-tier">Commanditaire bronze</span>
-              <img src="commanditaire-courtside.avif" alt="Courtside Conseils" />
+              <a class="sponsor-link" href="https://ctside.ca/fr/accueil/" target="_blank" rel="noreferrer" aria-label="Visiter le site de Courtside Conseils">
+                <img src="commanditaire-courtside.avif" alt="Courtside Conseils" />
+              </a>
             </article>
             <article class="sponsor-card is-bmr reveal">
               <span class="sponsor-tier">Commanditaire bronze</span>
-              <img src="commanditaire-bmr-express.avif" alt="BMR Express Quincaillerie de Marseille" />
+              <a class="sponsor-link" href="https://www.bmr.ca/fr/quincaillerie-de-marseille" target="_blank" rel="noreferrer" aria-label="Visiter la fiche BMR Quincaillerie de Marseille">
+                <img src="commanditaire-bmr-express.avif" alt="BMR Express Quincaillerie de Marseille" />
+              </a>
             </article>
           </div>
         </div>

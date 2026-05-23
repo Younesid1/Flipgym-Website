@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>flipgym Montréal | Boutique</title>
-  <meta name="description" content="Découvrez la boutique de flipgym Montréal et explorez les produits disponibles au club." />
+  <title>flipgym Montréal | TIGER PAWS</title>
+  <meta name="description" content="Découvrez les TIGER PAWS disponibles à la boutique de flipgym Montréal." />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://www.flipgym.com/boutique.html" />
+  <link rel="canonical" href="https://www.flipgym.com/boutique-tiger-paws.html" />
   <meta property="og:locale" content="fr_CA" />
   <meta property="og:site_name" content="flipgym Montréal" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="flipgym Montréal | Boutique" />
-  <meta property="og:description" content="Découvrez la boutique de flipgym Montréal et explorez les produits disponibles au club." />
-  <meta property="og:url" content="https://www.flipgym.com/boutique.html" />
-  <meta property="og:image" content="https://www.flipgym.com/boutique-maillot-recreatif-front-transparent.avif" />
+  <meta property="og:title" content="flipgym Montréal | TIGER PAWS" />
+  <meta property="og:description" content="Découvrez les TIGER PAWS disponibles à la boutique de flipgym Montréal." />
+  <meta property="og:url" content="https://www.flipgym.com/boutique-tiger-paws.html" />
+  <meta property="og:image" content="https://www.flipgym.com/boutique-tiger-paws-sable.avif" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="flipgym Montréal | Boutique" />
-  <meta name="twitter:description" content="Découvrez la boutique de flipgym Montréal et explorez les produits disponibles au club." />
-  <meta name="twitter:image" content="https://www.flipgym.com/boutique-maillot-recreatif-front-transparent.avif" />
+  <meta name="twitter:title" content="flipgym Montréal | TIGER PAWS" />
+  <meta name="twitter:description" content="Découvrez les TIGER PAWS disponibles à la boutique de flipgym Montréal." />
+  <meta name="twitter:image" content="https://www.flipgym.com/boutique-tiger-paws-sable.avif" />
   <link rel="icon" type="image/png" href="favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -27,14 +27,11 @@
       --blue: #10488B;
       --blue-deep: #0c3569;
       --blue-light: rgba(16, 72, 139, 0.08);
-      --blue-soft: #edf5fd;
       --blue-gradient: linear-gradient(135deg, #10488B 0%, #1d5fa9 100%);
       --white: #ffffff;
-      --surface: #f8fbff;
       --text-dark: #0f172a;
       --text-muted: #4d6278;
       --border: rgba(16, 72, 139, 0.1);
-      --shadow-sm: 0 12px 30px rgba(16, 72, 139, 0.06);
       --shadow-lg: 0 28px 70px rgba(16, 72, 139, 0.12);
     }
 
@@ -196,13 +193,9 @@
       box-shadow: 0 12px 26px rgba(16,72,139,0.28);
     }
 
-    .page {
-      padding: 136px 0 88px;
-    }
+    .page { padding: 136px 0 88px; }
 
-    .hero {
-      margin-bottom: 34px;
-    }
+    .hero { margin-bottom: 34px; }
     .hero-shell {
       position: relative;
       overflow: hidden;
@@ -250,119 +243,175 @@
       font-weight: 900;
       line-height: 0.96;
       letter-spacing: -0.05em;
-      margin-bottom: 18px;
       text-transform: uppercase;
     }
-    .catalog-showcase {
+
+    .product-shell { display: grid; gap: 24px; }
+    .product-hero-card { padding: 8px 0 0; }
+    .product-hero-grid {
       display: grid;
-      gap: 20px;
+      grid-template-columns: minmax(0, 1.02fr) minmax(360px, 0.98fr);
+      gap: 48px;
+      align-items: center;
     }
-    .catalog-eyebrow {
+    .product-main-visual {
+      position: relative;
+      overflow: hidden;
+      border-radius: 38px;
+      background: #ffffff;
+      padding: 34px;
+      min-height: 620px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(16,72,139,0.08);
+      box-shadow: 0 34px 70px rgba(16,72,139,0.12);
+    }
+    .product-main-visual::after {
+      content: "";
+      position: absolute;
+      inset: auto -44px -54px auto;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: rgba(16,72,139,0.04);
+      filter: blur(6px);
+    }
+    .product-main-visual img {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 540px;
+      aspect-ratio: 1 / 1;
+      object-fit: contain;
+      background: transparent;
+      filter: drop-shadow(0 28px 42px rgba(16,72,139,0.16));
+    }
+    .color-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 18px;
+    }
+    .color-option {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.82);
+      border: 1px solid rgba(16,72,139,0.08);
+      color: var(--text-dark);
+      cursor: pointer;
+      box-shadow: 0 18px 38px rgba(16,72,139,0.08);
+      transition: background 0.22s ease, border-color 0.22s ease, color 0.22s ease, transform 0.22s ease;
+    }
+    .color-option:hover {
+      transform: translateY(-2px);
+      border-color: rgba(16,72,139,0.2);
+    }
+    .color-option.is-active {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: var(--white);
+      box-shadow: 0 18px 38px rgba(16,72,139,0.18);
+    }
+    .color-swatch {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 1px solid rgba(15,23,42,0.14);
+      background: var(--swatch);
+      box-shadow: inset 0 0 0 2px rgba(255,255,255,0.55);
+    }
+    .color-option span:last-child {
       font-family: 'Outfit', sans-serif;
-      font-size: 0.78rem;
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+    .sizes-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-dark);
+    }
+    .size-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .size-pill {
+      min-height: 40px;
+      padding: 0 16px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(16,72,139,0.12);
+      background: rgba(255,255,255,0.9);
+      color: var(--text-dark);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+    .product-summary {
+      display: grid;
+      gap: 24px;
+      align-content: start;
+      padding: 26px 0;
+    }
+    .summary-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--blue);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.76rem;
       font-weight: 800;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--blue);
+      width: fit-content;
     }
-    .catalog-eyebrow::before {
+    .summary-kicker::before {
       content: "";
       width: 28px;
       height: 2px;
       border-radius: 999px;
       background: currentColor;
     }
-    .catalog-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 30px 24px;
-    }
-    .product-tile {
-      display: grid;
-      gap: 16px;
-      color: var(--text-dark);
-      transition: transform 0.28s ease;
-    }
-    .product-tile:hover {
-      transform: translateY(-6px);
-    }
-    .product-tile-media {
-      position: relative;
-      overflow: hidden;
-      border-radius: 30px;
-      background:
-        radial-gradient(circle at top left, rgba(16,72,139,0.08), transparent 30%),
-        linear-gradient(180deg, #ffffff 0%, #f1f6fc 100%);
-      box-shadow: 0 24px 52px rgba(16,72,139,0.08);
-      padding: 28px;
-      min-height: 350px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .product-tile-media::after {
-      content: "";
-      position: absolute;
-      inset: auto -32px -42px auto;
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      background: rgba(16,72,139,0.06);
-    }
-    .product-tile-media img {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      max-width: 300px;
-      max-height: 280px;
-      aspect-ratio: 1 / 1;
-      object-fit: contain;
-      filter: drop-shadow(0 18px 36px rgba(16,72,139,0.12));
-      transition: transform 0.35s ease, opacity 0.2s ease;
-    }
-    .product-tile-media img.is-switching {
-      opacity: 0;
-    }
-    .product-tile:hover .product-tile-media img {
-      transform: scale(1.03);
-    }
-    .product-tile-copy {
-      display: grid;
-      gap: 6px;
-      justify-items: center;
-      text-align: center;
-      padding: 0 10px;
-    }
-    .product-tile-title {
+    .summary-title {
       font-family: 'Outfit', sans-serif;
-      font-size: 1.12rem;
-      font-weight: 800;
-      line-height: 1.1;
-      letter-spacing: -0.03em;
+      font-size: clamp(2.8rem, 4vw, 4.4rem);
+      font-weight: 900;
+      line-height: 0.94;
+      letter-spacing: -0.06em;
       color: var(--text-dark);
+      max-width: 520px;
     }
-    .product-tile-price {
+    .summary-copy {
+      color: var(--text-muted);
+      line-height: 1.9;
+      font-size: 1rem;
+      max-width: 540px;
+    }
+    .product-price {
       font-family: 'Outfit', sans-serif;
-      font-size: 0.98rem;
-      font-weight: 700;
+      font-size: clamp(1.7rem, 2.5vw, 2.2rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
       color: var(--blue);
-      letter-spacing: -0.01em;
     }
-
-    @media (hover: none) {
-      .product-tile {
-        -webkit-tap-highlight-color: transparent;
-      }
-      .product-tile:active {
-        transform: translateY(-6px) scale(1.015);
-        box-shadow: 0 24px 40px rgba(16,72,139,0.18);
-      }
-      .product-tile:active .product-tile-media img {
-        transform: scale(1.06);
-      }
+    .detail-note {
+      color: var(--text-muted);
+      line-height: 1.7;
+      font-size: 0.95rem;
+      max-width: 520px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(16,72,139,0.08);
     }
 
     .footer { background: #0a0f1d; color: var(--white); padding: 80px 0 30px; border-top: 10px solid var(--blue); }
@@ -437,9 +486,7 @@
     .footer-copy { color: rgba(255,255,255,0.4); font-size: 0.85rem; }
 
     @media (max-width: 980px) {
-      .footer-grid {
-        grid-template-columns: 1fr;
-      }
+      .footer-grid { grid-template-columns: 1fr; }
       .nav-inner { flex-wrap: wrap; align-items: center; }
       .nav-toggle { display: inline-flex; margin-left: auto; }
       .nav-actions { display: none; }
@@ -485,34 +532,33 @@
         color: var(--text-muted);
       }
       .dropdown-link:hover,
-      .dropdown-link.active {
-        transform: none;
-      }
+      .dropdown-link.active { transform: none; }
       .mobile-nav-cta {
         display: inline-flex;
         width: 100%;
         justify-content: center;
         margin-top: 4px;
       }
-      .catalog-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .product-tile-media { min-height: 300px; }
+      .product-hero-grid { grid-template-columns: 1fr; gap: 28px; }
+      .product-main-visual { min-height: 500px; }
     }
 
     @media (max-width: 640px) {
       .container { padding: 0 18px; }
       .page { padding: 122px 0 72px; }
-      .hero-shell { padding: 24px; border-radius: 24px; }
+      .hero-shell { padding: 20px; border-radius: 24px; }
       .hero-title { font-size: clamp(2.2rem, 11vw, 3.4rem); }
-      .catalog-grid { grid-template-columns: 1fr; }
-      .product-tile { gap: 12px; }
-      .product-tile-media {
-        min-height: 240px;
-        padding: 18px;
-        border-radius: 24px;
+      .product-main-visual {
+        min-height: 340px;
+        padding: 22px;
+        border-radius: 28px;
       }
-      .product-tile-media img {
-        max-width: 240px;
-        max-height: 210px;
+      .product-summary {
+        padding: 6px 0 0;
+        gap: 18px;
+      }
+      .summary-title {
+        font-size: clamp(2.2rem, 12vw, 3rem);
       }
       .nav-logo img,
       .footer-brand img { height: 48px; }
@@ -580,155 +626,45 @@
     <div class="container">
       <section class="hero">
         <div class="hero-shell">
-        <div class="hero-kicker">Notre club</div>
-        <h1 class="hero-title">Boutique</h1>
-      </div>
+          <div class="hero-kicker">Boutique</div>
+        <h1 class="hero-title">TIGER PAWS</h1>
+        </div>
       </section>
 
-      <section class="catalog-showcase">
-        <span class="catalog-eyebrow">Boutique en club</span>
+      <section class="product-shell">
+        <section class="product-hero-card">
+          <div class="product-hero-grid">
+            <div class="product-gallery">
+              <div class="product-main-visual">
+                <img id="tigerPawsImage" src="boutique-tiger-paws-sable.avif" alt="TIGER PAWS couleur sable" />
+              </div>
+            </div>
 
-        <div class="catalog-grid">
-          <a href="boutique-maillot-recreatif.html" class="product-tile" data-back-image="boutique-maillot-recreatif-back-transparent.avif" aria-label="Voir la fiche produit du maillot récréatif">
-            <div class="product-tile-media">
-              <img src="boutique-maillot-recreatif-front-transparent.avif" alt="Maillot récréatif flipgym - avant" data-front-alt="Maillot récréatif flipgym - avant" data-back-alt="Maillot récréatif flipgym - dos" />
-            </div>
-            <div class="product-tile-copy">
-              <h2 class="product-tile-title">Maillot récréatif</h2>
-              <span class="product-tile-price">45$</span>
-            </div>
-          </a>
-
-          <a href="boutique-hoodie-flipgym.html" class="product-tile" data-back-image="boutique-hoodie-bleu-dos-transparent.avif" aria-label="Voir la fiche produit du hoodie flipgym bleu">
-            <div class="product-tile-media">
-              <img src="boutique-hoodie-bleu-transparent.avif" alt="Hoodie flipgym bleu - avant" data-front-alt="Hoodie flipgym bleu - avant" data-back-alt="Hoodie flipgym bleu - dos" />
-            </div>
-            <div class="product-tile-copy">
-              <h2 class="product-tile-title">Hoodie flipgym - Bleu</h2>
-              <span class="product-tile-price">50$</span>
-            </div>
-          </a>
-
-          <a href="boutique-hoodie-flipgym-gris.html" class="product-tile" data-back-image="boutique-hoodie-gris-dos-transparent.avif" aria-label="Voir la fiche produit du hoodie flipgym gris">
-            <div class="product-tile-media">
-              <img src="boutique-hoodie-gris-transparent.avif" alt="Hoodie flipgym gris - avant" data-front-alt="Hoodie flipgym gris - avant" data-back-alt="Hoodie flipgym gris - dos" />
-            </div>
-            <div class="product-tile-copy">
-              <h2 class="product-tile-title">Hoodie flipgym - Gris</h2>
-              <span class="product-tile-price">50$</span>
-            </div>
-          </a>
-
-          <a href="boutique-kit-entrainement-garcon.html" class="product-tile" data-back-image="boutique-kit-entrainement-garcon-dos-transparent.avif" aria-label="Voir la fiche produit du kit d’entraînement garçon">
-            <div class="product-tile-media">
-              <img src="boutique-kit-entrainement-garcon-transparent.avif" alt="Kit d’entraînement garçon flipgym - avant" data-front-alt="Kit d’entraînement garçon flipgym - avant" data-back-alt="Kit d’entraînement garçon flipgym - dos" />
-            </div>
-            <div class="product-tile-copy">
-              <h2 class="product-tile-title">Kit d’entraînement garçon</h2>
-              <span class="product-tile-price">45$</span>
-            </div>
-          </a>
-
-          <a href="boutique-cuissard-flipgym.html" class="product-tile" aria-label="Voir la fiche produit du cuissard flipgym">
-            <div class="product-tile-media">
-              <img src="boutique-cuissard-flipgym-transparent.avif" alt="Cuissard flipgym" />
-            </div>
-            <div class="product-tile-copy">
-              <h2 class="product-tile-title">Cuissard flipgym</h2>
-              <span class="product-tile-price">25$</span>
-            </div>
-          </a>
-
-          <a href="boutique-gourde-flipgym.html" class="product-tile" aria-label="Voir la fiche produit de la gourde flipgym">
-            <div class="product-tile-media">
-              <img src="boutique-gourde-flipgym-transparent.avif" alt="Gourde flipgym" />
-            </div>
-            <div class="product-tile-copy">
-              <h2 class="product-tile-title">Gourde flipgym</h2>
-              <span class="product-tile-price">20$</span>
-            </div>
-          </a>
-
-          <a href="boutique-maillot-competition-manche-courte.html" class="product-tile" aria-label="Voir la fiche produit du maillot de compétition manches courtes">
-            <div class="product-tile-media">
-              <img src="boutique-maillot-competition-manche-courte-transparent.avif" alt="Maillot de compétition manches courtes flipgym" />
-            </div>
-            <div class="product-tile-copy">
-              <h2 class="product-tile-title">Maillot de Compétition - Manches Courtes</h2>
-              <span class="product-tile-price">80$</span>
-            </div>
-          </a>
-
-          <a href="boutique-maillot-competition-manches-longues.html" class="product-tile" aria-label="Voir la fiche produit du maillot de compétition manches longues">
-            <div class="product-tile-media">
-              <img src="boutique-maillot-competition-manches-longues-transparent.avif" alt="Maillot de compétition manches longues flipgym" />
-            </div>
-            <div class="product-tile-copy">
-              <h2 class="product-tile-title">Maillot de Compétition - Manches Longues</h2>
-              <span class="product-tile-price">120$</span>
-            </div>
-          </a>
-
-          <a href="boutique-gants-competitif-hot-shot.html" class="product-tile" aria-label="Voir la fiche produit des gants compétitif Hot Shot">
-            <div class="product-tile-media">
-              <img src="boutique-gants-competitif-hot-shot.avif" alt="Gants compétitif Hot Shot" />
-            </div>
-            <div class="product-tile-copy">
-              <h2 class="product-tile-title">Gants compétitif - Hot Shot</h2>
-              <span class="product-tile-price">90$</span>
-            </div>
-          </a>
-
-          <a href="boutique-gants-competitif-rko-ganse.html" class="product-tile" aria-label="Voir la fiche produit des gants compétitif Rko Ganse">
-            <div class="product-tile-media">
-              <img src="boutique-gants-competitif-rko-ganse.avif" alt="Gants compétitif Rko Ganse" />
-            </div>
-            <div class="product-tile-copy">
-              <h2 class="product-tile-title">Gants compétitif - Rko Ganse</h2>
-              <span class="product-tile-price">90$</span>
-            </div>
-          </a>
-
-          <a href="boutique-gants-competitif-rko-velcro.html" class="product-tile" aria-label="Voir la fiche produit des gants compétitif Rko Velcro">
-            <div class="product-tile-media">
-              <img src="boutique-gants-competitif-rko-velcro.avif" alt="Gants compétitif Rko Velcro" />
-            </div>
-            <div class="product-tile-copy">
-              <h2 class="product-tile-title">Gants compétitif - Rko Velcro</h2>
-              <span class="product-tile-price">90$</span>
-            </div>
-          </a>
-
-          <a href="boutique-tiger-paws.html" class="product-tile" aria-label="Voir la fiche produit des TIGER PAWS">
-            <div class="product-tile-media">
-              <img src="boutique-tiger-paws-sable.avif" alt="TIGER PAWS couleur sable" />
-            </div>
-            <div class="product-tile-copy">
-              <h2 class="product-tile-title">TIGER PAWS</h2>
-              <span class="product-tile-price">100$</span>
-            </div>
-          </a>
-
-          <a href="boutique-tape.html" class="product-tile" aria-label="Voir la fiche produit du tape">
-            <div class="product-tile-media">
-              <img src="boutique-tape-transparent.avif" alt="Tape" />
-            </div>
-            <div class="product-tile-copy">
-              <h2 class="product-tile-title">Tape</h2>
-              <span class="product-tile-price">5$</span>
-            </div>
-          </a>
-
-          <a href="boutique-k-tape.html" class="product-tile" aria-label="Voir la fiche produit du K-Tape">
-            <div class="product-tile-media">
-              <img src="boutique-k-tape-mix-transparent.avif?v=3" alt="K-Tape avec les différentes couleurs disponibles" />
-            </div>
-            <div class="product-tile-copy">
-              <h2 class="product-tile-title">K-Tape - 2'' x 16,4'</h2>
-              <span class="product-tile-price">15$</span>
-            </div>
-          </a>
-        </div>
+            <aside class="product-summary" aria-label="Résumé du produit">
+              <span class="summary-kicker">Produit boutique</span>
+              <h2 class="summary-title">TIGER PAWS</h2>
+              <p class="summary-copy">Les TIGER PAWS sont disponibles à la boutique du club.</p>
+              <div class="product-price">100 $</div>
+              <div class="color-options" aria-label="Couleurs disponibles">
+                <button class="color-option is-active" type="button" data-image="boutique-tiger-paws-sable.avif" data-alt="TIGER PAWS couleur sable" aria-pressed="true">
+                  <span class="color-swatch" style="--swatch: #c7a46d;" aria-hidden="true"></span>
+                  <span>Sable</span>
+                </button>
+                <button class="color-option" type="button" data-image="boutique-tiger-paws-bleu.avif" data-alt="TIGER PAWS couleur bleu" aria-pressed="false">
+                  <span class="color-swatch" style="--swatch: #124bd8;" aria-hidden="true"></span>
+                  <span>Bleu</span>
+                </button>
+              </div>
+              <span class="sizes-label">Tailles disponibles</span>
+              <div class="size-list">
+                <span class="size-pill">S</span>
+                <span class="size-pill">M</span>
+                <span class="size-pill">L</span>
+              </div>
+              <p class="detail-note">L’achat se fait directement au bureau administratif du club.</p>
+            </aside>
+          </div>
+        </section>
       </section>
     </div>
   </main>
@@ -830,56 +766,20 @@
       });
     });
 
-    document.querySelectorAll('.product-tile[data-back-image]').forEach((tile) => {
-      const image = tile.querySelector('.product-tile-media img');
-      if (!image) return;
+    const tigerPawsImage = document.getElementById('tigerPawsImage');
+    const colorButtons = document.querySelectorAll('.color-option[data-image]');
 
-      const frontImage = image.getAttribute('src');
-      const backImage = tile.dataset.backImage;
-      const frontAlt = image.dataset.frontAlt || image.getAttribute('alt') || '';
-      const backAlt = image.dataset.backAlt || frontAlt;
-
-      if (!frontImage || !backImage) return;
-
-      const preload = new Image();
-      preload.src = backImage;
-      let swapTimer;
-
-      const swapImage = (src, alt, delay = 120) => {
-        window.clearTimeout(swapTimer);
-        if (image.getAttribute('src') === src) {
-          image.classList.remove('is-switching');
-          return;
-        }
-        swapTimer = window.setTimeout(() => {
-          image.classList.add('is-switching');
-          window.setTimeout(() => {
-            image.src = src;
-            image.alt = alt;
-            image.classList.remove('is-switching');
-          }, 120);
-        }, delay);
-      };
-
-      const showBack = () => swapImage(backImage, backAlt, 520);
-      const showFront = () => {
-        window.clearTimeout(swapTimer);
-        if (image.getAttribute('src') === frontImage) {
-          image.classList.remove('is-switching');
-          return;
-        }
-        image.classList.add('is-switching');
-        swapTimer = window.setTimeout(() => {
-          image.src = frontImage;
-          image.alt = frontAlt;
-          image.classList.remove('is-switching');
-        }, 110);
-      };
-
-      tile.addEventListener('mouseenter', showBack);
-      tile.addEventListener('mouseleave', showFront);
-      tile.addEventListener('focusin', showBack);
-      tile.addEventListener('focusout', showFront);
+    colorButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        if (!tigerPawsImage) return;
+        tigerPawsImage.src = button.dataset.image;
+        tigerPawsImage.alt = button.dataset.alt;
+        colorButtons.forEach((item) => {
+          const isActive = item === button;
+          item.classList.toggle('is-active', isActive);
+          item.setAttribute('aria-pressed', String(isActive));
+        });
+      });
     });
   </script>
 </body>
