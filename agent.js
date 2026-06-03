@@ -19,8 +19,8 @@ const FLORA_CONFIG = {
     auditionFormUrl: 'competitif-audition.html#formulaire-audition'
   },
   openingHours: [
-    'Lundi au vendredi : 13h a 20h',
-    'Samedi au dimanche : 9h a 16h'
+    'Lundi au vendredi : 13h30 a 20h30',
+    'Samedi au dimanche : 8h30 a 18h'
   ],
   history: "Etabli depuis 1977 dans le quartier Rosemont.",
   recreationalNotes: {
@@ -475,219 +475,6 @@ function wait(ms) {
 }
 
 const DEMO_PROGRAMS = FLORA_CONFIG.demo.agePrograms;
-const CONTACT_FALLBACK = `Je ne suis pas certaine d'avoir la bonne reponse pour cette question. Pour une reponse fiable, contactez le club au ${FLORA_CONFIG.contact.phone}, par courriel a ${FLORA_CONFIG.contact.email}, ou via le formulaire ${FLORA_CONFIG.contact.contactFormUrl}.`;
-
-function contactFallback(topic = 'ce sujet') {
-  return `Je ne suis pas certaine d'avoir la bonne reponse pour ${topic}. Pour eviter de vous donner une mauvaise information, contactez le club au ${FLORA_CONFIG.contact.phone}, par courriel a ${FLORA_CONFIG.contact.email}, ou via le formulaire ${FLORA_CONFIG.contact.contactFormUrl}.`;
-}
-
-const FLORA_KNOWLEDGE_BASE = [
-  {
-    id: 'activites',
-    keywords: ['activites', 'activités', 'propose', 'offrez', 'offrent', 'qu est ce que flipgym propose', 'que propose flipgym', 'programmes offerts'],
-    answer: () => "flipgym offre des cours recreatifs, des programmes releve/competitifs, des camps de jour et plusieurs services comme les cours prives, fetes d'enfants et locations de gymnase."
-  },
-  {
-    id: 'mission-valeurs',
-    keywords: ['mission', 'valeurs', 'vision', 'a propos', 'à propos', 'histoire', 'historique', 'depuis 1977'],
-    answer: () => `${FLORA_SITE_KNOWLEDGE.about.history} ${FLORA_SITE_KNOWLEDGE.about.mission}`
-  },
-  {
-    id: 'horaires',
-    keywords: ['horaire', 'horaires', 'heure', 'heures', 'ouvert', 'ouverture', 'ferme', 'fermeture', 'quand etes vous ouvert', 'quand êtes vous ouvert'],
-    answer: () => `Nos heures d'ouverture sont ${FLORA_CONFIG.openingHours[0].toLowerCase()} et ${FLORA_CONFIG.openingHours[1].toLowerCase()}. Pour les horaires de cours precis, consultez la page Horaires & Tarifs ou Qidigo.`
-  },
-  {
-    id: 'inscription',
-    keywords: ['inscription', 'inscriptions', 'inscrire', 'inscris', 'qidigo', 'register', 'comment inscrire', 'comment puis je inscrire', 'comment inscrire mon enfant', 'place disponible', 'places disponibles'],
-    answer: () => `Les inscriptions se font directement en ligne via Qidigo, selon les periodes d'inscription et les places disponibles. Voici le lien : ${FLORA_CONFIG.contact.registrationUrl}`
-  },
-  {
-    id: 'session-commencee',
-    keywords: ['session commence', 'session a deja commence', 'session déjà commencée', 'inscrire en retard', 'session en cours', 'liste d attente', 'liste d\'attente', 'trop tard pour inscrire', 'encore possible inscrire'],
-    answer: () => "Oui, il est possible de s'inscrire meme si la session a deja commence. Contactez-nous pour verifier s'il reste des places disponibles ou pour etre ajoute a la liste d'attente. Si une place se libere, vous beneficierez d'un rabais sur les cours que votre enfant a manques."
-  },
-  {
-    id: 'essai',
-    keywords: ['cours d essai', 'cours d\'essai', 'essayer un cours', 'essai gratuit', 'cours gratuit', 'premier cours essai'],
-    answer: () => contactFallback('les cours d essai et les possibilites d essai selon la session')
-  },
-  {
-    id: 'remboursement-annulation',
-    keywords: ['remboursement', 'rembourser', 'annulation', 'annuler inscription', 'annuler mon inscription', 'annuler une inscription', 'politique remboursement', 'credit', 'crédit', 'changer de groupe', 'transfert de groupe'],
-    answer: () => contactFallback('les remboursements, annulations ou changements de groupe')
-  },
-  {
-    id: 'tarifs',
-    keywords: ['tarif', 'tarifs', 'prix', 'cout', 'coût', 'combien', 'combien ca coute', 'combien ça coûte'],
-    answer: () => FLORA_CONFIG.demo.pricingReply
-  },
-  {
-    id: 'affiliation',
-    keywords: ['affiliation', 'federation', 'fédération', 'fgq', 'gymnastique quebec', 'gymnastique québec'],
-    answer: () => `Chaque gymnaste doit payer des frais d'affiliation a la Federation de gymnastique du Quebec une seule fois par annee. Le montant est de ${FLORA_CONFIG.recreationalNotes.affiliationRegular}, ou de ${FLORA_CONFIG.recreationalNotes.affiliationToddler}, et couvre la periode du 1er septembre 2025 au 31 aout 2026.`
-  },
-  {
-    id: 'maillot',
-    keywords: ['maillot', 'uniforme', 'justaucorps', 'quoi porter', 'porter pour mon cours', 'porter pour le cours', 'tenue', 'vetement', 'vêtement'],
-    answer: () => "Le maillot flipgym est obligatoire pour tous les enfants a partir de 4-5 ans inscrits a la session. Si votre enfant ne possede pas de maillot d'entrainement, vous devrez en acheter un au cout de 45$ au bureau administratif, avant ou apres le debut du cours. Tous les modeles de maillots flipgym sont acceptes."
-  },
-  {
-    id: 'paiement',
-    keywords: ['paiement', 'payer', 'modes de paiement', 'mode de paiement', 'carte', 'debit', 'débit', 'credit', 'crédit', 'argent comptant', 'comptant'],
-    answer: () => "Les frais d'inscription sont payables en ligne. Pour l'achat des maillots, des gants ou des produits flipgym, vous pouvez vous procurer ces articles au bureau administratif. Nous acceptons les cartes de debit et de credit, ainsi que l'argent comptant."
-  },
-  {
-    id: 'boutique',
-    keywords: ['boutique', 'acheter maillot', 'acheter uniforme', 'hoodie', 'gourde', 'cuissard', 'tape', 'k-tape', 'produit flipgym', 'produits flipgym'],
-    answer: () => "La boutique flipgym propose notamment maillots, hoodies, gourdes, cuissards, tape, K-Tape et certains articles d'entrainement. L'achat se fait directement au bureau administratif du club."
-  },
-  {
-    id: 'age-minimum',
-    keywords: ['quel age', 'quel âge', 'a partir de quel age', 'a partir de quel âge', '18 mois', 'age minimum', 'âge minimum', 'mon enfant a quel age'],
-    answer: () => "Les cours commencent des 18 mois avec les groupes Parent-Enfant. Si vous me donnez l'age de votre enfant, je peux vous indiquer les groupes recreatifs correspondants."
-  },
-  {
-    id: 'recreatif',
-    keywords: ['recreatif', 'récréatif', 'cours', 'groupe', 'groupes'],
-    answer: () => FLORA_CONFIG.demo.recreationalFallback
-  },
-  {
-    id: 'releve-defi',
-    keywords: ['pre-defi', 'pré-défi', 'pre defi', 'defi 1', 'défi 1', 'defi 2', 'défi 2', 'defi 3', 'défi 3', 'defi 4', 'défi 4', 'defi 5', 'défi 5', 'defi 6', 'défi 6', 'releve defi', 'relève défi'],
-    answer: () => `Dans le secteur Releve/Defi, le groupe Pre-Defi s'adresse aux 4 a 6 ans preselectionnees et travaille les fondements gymniques. Le programme Defi 1-2 est une initiation a la competition chez les plus jeunes, avec admission sur recommandation. Le programme Defi 3-4-5-6 poursuit cette progression et peut mener la gymnaste vers le secteur competitif.`
-  },
-  {
-    id: 'competitif',
-    keywords: ['competitif', 'compétitif', 'releve', 'relève', 'defi', 'défi', 'regional', 'régional', 'provincial', 'sport-etudes', 'sport études'],
-    answer: () => FLORA_CONFIG.demo.competitiveReply
-  },
-  {
-    id: 'competitif-autre-club',
-    keywords: ['autre club', 'vient d un autre club', 'venant d un autre club', 'niveau competitif dans un autre club', 'integrer le programme competitif', 'intégrer le programme compétitif'],
-    answer: () => `Pour evaluer l'integration de votre enfant au programme competitif de flipgym, vous pouvez remplir le formulaire d'audition ici : ${FLORA_CONFIG.contact.auditionFormUrl}. Veuillez preciser l'experience gymnique de votre enfant; l'equipe pourra ensuite organiser une audition privee pour evaluer ses competences et determiner son niveau.`
-  },
-  {
-    id: 'audition',
-    keywords: ['audition', 'auditions', 'evaluation competitive', 'évaluation compétitive', 'tester niveau', 'evaluer niveau', 'évaluer niveau'],
-    answer: () => `${FLORA_SITE_KNOWLEDGE.services.auditions} Pour faire une demande, remplissez le formulaire d'audition ici : ${FLORA_CONFIG.contact.auditionFormUrl}. Vous pouvez aussi contacter le club au ${FLORA_CONFIG.contact.phone} ou par courriel a ${FLORA_CONFIG.contact.email}.`
-  },
-  {
-    id: 'camp-recreatif-detail',
-    keywords: ['camp de jour recreatif', 'camp de jour récréatif', 'camp recreatif', 'camp récréatif', 'tarifs camp', 'journee type', 'journée type', 'service de garde camp', 'chandail camp'],
-    answer: () => "Le camp de jour recreatif s'adresse aux jeunes filles de 6 ans, ou ayant complete la maternelle, et plus, avec ou sans experience en gymnastique. Il comprend un minimum de 12 h de gymnastique par semaine, ainsi que des activites variees. Si vous voulez, je peux aussi vous donner seulement les tarifs ou seulement la journee type."
-  },
-  {
-    id: 'camp-releve',
-    keywords: ['camp de jour releve', 'camp de jour relève', 'camp releve', 'camp relève', 'pre-regional', 'pré-régional', 'releve 6-7', 'releve 8-10', 'relève 6-7', 'relève 8-10'],
-    answer: () => FLORA_SITE_KNOWLEDGE.camp.releve
-  },
-  {
-    id: 'camp-competitif',
-    keywords: ['camp d entrainement competitif', 'camp d\'entrainement competitif', 'camp d entrainement compétitif', 'camp d\'entrainement compétitif', 'camp competitif', 'camp compétitif', 'sport-etude camp', 'sport étude camp'],
-    answer: () => FLORA_SITE_KNOWLEDGE.camp.competitive
-  },
-  {
-    id: 'camp',
-    keywords: ['camp', 'ete', 'été', 'camp de jour'],
-    answer: () => FLORA_CONFIG.demo.campReply
-  },
-  {
-    id: 'camp-tarifs-detail',
-    keywords: ['tarifs camp', 'prix camp', 'cout camp', 'coût camp', 'frais camp', 'service de garde camp'],
-    answer: () => FLORA_SITE_KNOWLEDGE.camp.recreatifFees
-  },
-  {
-    id: 'camp-horaire-detail',
-    keywords: ['journee type camp', 'journée type camp', 'horaire camp', 'horaires camp', 'journee camp', 'journée camp', 'sortie mercredi'],
-    answer: () => FLORA_SITE_KNOWLEDGE.camp.recreatifSchedule
-  },
-  {
-    id: 'regional-detail',
-    keywords: ['releve 8-10 r', 'r1-r2', 'r1', 'r2', 'r3', 'r4-r5', 'regional detail', 'programme regional'],
-    answer: () => `${FLORA_SITE_KNOWLEDGE.competitive.regional.releve810r} ${FLORA_SITE_KNOWLEDGE.competitive.regional.r1r2} ${FLORA_SITE_KNOWLEDGE.competitive.regional.r3} ${FLORA_SITE_KNOWLEDGE.competitive.regional.r4r5}`
-  },
-  {
-    id: 'provincial-detail',
-    keywords: ['provincial', 'nintro', 'n7', 'n8', 'coupe provinciale', 'gymnix', 'programme provincial'],
-    answer: () => `${FLORA_SITE_KNOWLEDGE.competitive.provincial.overview} ${FLORA_SITE_KNOWLEDGE.competitive.provincial.competitions}`
-  },
-  {
-    id: 'sport-etudes-detail',
-    keywords: ['sport-etudes', 'sport études', 'eleve-athlete', 'élève-athlète', 'primaire', 'secondaire', 'antoine de st-exupery', 'reine-marie', 'college de montreal', 'collège de montréal'],
-    answer: () => `${FLORA_SITE_KNOWLEDGE.competitive.provincial.primarySportEtudes} ${FLORA_SITE_KNOWLEDGE.competitive.provincial.secondarySportEtudes} ${FLORA_SITE_KNOWLEDGE.competitive.provincial.partnerSchools}`
-  },
-  {
-    id: 'services-detail',
-    keywords: ['services', 'cours prive', 'cours privé', 'fete', 'fête', 'location', 'gymnase', 'auditions'],
-    answer: () => `${FLORA_SITE_KNOWLEDGE.services.auditions} ${FLORA_SITE_KNOWLEDGE.services.privateLessons} ${FLORA_SITE_KNOWLEDGE.services.birthdays} ${FLORA_SITE_KNOWLEDGE.services.rental}`
-  },
-  {
-    id: 'cours-prives',
-    keywords: ['cours prive', 'cours privé', 'cours prives', 'cours privés', 'entrainement personnalise', 'entraînement personnalisé', 'coach prive', 'coach privé'],
-    answer: () => `${FLORA_SITE_KNOWLEDGE.services.privateLessons} Pour faire une demande, contactez le club au ${FLORA_CONFIG.contact.phone} ou par courriel a ${FLORA_CONFIG.contact.email}.`
-  },
-  {
-    id: 'fetes-enfants',
-    keywords: ['fete enfant', 'fête enfant', 'fetes enfants', 'fêtes enfants', 'anniversaire', 'party', 'fete d enfant', 'fête d enfant'],
-    answer: () => `${FLORA_SITE_KNOWLEDGE.services.birthdays} Pour verifier les disponibilites, contactez le club au ${FLORA_CONFIG.contact.phone} ou par courriel a ${FLORA_CONFIG.contact.email}.`
-  },
-  {
-    id: 'location-gymnase',
-    keywords: ['location gymnase', 'louer gymnase', 'location du gymnase', 'louer le gym', 'evenement corporatif', 'événement corporatif'],
-    answer: () => `${FLORA_SITE_KNOWLEDGE.services.rental} Pour une demande de location, contactez le club au ${FLORA_CONFIG.contact.phone} ou par courriel a ${FLORA_CONFIG.contact.email}.`
-  },
-  {
-    id: 'contact',
-    keywords: ['telephone', 'téléphone', 'courriel', 'email', 'adresse', 'contact', 'appeler', 'ecrire', 'écrire'],
-    answer: () => `Vous pouvez nous joindre au ${FLORA_CONFIG.contact.phone}, par courriel a ${FLORA_CONFIG.contact.email}, via le formulaire ${FLORA_CONFIG.contact.contactFormUrl}, ou venir au club au ${FLORA_CONFIG.contact.address}.`
-  },
-  {
-    id: 'equipe',
-    keywords: ['equipe', 'équipe', 'administration', 'emily', 'younes', 'felicia', 'flora baron', 'gabryelle'],
-    answer: () => FLORA_SITE_KNOWLEDGE.team.administration
-  },
-  {
-    id: 'absence',
-    keywords: ['absence', 'absent', 'manquer un cours', 'peut pas assister', 'ne peut pas assister', 'rater un cours', 'cours manque', 'cours manqué'],
-    answer: () => `Merci de nous informer par courriel ou par telephone si votre enfant ne peut pas assister a un cours. Vous pouvez nous joindre au ${FLORA_CONFIG.contact.phone} ou a ${FLORA_CONFIG.contact.email}.`
-  },
-  {
-    id: 'reprise-cours',
-    keywords: ['reprendre un cours', 'reprise de cours', 'cours de reprise', 'cours manque repris', 'cours manqué repris'],
-    answer: () => contactFallback('les reprises de cours')
-  },
-  {
-    id: 'retard',
-    keywords: ['retard', 'en retard', 'arriver en retard', 'retard cours'],
-    answer: () => "Si vous pensez arriver en retard, le mieux est de contacter directement le club afin que l'equipe puisse vous guider selon le cours et le contexte."
-  },
-  {
-    id: 'stationnement',
-    keywords: ['stationnement', 'parking', 'se stationner', 'voiture'],
-    answer: () => contactFallback('le stationnement')
-  },
-  {
-    id: 'objets-perdus',
-    keywords: ['objet perdu', 'objets perdus', 'perdu', 'perdue', 'retrouver un objet', 'bouteille perdue', 'vetement perdu', 'vêtement perdu'],
-    answer: () => `Pour un objet perdu, contactez le club au ${FLORA_CONFIG.contact.phone} ou par courriel a ${FLORA_CONFIG.contact.email}. Decrivez l'objet, le cours et la date approximative.`
-  },
-  {
-    id: 'emploi',
-    keywords: ['emploi', 'emplois', 'travail', 'travailler', 'postuler', 'cv', 'entraineur', 'entraîneur'],
-    answer: () => `Pour les opportunites d'emploi ou pour envoyer votre candidature, contactez le club par courriel a ${FLORA_CONFIG.contact.email}.`
-  },
-  {
-    id: 'spectacle',
-    keywords: ['evenement', 'événement', 'demonstration', 'démonstration', 'spectacle', 'fin d annee', 'fin d année', 'juin', 'billet spectacle', 'billetterie', 'ordre de passage'],
-    answer: () => "Le spectacle de fin d'annee 2026 aura lieu en juin. Les informations importantes, la billetterie et l'ordre de passage sont disponibles sur la page Spectacle du site. Pour une question precise sur le spectacle, contactez le club."
-  },
-  {
-    id: 'salutation',
-    keywords: ['bonjour', 'salut', 'hello', 'bonsoir'],
-    answer: () => FLORA_CONFIG.demo.greeting
-  }
-];
 
 function getAffiliationNote(ageGroup) {
   if (ageGroup === 'toddler') {
@@ -722,7 +509,10 @@ function normalizeForMatch(text) {
   return text
     .toLowerCase()
     .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '');
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/['’`-]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
 }
 
 function fillFlippyTemplate(text) {
@@ -761,7 +551,7 @@ function resolveKnowledgeAnswer(entry, text) {
 function findKnowledgeBaseMatch(text) {
   const normalized = normalizeForMatch(text);
   const externalKnowledge = Array.isArray(window.FLIPPY_KNOWLEDGE_BASE) ? window.FLIPPY_KNOWLEDGE_BASE : [];
-  const knowledgeEntries = [...externalKnowledge, ...FLORA_KNOWLEDGE_BASE];
+  const knowledgeEntries = externalKnowledge;
   let bestMatch = null;
 
   for (const entry of knowledgeEntries) {
