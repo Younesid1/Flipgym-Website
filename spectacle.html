@@ -701,6 +701,9 @@
       will-change: transform;
       isolation: isolate;
     }
+    .hero-poster-mobile {
+      display: none;
+    }
     .hero-poster-card::before {
       content: "";
       position: absolute;
@@ -2452,6 +2455,14 @@
         line-height: 0.98;
         letter-spacing: -0.025em;
       }
+      .hero-poster-desktop {
+        display: none;
+      }
+      .hero-poster-mobile {
+        display: grid;
+        width: min(360px, 100%);
+        margin: 32px 0 24px;
+      }
       .hero-marquee span {
         padding: 10px 16px;
         font-size: 0.68rem;
@@ -2522,6 +2533,22 @@
       }
       .hero-btn {
         width: 100%;
+      }
+      .first-show-shell {
+        padding: 14px;
+      }
+      .first-show-intro {
+        padding: 14px;
+      }
+      .first-show-poster {
+        width: calc(100% + 36px);
+        max-width: none;
+        margin-inline: -18px;
+        padding: 8px;
+      }
+      .first-show-poster .hero-btn {
+        width: calc(100% - 20px);
+        margin: 10px;
       }
       .hero-aside {
         grid-template-columns: 1fr;
@@ -2687,6 +2714,11 @@
         <div class="hero-copy reveal">
           <div class="hero-year-chip">Édition 2026 · Comédies musicales</div>
           <h1 class="hero-title"><span>Spectacle</span><span>de fin</span><span>d’année</span></h1>
+          <article class="hero-poster-card hero-poster-mobile">
+            <div class="poster-depth">
+              <img src="spectacle-2026-poster.avif" alt="Affiche du Spectacle de fin d’année 2026 flipgym" />
+            </div>
+          </article>
           <div class="hero-actions">
             <a href="#billetterie" class="hero-btn primary">Billetterie</a>
             <a href="#ordre-passage" class="hero-btn secondary">Ordre de passage</a>
@@ -2694,7 +2726,7 @@
           </div>
         </div>
 
-        <aside class="hero-aside reveal">
+        <aside class="hero-aside reveal hero-poster-desktop">
           <article class="hero-poster-card">
             <div class="poster-depth">
               <img src="spectacle-2026-poster.avif" alt="Affiche du Spectacle de fin d’année 2026 flipgym" />
