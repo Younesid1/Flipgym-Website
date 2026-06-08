@@ -1,3 +1,5 @@
+const MAX_IMAGE_BYTES = 8 * 1024 * 1024;
+
 function isAllowedInstagramImageUrl(imageUrl) {
   try {
     const parsedUrl = new URL(imageUrl);
@@ -12,6 +14,10 @@ function isAllowedInstagramImageUrl(imageUrl) {
   } catch (error) {
     return false;
   }
+}
+
+function isSafeImageContentType(contentType) {
+  return /^image\/(avif|gif|jpe?g|png|webp)(?:;|$)/i.test(contentType || '');
 }
 
 function getQueryUrl(request) {
@@ -46,10 +52,26 @@ module.exports = async function handler(request, response) {
     }
 
     const contentType = imageResponse.headers.get('content-type') || 'image/jpeg';
+    const contentLength = Number(imageResponse.headers.get('content-length') || 0);
+    if (!isSafeImageContentType(contentType) || contentLength > MAX_IMAGE_BYTES) {
+      response.statusCode = 415;
+      response.setHeader('Content-Type', 'text/plain; charset=utf-8');
+      response.end('Unsupported image response');
+      return;
+    }
+
     const imageBuffer = Buffer.from(await imageResponse.arrayBuffer());
+    if (imageBuffer.length > MAX_IMAGE_BYTES) {
+      response.statusCode = 413;
+      response.setHeader('Content-Type', 'text/plain; charset=utf-8');
+      response.end('Image too large');
+      return;
+    }
+
     response.statusCode = 200;
     response.setHeader('Content-Type', contentType);
     response.setHeader('Cache-Control', 's-maxage=86400, stale-while-revalidate=604800');
+    response.setHeader('X-Content-Type-Options', 'nosniff');
     response.end(imageBuffer);
   } catch (error) {
     response.statusCode = 502;

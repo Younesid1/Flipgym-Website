@@ -340,8 +340,8 @@ window.FLIPPY_KNOWLEDGE_BASE = [
     id: 'boutique',
     category: 'boutique',
     priority: 75,
-    keywords: ['boutique', 'maillot', 'hoodie', 'gourde', 'cuissard', 'tape', 'k-tape', 'produits flipgym'],
-    answer: "La boutique flipgym propose plusieurs articles comme maillots, hoodies, gourdes, cuissards, tape et K-Tape. Les achats se font directement au bureau administratif du club.",
+    keywords: ['boutique', 'maillot', 'hoodie', 'gourde', 'verre', 'vitre', 'paille', 'cuissard', 'slides', 'sandales', 'pines', 'crocs', 'bas', 'chaussettes', 'tape', 'k-tape', 'produits flipgym'],
+    answer: "La boutique flipgym propose plusieurs articles comme maillots, hoodies, gourdes, verres, cuissards, slides, pines de crocs, bas, tape et K-Tape. Les achats se font directement au bureau administratif du club.",
     links: [
       { label: 'Boutique', url: 'boutique.html' }
     ]

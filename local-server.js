@@ -4,6 +4,7 @@ const path = require('path');
 
 const rootDir = __dirname;
 const port = Number(process.env.PORT || 4173);
+const MAX_IMAGE_BYTES = 8 * 1024 * 1024;
 
 function loadEnv() {
   const envPath = path.join(rootDir, '.env');
@@ -35,9 +36,28 @@ function loadEnv() {
 function sendJson(response, statusCode, payload) {
   response.writeHead(statusCode, {
     'Content-Type': 'application/json; charset=utf-8',
-    'Cache-Control': 'no-store'
+    'Cache-Control': 'no-store',
+    'X-Content-Type-Options': 'nosniff'
   });
   response.end(JSON.stringify(payload));
+}
+
+function sendText(response, statusCode, message) {
+  response.writeHead(statusCode, {
+    'Content-Type': 'text/plain; charset=utf-8',
+    'Cache-Control': 'no-store',
+    'X-Content-Type-Options': 'nosniff'
+  });
+  response.end(message);
+}
+
+function getSecurityHeaders() {
+  return {
+    'X-Content-Type-Options': 'nosniff',
+    'X-Frame-Options': 'SAMEORIGIN',
+    'Referrer-Policy': 'strict-origin-when-cross-origin',
+    'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), payment=(), usb=()'
+  };
 }
 
 function getInstagramUrl() {
@@ -115,34 +135,47 @@ function isAllowedInstagramImageUrl(imageUrl) {
   }
 }
 
+function isSafeImageContentType(contentType) {
+  return /^image\/(avif|gif|jpe?g|png|webp)(?:;|$)/i.test(contentType || '');
+}
+
 async function handleInstagramImage(request, response) {
   const requestUrl = new URL(request.url, `http://${request.headers.host}`);
   const imageUrl = requestUrl.searchParams.get('url') || '';
 
   if (!isAllowedInstagramImageUrl(imageUrl)) {
-    response.writeHead(400, { 'Content-Type': 'text/plain; charset=utf-8' });
-    response.end('Invalid image URL');
+    sendText(response, 400, 'Invalid image URL');
     return;
   }
 
   try {
     const imageResponse = await fetch(imageUrl);
     if (!imageResponse.ok) {
-      response.writeHead(imageResponse.status, { 'Content-Type': 'text/plain; charset=utf-8' });
-      response.end('Image unavailable');
+      sendText(response, imageResponse.status, 'Image unavailable');
       return;
     }
 
     const contentType = imageResponse.headers.get('content-type') || 'image/jpeg';
+    const contentLength = Number(imageResponse.headers.get('content-length') || 0);
+    if (!isSafeImageContentType(contentType) || contentLength > MAX_IMAGE_BYTES) {
+      sendText(response, 415, 'Unsupported image response');
+      return;
+    }
+
     const imageBuffer = Buffer.from(await imageResponse.arrayBuffer());
+    if (imageBuffer.length > MAX_IMAGE_BYTES) {
+      sendText(response, 413, 'Image too large');
+      return;
+    }
+
     response.writeHead(200, {
       'Content-Type': contentType,
-      'Cache-Control': 'no-store'
+      'Cache-Control': 'no-store',
+      'X-Content-Type-Options': 'nosniff'
     });
     response.end(imageBuffer);
   } catch (error) {
-    response.writeHead(502, { 'Content-Type': 'text/plain; charset=utf-8' });
-    response.end('Image proxy error');
+    sendText(response, 502, 'Image proxy error');
   }
 }
 
@@ -222,17 +255,21 @@ function serveStatic(request, response) {
   const normalizedPath = path.normalize(decodedPath).replace(/^(\.\.[/\\])+/, '');
   const relativePath = normalizedPath === '/' ? '/index.html' : normalizedPath;
   const filePath = path.join(rootDir, relativePath);
+  const relativeToRoot = path.relative(rootDir, filePath);
+  const pathParts = relativeToRoot.split(path.sep);
 
-  if (!filePath.startsWith(rootDir)) {
-    response.writeHead(403);
-    response.end('Forbidden');
+  if (
+    relativeToRoot.startsWith('..') ||
+    path.isAbsolute(relativeToRoot) ||
+    pathParts.some((part) => part.startsWith('.') && part !== '.well-known')
+  ) {
+    sendText(response, 403, 'Forbidden');
     return;
   }
 
   fs.readFile(filePath, async (error, content) => {
     if (error) {
-      response.writeHead(error.code === 'ENOENT' ? 404 : 500);
-      response.end(error.code === 'ENOENT' ? 'Not found' : 'Server error');
+      sendText(response, error.code === 'ENOENT' ? 404 : 500, error.code === 'ENOENT' ? 'Not found' : 'Server error');
       return;
     }
 
@@ -242,7 +279,8 @@ function serveStatic(request, response) {
 
     response.writeHead(200, {
       'Content-Type': getContentType(filePath),
-      'Cache-Control': 'no-store'
+      'Cache-Control': 'no-store',
+      ...getSecurityHeaders()
     });
     response.end(body);
   });

@@ -1372,6 +1372,22 @@
         0 0 0 1px rgba(255,255,255,0.12),
         inset 0 1px 0 rgba(255,255,255,1);
     }
+    .sponsor-card.is-desjardins {
+      --logo-width: 860px;
+      grid-column: 1 / -1;
+      min-height: 300px;
+      border-color: rgba(0,129,73,0.24);
+      background:
+        radial-gradient(circle at top left, rgba(0,129,73,0.1), transparent 34%),
+        linear-gradient(135deg, rgba(255,255,255,0.98), rgba(238,248,243,0.94));
+      box-shadow:
+        0 34px 82px rgba(0,129,73,0.14),
+        0 0 0 1px rgba(255,255,255,0.14),
+        inset 0 1px 0 rgba(255,255,255,1);
+    }
+    .sponsor-card.is-desjardins img {
+      max-height: 176px;
+    }
     .sponsor-card.is-boomtown .sponsor-tier {
       background: linear-gradient(135deg, #ffffff, #cbd7e5 48%, #f9fcff);
       border-color: rgba(176,188,202,0.78);
@@ -2593,7 +2609,21 @@
         letter-spacing: 0.05em;
       }
       .sponsor-card {
+        min-height: 130px;
+        padding: 18px;
+      }
+      .sponsor-card.is-desjardins {
+        min-height: 220px;
+        padding: 28px;
+      }
+      .sponsor-card.is-boomtown {
         min-height: 150px;
+        padding: 16px;
+      }
+      .sponsor-card.is-courtside,
+      .sponsor-card.is-bmr {
+        min-height: 108px;
+        padding: 4px;
       }
       .gallery-wrap {
         min-height: 430px;
@@ -2861,18 +2891,18 @@
             </div>
             <div class="first-show-details">
               <article class="first-show-times" aria-label="Créneaux de Mon premier spectacle">
-                <div class="time-pill">14 juin · 9 h à 10 h 30</div>
-                <div class="time-pill">14 juin · 10 h 30 à 12 h</div>
+                <div class="time-pill">14 JUIN · DIMANCHE 9 H</div>
+                <div class="time-pill">14 JUIN · DIMANCHE 11 H</div>
               </article>
               <article class="first-show-card">
-                <span class="schedule-label">Bloc 1 · 9 h à 10 h 30</span>
+                <span class="schedule-label">14 JUIN · DIMANCHE 9 H</span>
                 <div class="schedule-list">
                   <div class="schedule-item">4-5 ans débutant · Samedi 8 h 30 · Anna & Alicia</div>
                   <div class="schedule-item">4-5 ans débutant · Dimanche 8 h 30 · Camila</div>
                 </div>
               </article>
               <article class="first-show-card">
-                <span class="schedule-label">Bloc 2 · 10 h 30 à 12 h</span>
+                <span class="schedule-label">14 JUIN · DIMANCHE 11 H</span>
                 <div class="schedule-list">
                   <div class="schedule-item">4-5 ans débutant · Vendredi 16 h 30 · Clara C.</div>
                   <div class="schedule-item">4-5 ans débutant · Samedi 9 h 30 · Beatrice</div>
@@ -2891,24 +2921,25 @@
           <div class="section-header sponsors-header">
             <div class="section-kicker">Commanditaires du spectacle</div>
             <h2 class="section-title" id="sponsors-title">Merci à nos commanditaires officiels 2026</h2>
-            <p class="section-sub">Ces partenaires soutiennent directement la réalisation du spectacle de fin d’année et contribuent à offrir une expérience de scène mémorable à nos gymnastes.</p>
           </div>
 
           <div class="sponsors-grid" aria-label="Commanditaires officiels du spectacle 2026">
+            <article class="sponsor-card is-desjardins reveal">
+              <a class="sponsor-link" href="https://www.desjardins.com/" target="_blank" rel="noreferrer" aria-label="Visiter le site de Desjardins">
+                <img src="commanditaire-desjardins.avif" alt="Desjardins - Caisse de Rosemont-La Petite-Patrie" />
+              </a>
+            </article>
             <article class="sponsor-card is-boomtown reveal">
-              <span class="sponsor-tier">Commanditaire argent</span>
               <a class="sponsor-link" href="https://www.boom-town.ca/" target="_blank" rel="noreferrer" aria-label="Visiter le site d'Atelier Boom Town">
                 <img src="commanditaire-boomtown.avif" alt="Atelier Boom Town" />
               </a>
             </article>
             <article class="sponsor-card is-courtside reveal">
-              <span class="sponsor-tier">Commanditaire bronze</span>
               <a class="sponsor-link" href="https://ctside.ca/fr/accueil/" target="_blank" rel="noreferrer" aria-label="Visiter le site de Courtside Conseils">
                 <img src="commanditaire-courtside.avif" alt="Courtside Conseils" />
               </a>
             </article>
             <article class="sponsor-card is-bmr reveal">
-              <span class="sponsor-tier">Commanditaire bronze</span>
               <a class="sponsor-link" href="https://www.bmr.ca/fr/quincaillerie-de-marseille" target="_blank" rel="noreferrer" aria-label="Visiter la fiche BMR Quincaillerie de Marseille">
                 <img src="commanditaire-bmr-express.avif" alt="BMR Express Quincaillerie de Marseille" />
               </a>
