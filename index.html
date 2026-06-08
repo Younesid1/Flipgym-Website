@@ -66,6 +66,7 @@
     }
   </script>
   <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="preload" as="image" href="home-hero-optimized.avif?v=20260513-1" fetchpriority="high" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -758,7 +759,7 @@
   <nav class="navbar" id="navbar">
     <div class="container nav-inner">
       <a href="#" class="nav-logo" aria-label="flipgym Montréal">
-        <img src="logo-navbar.avif" alt="flipgym de Montréal" />
+        <img decoding="async" src="logo-navbar.avif" alt="flipgym de Montréal" />
       </a>
       <button class="nav-toggle" id="navToggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mainNav">
         <span></span>
@@ -995,7 +996,7 @@
         <!-- Colonne 1 : Marque -->
         <div class="footer-brand">
           <a href="#" class="nav-logo" aria-label="flipgym Montréal">
-            <img src="logo-navbar.avif" alt="flipgym de Montréal" />
+            <img decoding="async" src="logo-navbar.avif" alt="flipgym de Montréal" />
           </a>
           <p class="footer-desc">Gymnastique artistique récréative et compétitive à Montréal.</p>
           <div class="social-links">
@@ -1015,13 +1016,13 @@
           <h4 class="footer-partners-title">Nos partenaires</h4>
           <div class="footer-partner-grid">
             <div class="footer-partner-card is-tall">
-              <img src="partenaire-rosemont-petite-patrie.avif" alt="Rosemont La Petite-Patrie Montréal" />
+              <img loading="lazy" decoding="async" src="partenaire-rosemont-petite-patrie.avif" alt="Rosemont La Petite-Patrie Montréal" />
             </div>
             <div class="footer-partner-card is-tall">
-              <img src="partenaire-gymnastique-quebec.avif" alt="Gymnastique Québec" />
+              <img loading="lazy" decoding="async" src="partenaire-gymnastique-quebec.avif" alt="Gymnastique Québec" />
             </div>
             <div class="footer-partner-card is-wide">
-              <img src="partenaire-asso-camps-quebec.avif" alt="Association des camps du Québec" />
+              <img loading="lazy" decoding="async" src="partenaire-asso-camps-quebec.avif" alt="Association des camps du Québec" />
             </div>
           </div>
         </div>
@@ -1052,10 +1053,6 @@
         <div class="footer-copy">
           &copy; 2026 Club de gymnastique flipgym de Montréal. Tous droits réservés.
         </div>
-        <div class="footer-links" style="display: flex; gap: 20px;">
-          <a href="#" style="margin: 0; font-size: 0.85rem;">Politique de confidentialité</a>
-          <a href="#" style="margin: 0; font-size: 0.85rem;">Conditions générales</a>
-        </div>
       </div>
     </div>
   </footer>
@@ -1067,7 +1064,7 @@
       <span class="chat-fab-label-text">L’assistante virtuelle de flipgym</span>
     </div>
     <div class="fab-pulse"></div>
-    <span class="fab-icon"><img src="flora-avatar.png" alt="Avatar de Flippy" /></span>
+    <span class="fab-icon"><img loading="lazy" decoding="async" src="flora-avatar.avif" alt="Avatar de Flippy" /></span>
     <span class="fab-badge">1</span>
   </div>
 
@@ -1075,7 +1072,7 @@
     <div class="chat-main" id="chatMain">
       <div class="chat-header">
         <div class="chat-agent-info">
-          <div class="agent-avatar"><img src="flora-avatar.png" alt="Avatar de Flippy" /></div>
+          <div class="agent-avatar"><img loading="lazy" decoding="async" src="flora-avatar.avif" alt="Avatar de Flippy" /></div>
           <div>
             <div class="agent-name">Flippy, agente flipgym</div>
             <div class="agent-status"><span class="status-dot"></span>En ligne maintenant</div>
@@ -1086,7 +1083,7 @@
 
       <div class="chat-messages" id="chatMessages">
         <div class="msg agent-msg">
-          <div class="msg-avatar"><img src="flora-avatar.png" alt="Avatar de Flippy" /></div>
+          <div class="msg-avatar"><img loading="lazy" decoding="async" src="flora-avatar.avif" alt="Avatar de Flippy" /></div>
           <div class="msg-bubble">
             Bonjour! Je suis Flippy, l’assistante virtuelle de flipgym. Je peux vous guider pour les cours, les inscriptions, les horaires et les services du club.
           </div>

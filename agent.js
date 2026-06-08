@@ -234,7 +234,7 @@ const chatClose    = document.getElementById('chatClose');
 const openChatHero    = document.getElementById('openChatHero');
 const openChatContact = document.getElementById('openChatContact');
 const quickReplies    = document.getElementById('quickReplies');
-const avatarMarkup = '<img src="flora-avatar.png" alt="Avatar de Flippy" />';
+const avatarMarkup = '<img src="flora-avatar.avif" alt="Avatar de Flippy" />';
 const navToggle = document.getElementById('navToggle');
 const navbar = document.getElementById('navbar');
 const mobileNavLinks = document.querySelectorAll('#mainNav a');
