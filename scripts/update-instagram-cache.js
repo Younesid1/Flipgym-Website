@@ -80,6 +80,19 @@ async function downloadImage(imageUrl, postId, index) {
   return filePath.replaceAll(path.sep, '/');
 }
 
+function addCacheVersion(imagePath, post) {
+  if (!imagePath) return '';
+
+  const versionSource = [
+    post.id || '',
+    post.timestamp || '',
+    post.media_type || ''
+  ].join('-');
+  const version = versionSource.replace(/[^a-zA-Z0-9_-]/g, '');
+
+  return version ? `${imagePath}?v=${version}` : imagePath;
+}
+
 async function main() {
   await loadLocalEnv();
 
@@ -104,13 +117,14 @@ async function main() {
       ? post.thumbnail_url || ''
       : post.media_url || post.thumbnail_url || '';
     const localImageUrl = await downloadImage(sourceImageUrl, post.id, index);
+    const versionedImageUrl = addCacheVersion(localImageUrl, post);
     cachedPosts.push({
       id: post.id,
       caption: post.caption || '',
       media_type: post.media_type || 'IMAGE',
-      media_url: localImageUrl,
+      media_url: versionedImageUrl,
       source_media_url: sourceImageUrl,
-      thumbnail_url: localImageUrl,
+      thumbnail_url: versionedImageUrl,
       permalink: post.permalink || '',
       timestamp: post.timestamp || ''
     });
