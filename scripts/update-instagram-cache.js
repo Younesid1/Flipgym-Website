@@ -5,6 +5,34 @@ const outputPath = 'instagram-feed-cache.json';
 const assetsDir = path.join('assets', 'instagram');
 const fields = 'id,caption,media_type,media_url,permalink,thumbnail_url,timestamp';
 
+async function loadLocalEnv() {
+  try {
+    const env = await fs.readFile('.env', 'utf8');
+    for (const line of env.split(/\r?\n/)) {
+      const trimmed = line.trim();
+      if (!trimmed || trimmed.startsWith('#')) continue;
+
+      const separatorIndex = trimmed.indexOf('=');
+      if (separatorIndex === -1) continue;
+
+      const key = trimmed.slice(0, separatorIndex).trim();
+      let value = trimmed.slice(separatorIndex + 1).trim();
+      if (
+        (value.startsWith('"') && value.endsWith('"')) ||
+        (value.startsWith("'") && value.endsWith("'"))
+      ) {
+        value = value.slice(1, -1);
+      }
+
+      if (key && process.env[key] === undefined) {
+        process.env[key] = value;
+      }
+    }
+  } catch (error) {
+    if (error.code !== 'ENOENT') throw error;
+  }
+}
+
 function getInstagramUrl() {
   const token = process.env.INSTAGRAM_ACCESS_TOKEN;
   const userId = process.env.INSTAGRAM_USER_ID;
@@ -22,6 +50,8 @@ function getInstagramUrl() {
 function getImageExtension(contentType) {
   if (contentType.includes('png')) return 'png';
   if (contentType.includes('webp')) return 'webp';
+  if (contentType.includes('jpeg') || contentType.includes('jpg')) return 'jpg';
+  if (!contentType.startsWith('image/')) return '';
   return 'jpg';
 }
 
@@ -36,6 +66,11 @@ async function downloadImage(imageUrl, postId, index) {
 
   const contentType = response.headers.get('content-type') || 'image/jpeg';
   const extension = getImageExtension(contentType);
+  if (!extension) {
+    console.warn(`Skipped non-image media for ${postId}: ${contentType}`);
+    return '';
+  }
+
   const safeId = String(postId || `post-${index + 1}`).replace(/[^a-zA-Z0-9_-]/g, '');
   const fileName = `${String(index + 1).padStart(2, '0')}-${safeId}.${extension}`;
   const filePath = path.join(assetsDir, fileName);
@@ -46,6 +81,8 @@ async function downloadImage(imageUrl, postId, index) {
 }
 
 async function main() {
+  await loadLocalEnv();
+
   if (!process.env.INSTAGRAM_ACCESS_TOKEN) {
     throw new Error('INSTAGRAM_ACCESS_TOKEN is missing');
   }
@@ -63,7 +100,9 @@ async function main() {
 
   const cachedPosts = [];
   for (const [index, post] of posts.entries()) {
-    const sourceImageUrl = post.media_url || post.thumbnail_url || '';
+    const sourceImageUrl = post.media_type === 'VIDEO'
+      ? post.thumbnail_url || ''
+      : post.media_url || post.thumbnail_url || '';
     const localImageUrl = await downloadImage(sourceImageUrl, post.id, index);
     cachedPosts.push({
       id: post.id,

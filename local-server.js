@@ -107,7 +107,7 @@ async function fetchInstagramPosts() {
     id: post.id,
     caption: post.caption || '',
     media_type: post.media_type || 'IMAGE',
-    media_url: toLocalInstagramImageUrl(post.media_url || post.thumbnail_url || ''),
+    media_url: toLocalInstagramImageUrl(getDisplayInstagramImageUrl(post)),
     thumbnail_url: post.thumbnail_url || '',
     permalink: post.permalink || '',
     timestamp: post.timestamp || ''
@@ -117,6 +117,14 @@ async function fetchInstagramPosts() {
 function toLocalInstagramImageUrl(imageUrl) {
   if (!imageUrl) return '';
   return `/api/instagram-image?url=${encodeURIComponent(imageUrl)}`;
+}
+
+function getDisplayInstagramImageUrl(post) {
+  if (post.media_type === 'VIDEO') {
+    return post.thumbnail_url || '';
+  }
+
+  return post.media_url || post.thumbnail_url || '';
 }
 
 function isAllowedInstagramImageUrl(imageUrl) {
