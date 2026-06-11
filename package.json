@@ -5,5 +5,8 @@
   "scripts": {
     "start": "node local-server.js",
     "serve": "node local-server.js"
+  },
+  "dependencies": {
+    "@vercel/analytics": "2.0.1"
   }
 }

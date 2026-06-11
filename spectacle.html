@@ -474,8 +474,9 @@
       animation: fadeUp 0.82s cubic-bezier(.2,.8,.2,1) 0.24s both;
     }
     .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
+      width: min(560px, 100%);
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 14px;
       animation: fadeUp 0.82s cubic-bezier(.2,.8,.2,1) 0.32s both;
     }
@@ -484,14 +485,15 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
-      min-width: 170px;
+      min-width: 0;
       padding: 15px 24px;
       border-radius: 999px;
       font-family: 'Outfit', sans-serif;
-      font-size: 0.92rem;
+      font-size: clamp(0.78rem, 0.9vw, 0.92rem);
       font-weight: 800;
       letter-spacing: 0.08em;
       text-transform: uppercase;
+      white-space: nowrap;
       transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
     }
     .hero-btn.primary {
@@ -2355,6 +2357,10 @@
         max-width: none;
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
+      .hero-actions {
+        width: auto;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
       .stats-grid,
       .partner-offers,
       .sponsors-grid,
@@ -2560,9 +2566,11 @@
       .hero-actions {
         flex-direction: column;
         align-items: stretch;
+        grid-template-columns: 1fr;
       }
       .hero-btn {
         width: 100%;
+        white-space: normal;
       }
       .first-show-shell {
         padding: 14px;
@@ -2693,6 +2701,11 @@
     }
   </script>
   <link rel="stylesheet" href="mobile-footer.css" />
+  <!-- Vercel Web Analytics -->
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
   <nav class="navbar" id="navbar">
@@ -2771,6 +2784,7 @@
           <div class="hero-actions">
             <a href="#billetterie" class="hero-btn primary">Billetterie</a>
             <a href="#ordre-passage" class="hero-btn secondary">Ordre de passage</a>
+            <a href="guide-des-spectateurs.pdf" class="hero-btn secondary" target="_blank" rel="noreferrer">Guide des spectateurs</a>
             <a href="#partenaires" class="hero-btn secondary">Devenir partenaire</a>
           </div>
         </div>
