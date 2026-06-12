@@ -1246,7 +1246,7 @@
     }
     .sponsors-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.15fr) repeat(2, minmax(240px, 0.85fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 22px;
       align-items: stretch;
     }
@@ -1349,30 +1349,24 @@
       --logo-width: 520px;
       min-height: 228px;
       align-self: end;
-      border-color: rgba(182,108,55,0.28);
-      background:
-        radial-gradient(circle at top right, rgba(182,108,55,0.12), transparent 34%),
-        linear-gradient(135deg, rgba(255,255,255,0.98), rgba(246,249,253,0.94));
+    }
+    .sponsor-card.is-atelier {
+      --logo-width: 640px;
+      min-height: 252px;
+      align-self: end;
+      padding: clamp(14px, 2vw, 22px);
+    }
+    .sponsor-card.is-atelier img {
+      max-height: 172px;
     }
     .sponsor-card.is-bmr {
       --logo-width: 300px;
       min-height: 228px;
       align-self: end;
-      border-color: rgba(182,108,55,0.28);
-      background:
-        radial-gradient(circle at top right, rgba(182,108,55,0.12), transparent 34%),
-        linear-gradient(135deg, rgba(255,255,255,0.98), rgba(246,249,253,0.94));
     }
     .sponsor-card.is-boomtown {
       --logo-width: 380px;
       min-height: 312px;
-      border-color: rgba(218,228,240,0.72);
-      background:
-        linear-gradient(135deg, rgba(255,255,255,0.98), rgba(220,230,242,0.92) 48%, rgba(255,255,255,0.96));
-      box-shadow:
-        0 32px 76px rgba(16,72,139,0.18),
-        0 0 0 1px rgba(255,255,255,0.12),
-        inset 0 1px 0 rgba(255,255,255,1);
     }
     .sponsor-card.is-desjardins {
       --logo-width: 860px;
@@ -1396,6 +1390,7 @@
       box-shadow: 0 10px 22px rgba(72,91,114,0.16);
     }
     .sponsor-card.is-courtside .sponsor-tier,
+    .sponsor-card.is-atelier .sponsor-tier,
     .sponsor-card.is-bmr .sponsor-tier {
       color: #5e331c;
       background: linear-gradient(135deg, #fff8f1, #c98b5e 52%, #f5d4ba);
@@ -2644,8 +2639,15 @@
         padding: 28px;
       }
       .sponsor-card.is-boomtown {
+        min-height: 190px;
+        padding: 20px;
+      }
+      .sponsor-card.is-atelier {
         min-height: 150px;
-        padding: 16px;
+        padding: 8px;
+      }
+      .sponsor-card.is-atelier img {
+        max-height: 140px;
       }
       .sponsor-card.is-courtside,
       .sponsor-card.is-bmr {
@@ -2954,6 +2956,11 @@
               <a class="sponsor-link" href="https://www.boom-town.ca/" target="_blank" rel="noreferrer" aria-label="Visiter le site d'Atelier Boom Town">
                 <img loading="lazy" decoding="async" src="commanditaire-boomtown.avif" alt="Atelier Boom Town" />
               </a>
+            </article>
+            <article class="sponsor-card is-atelier reveal">
+              <div class="sponsor-link" aria-label="Commanditaire Atelier">
+                <img loading="lazy" decoding="async" src="commanditaire-atelier.avif" alt="Atelier" />
+              </div>
             </article>
             <article class="sponsor-card is-courtside reveal">
               <a class="sponsor-link" href="https://ctside.ca/fr/accueil/" target="_blank" rel="noreferrer" aria-label="Visiter le site de Courtside Conseils">
