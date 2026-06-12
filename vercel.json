@@ -4,6 +4,21 @@
       "source": "/index.html",
       "destination": "/",
       "permanent": true
+    },
+    {
+      "source": "/guide-du-spectateur.pdf",
+      "destination": "/guide-des-spectateurs.pdf",
+      "permanent": true
+    },
+    {
+      "source": "/guide-du-spectateurs.pdf",
+      "destination": "/guide-des-spectateurs.pdf",
+      "permanent": true
+    },
+    {
+      "source": "/guide-des-spectateur.pdf",
+      "destination": "/guide-des-spectateurs.pdf",
+      "permanent": true
     }
   ],
   "headers": [
