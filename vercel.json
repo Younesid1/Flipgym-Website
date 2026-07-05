@@ -6,6 +6,141 @@
       "permanent": true
     },
     {
+      "source": "/services",
+      "destination": "/services.html",
+      "permanent": true
+    },
+    {
+      "source": "/recreatif",
+      "destination": "/recreatif-description.html",
+      "permanent": true
+    },
+    {
+      "source": "/camp-de-jour",
+      "destination": "/camp-de-jour.html",
+      "permanent": true
+    },
+    {
+      "source": "/boutique",
+      "destination": "/boutique.html",
+      "permanent": true
+    },
+    {
+      "source": "/releve-defi",
+      "destination": "/competitif-releve-defi.html",
+      "permanent": true
+    },
+    {
+      "source": "/releve-defi-1",
+      "destination": "/competitif-releve-defi.html",
+      "permanent": true
+    },
+    {
+      "source": "/compe",
+      "destination": "/competitif-releve-defi.html",
+      "permanent": true
+    },
+    {
+      "source": "/compe-1",
+      "destination": "/competitif-releve-defi.html",
+      "permanent": true
+    },
+    {
+      "source": "/regional",
+      "destination": "/competitif-regional.html",
+      "permanent": true
+    },
+    {
+      "source": "/regional-1",
+      "destination": "/competitif-regional.html",
+      "permanent": true
+    },
+    {
+      "source": "/nav-regional",
+      "destination": "/competitif-regional.html",
+      "permanent": true
+    },
+    {
+      "source": "/nav-releve-defi",
+      "destination": "/competitif-releve-defi.html",
+      "permanent": true
+    },
+    {
+      "source": "/horaire-et-tarification",
+      "destination": "/recreatif-horaires-tarifs.html",
+      "permanent": true
+    },
+    {
+      "source": "/spectacle-",
+      "destination": "/spectacle.html",
+      "permanent": true
+    },
+    {
+      "source": "/spectacle1",
+      "destination": "/spectacle.html",
+      "permanent": true
+    },
+    {
+      "source": "/contact",
+      "destination": "/contact.html",
+      "permanent": true
+    },
+    {
+      "source": "/equipe",
+      "destination": "/equipe.html",
+      "permanent": true
+    },
+    {
+      "source": "/quipe-2",
+      "destination": "/equipe.html",
+      "permanent": true
+    },
+    {
+      "source": "/faq",
+      "destination": "/contact.html",
+      "permanent": true
+    },
+    {
+      "source": "/emplois",
+      "destination": "/contact.html",
+      "permanent": true
+    },
+    {
+      "source": "/aide-financiere",
+      "destination": "/contact.html",
+      "permanent": true
+    },
+    {
+      "source": "/evenements",
+      "destination": "/actualite.html",
+      "permanent": true
+    },
+    {
+      "source": "/evenements/:path*",
+      "destination": "/actualite.html",
+      "permanent": true
+    },
+    {
+      "source": "/nouvelles",
+      "destination": "/actualite.html",
+      "permanent": true
+    },
+    {
+      "source": "/vnements/:path*",
+      "destination": "/actualite.html",
+      "permanent": true
+    },
+    {
+      "source": "/assets/mp4/v/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/camp-de-jour/tarifs-et-",
+      "destination": "/camp-de-jour.html",
+      "permanent": true
+    },
+    {
       "source": "/guide-du-spectateur.pdf",
       "destination": "/guide-des-spectateurs.pdf",
       "permanent": true
