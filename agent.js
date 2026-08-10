@@ -14,7 +14,7 @@ const FLORA_CONFIG = {
     phone: '514 948-2222',
     email: 'flipgym@flipgym.com',
     website: 'https://flipgym.com',
-    registrationUrl: 'https://www.qidigo.com/u/Club-Flipgym-de-Montreal/activities/session',
+    registrationUrl: 'https://activitymessenger.com/p/0kjW5he',
     contactFormUrl: 'contact.html#formulaire-contact',
     auditionFormUrl: 'competitif-audition.html#formulaire-audition'
   },
@@ -24,20 +24,21 @@ const FLORA_CONFIG = {
   ],
   history: "Etabli depuis 1977 dans le quartier Rosemont.",
   recreationalNotes: {
-    uniformRule: "Le maillot d'entrainement flipgym est obligatoire a partir du groupe 4-5 ans.",
+    uniformRule: "Le maillot d'entrainement flipgym est obligatoire a partir du groupe 4-6 ans.",
     uniformPrice: "Le maillot coute 45$ au bureau administratif si l'enfant n'en possede pas deja un.",
     uniformModels: 'Tous les modeles de maillots flipgym sont acceptes.',
     affiliationRule: 'Une affiliation annuelle a la Federation de gymnastique du Quebec est requise.',
-    affiliationRegular: '35$ par gymnaste',
-    affiliationToddler: '14$ pour les enfants de 3 ans et moins',
-    affiliationPeriod: "L'affiliation est payable une seule fois par annee et couvre la periode du 1er septembre 2025 au 31 aout 2026."
+    affiliationRegular: "montant affiche lors de l'inscription",
+    affiliationToddler: "montant affiche lors de l'inscription",
+    affiliationPeriod: "L'affiliation est payable une seule fois par annee et couvre la saison de Gymnastique Quebec."
   },
   programs: {
     recreational: [
-      'Mini-gym (18 mois - 3 ans)',
-      "Cours par groupes d'age",
+      'Parent-Enfant (18-36 mois et 3-4 ans)',
+      'Groupes 4-6 ans, 7-9 ans, 10-12 ans',
+      'Gymnastique pour tous : 13-15 ans, 16-19 ans et 20 ans et plus',
       'Pour decouvrir la gym dans un cadre amusant et securitaire',
-      'Inscription via Qidigo'
+      'Inscription via Activity Messenger'
     ],
     competitive: [
       'Releve-Defi',
@@ -66,55 +67,60 @@ const FLORA_CONFIG = {
   demo: {
     greeting: "Bonjour! Je suis Flippy, l’assistante virtuelle de flipgym. Je peux vous guider pour les cours, les inscriptions, les horaires et les services du club.",
     fallback: "Je ne suis pas certaine d'avoir la bonne reponse pour cette question. Je peux vous aider avec les inscriptions, cours recreatifs, auditions, camps, maillots, absences, services et infos pratiques du club. Pour une reponse precise, contactez-nous au 514 948-2222, par courriel a flipgym@flipgym.com, ou via le formulaire contact.html#formulaire-contact.",
-    recreationalFallback: "Le secteur recreatif comprend la petite enfance des 18 mois, puis des groupes 4-5 ans, 6-7 ans, 8-10 ans, 11 ans et +, ainsi que 16 ans et +. Si vous me donnez l'age exact de l'enfant, je peux vous repondre avec les groupes, horaires et prix de la session Printemps 2026.",
+    recreationalFallback: "Le secteur recreatif comprend Parent-Enfant des 18 mois a 4 ans, les groupes 4-6 ans, 7-9 ans et 10-12 ans, puis Gymnastique pour tous pour les 13-15 ans, 16-19 ans et 20 ans et plus. Si vous me donnez l'age exact du participant, je peux vous repondre avec les groupes, horaires et prix de la session Automne 2026.",
     competitiveReply: "Le secteur competitif fonctionne sur audition et comprend notamment Releve-Defi, le niveau regional et le provincial / sport-etudes. Pour une integration, le plus sur est de contacter directement le club afin d'obtenir les criteres exacts.",
     campReply: "flipgym propose des camps de jour recreatifs, releve et competitifs pendant l'ete. Le guide du parent et les details d'inscription sont generalement fournis sur le site du club.",
-    pricingReply: "Pour la session Printemps 2026, les tarifs recreatifs affiches vont notamment de 155$ a 220$ pour les groupes 1x/semaine, puis 415$, 430$ ou 475$ pour certains groupes 2x/semaine selon l'age et le niveau. Si vous me donnez l'age de l'enfant, je peux vous dire directement les groupes et les prix correspondants.",
+    pricingReply: "Pour la session Automne 2026, les tarifs recreatifs affiches vont de 250$ a 740$ selon l'age, le niveau et la frequence. Si vous me donnez l'age du participant, je peux vous dire directement les groupes et les prix correspondants.",
     agePrograms: {
       toddler: {
         label: '18 mois a 4 ans',
-        reply: `Pour la session Printemps 2026, en petite enfance il y a :
-- Parent-Enfant 18-36 mois : samedi 8h30 a 190$ ou dimanche 8h30 a 155$
-- Parent-Enfant 3-4 ans : samedi 8h30 a 190$ ou samedi 9h30 a 190$
-Ces cours durent 45 minutes et sont penses pour developper la motricite dans un cadre amusant et securitaire.`
+        reply: `Pour la session Automne 2026, en Parent-Enfant il y a :
+- 18-36 mois : samedi 8h30 a 290$ ou dimanche 8h30 a 290$
+- 3-4 ans : deux groupes le samedi 8h30 a 290$, ou dimanche 9h30 a 285$
+Ces cours durent 55 minutes et sont penses pour developper la motricite dans un cadre amusant et securitaire.`
       },
-      '4-5': {
-        label: '4-5 ans',
-        reply: `Pour un enfant de 4-5 ans, voici les groupes recreatifs de la session Printemps 2026 :
-- Debutant, 55 minutes : vendredi 16h30 a 190$, samedi 8h30 a 190$, samedi 9h30 a 190$, samedi 10h30 a 190$, dimanche 8h30 a 155$
-- Debutant garcons : samedi 8h30 a 190$
-- Intermediaire, 1h25 : dimanche 9h30 a 180$
-Le groupe intermediaire est sur recommandation.`
+      '4-6': {
+        label: '4-6 ans',
+        reply: `Pour un enfant de 4 a 6 ans, voici les groupes recreatifs de la session Automne 2026 :
+- Bronze : samedi 8h30 a 290$, samedi 9h30 a 290$ ou lundi 17h30 a 250$
+- Argent : dimanche 8h30 a 290$, lundi 17h a 250$, samedi 8h30 a 290$ ou samedi 9h30 a 290$
+- Or : samedi 9h30 a 290$, sur recommandation`
       },
-      '6-7': {
-        label: '6-7 ans',
-        reply: `Pour un enfant de 6-7 ans, voici les groupes recreatifs de la session Printemps 2026 :
-- Debutant, 1h25 : vendredi 17h30 a 220$, samedi 9h30 a 220$, samedi 11h a 220$, dimanche 9h30 a 180$, dimanche 12h30 a 180$
-- Intermediaire, 1h25 : samedi 9h30 a 220$
-- Intermediaire-avance 2x/semaine : mercredi 17h + samedi 9h30 a 415$
-Le groupe debutant est mixte. Les groupes intermediaires et avances sont sur recommandation.`
+      '7-9': {
+        label: '7-9 ans',
+        reply: `Pour un enfant de 7 a 9 ans, voici les groupes recreatifs de la session Automne 2026 :
+- Bronze : dimanche 9h30 a 290$, lundi 18h30 a 250$, samedi 9h30 a 290$ ou samedi 10h30 a 290$
+- Argent : dimanche 11h a 290$, lundi 18h a 250$, vendredi 17h a 290$, samedi 10h30 a 290$ ou samedi 11h30 a 290$
+- Or : lundi 19h a 295$ ou samedi 9h30 a 340$, sur recommandation
+- Platine : samedi 10h30 a 340$, sur recommandation
+- Diamant : jeudi 17h30 / samedi 12h a 650$, sur recommandation
+- R1 : mercredi 18h30 / dimanche 9h a 740$, filles seulement et sur recommandation`
       },
-      '8-10': {
-        label: '8-10 ans',
-        reply: `Pour 8-10 ans pendant la session Printemps 2026 :
-- Debutant, 1h25 : vendredi 19h a 220$, samedi 11h a 220$, samedi 12h30 a 220$, samedi 14h a 220$, samedi 15h30 a 220$, dimanche 11h a 180$, dimanche 14h a 180$
-- Debutant 2x/semaine : mardi 17h + samedi 14h30 a 415$
-- Intermediaire : vendredi 19h a 220$ ou samedi 16h a 220$
-- Avance 2x/semaine : mercredi 18h30 + samedi 12h30 a 475$
-Dans la description des cours, les groupes 8-10 ans sont presentes comme filles uniquement.`
+      '10-12': {
+        label: '10-12 ans',
+        reply: `Pour 10-12 ans pendant la session Automne 2026 :
+- Bronze : lundi 19h30 a 250$, samedi 11h30 a 290$ ou samedi 12h30 a 290$
+- Argent : vendredi 18h a 290$, samedi 11h a 290$ ou samedi 13h30 a 290$
+- Or : vendredi 19h a 340$ ou dimanche 12h a 340$, filles seulement et sur recommandation
+- Platine : mercredi 17h a 340$, filles seulement et sur recommandation
+- Diamant : jeudi 19h / samedi 14h30 a 650$, filles seulement et sur recommandation
+- R1 : mercredi 18h30 / dimanche 9h a 740$, filles seulement et sur recommandation`
       },
-      '11+': {
-        label: '11 ans et +',
-        reply: `Pour 11 ans et plus a la session Printemps 2026 :
-- Debutant : samedi 15h30 a 220$
-- Intermediaire-avance 2x/semaine : mardi 18h30 + dimanche 15h30 a 430$
-Les descriptions indiquent que ces groupes sont orientes vers un perfectionnement plus pousse, avec certains niveaux sur recommandation.`
+      '13-15': {
+        label: '13-15 ans',
+        reply: `Pour 13-15 ans, le programme Gymnastique pour tous offre :
+- Initiation : dimanche 11h a 360$, filles seulement
+- Developpement : lundi 19h / samedi 15h30 a 690$, filles seulement et sur recommandation`
       },
-      '16+': {
-        label: '16 ans et +',
-        reply: `Pour 16 ans et plus a la session Printemps 2026 :
-- Debutant : mercredi 20h30 a 220$
-- Intermediaire : jeudi 20h30 a 220$`
+      '16-19': {
+        label: '16-19 ans',
+        reply: `Pour 16-19 ans, le programme Gymnastique pour tous offre :
+- Initiation : dimanche 17h30 a 340$
+- Developpement : mardi 20h30 / jeudi 20h30 a 690$`
+      },
+      '20+': {
+        label: '20 ans et plus',
+        reply: `Pour 20 ans et plus, le programme Gymnastique pour tous offre un groupe tous niveaux le vendredi 20h30 a 340$.`
       }
     }
   }
@@ -212,10 +218,10 @@ Valeurs: ${config.values.join(', ')}.
 
 ═══ REGLES DE REPONSE ═══
 - Si on te demande les tarifs precis, dis que les tarifs sont disponibles sur le site ou en appelant le ${config.contact.phone} car ils varient selon la session et le groupe d'age.
-- Pour les horaires de cours specifiques, redirige vers Qidigo ou le site web.
+- Pour les horaires de cours specifiques, redirige vers Activity Messenger ou le site web.
 - Ne jamais inventer de prix ou d'horaires precis que tu ne connais pas.
 - Toujours proposer d'appeler ou d'ecrire pour les questions complexes.
-- Si quelqu'un veut s'inscrire, donne le lien Qidigo.`;
+- Si quelqu'un veut s'inscrire, donne le lien Activity Messenger.`;
 }
 
 // ─── STATE ─────────────────────────────────────────────────────────────────
@@ -408,7 +414,7 @@ function formatText(text) {
 }
 
 function appendInlineFormatting(parent, text) {
-  const pattern = /(\*\*[^*]+\*\*|\*[^*]+\*|https?:\/\/[^\s]+|[A-Za-z0-9_-]+\.html#[^\s.,)]+)/g;
+  const pattern = /(\*\*[^*]+\*\*|\*[^*]+\*|https?:\/\/[^\s]+|[A-Za-z0-9_-]+\.html(?:#[^\s.,)]*)?)/g;
   let lastIndex = 0;
   let match;
 
@@ -420,7 +426,7 @@ function appendInlineFormatting(parent, text) {
     const token = match[0];
     let el;
 
-    if (token.startsWith('http') || token.includes('.html#')) {
+    if (token.startsWith('http') || token.includes('.html')) {
       el = document.createElement('a');
       el.href = token;
       el.textContent = token;
@@ -478,18 +484,19 @@ const DEMO_PROGRAMS = FLORA_CONFIG.demo.agePrograms;
 
 function getAffiliationNote(ageGroup) {
   if (ageGroup === 'toddler') {
-    return `L'affiliation annuelle a la Federation de gymnastique du Quebec est aussi requise au cout de ${FLORA_CONFIG.recreationalNotes.affiliationToddler}, valable du 1er septembre 2025 au 31 aout 2026.`;
+    return `L'affiliation annuelle a la Federation de gymnastique du Quebec est aussi requise; le montant exact est affiche lors de l'inscription.`;
   }
 
-  return `L'affiliation annuelle a la Federation de gymnastique du Quebec est aussi requise au cout de ${FLORA_CONFIG.recreationalNotes.affiliationRegular}, valable du 1er septembre 2025 au 31 aout 2026. ${FLORA_CONFIG.recreationalNotes.uniformRule} Si votre enfant n'en a pas, vous pouvez l'acheter au bureau administratif pour 45$, et ${FLORA_CONFIG.recreationalNotes.uniformModels.toLowerCase()}`;
+  return `L'affiliation annuelle a la Federation de gymnastique du Quebec est aussi requise; le montant exact est affiche lors de l'inscription. ${FLORA_CONFIG.recreationalNotes.uniformRule} Si le participant n'en a pas, il peut l'acheter au bureau administratif pour 45$, et ${FLORA_CONFIG.recreationalNotes.uniformModels.toLowerCase()}`;
 }
 
 function extractAge(message) {
   const normalized = message
+    .toLowerCase()
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '');
 
-  if (normalized.includes('18 mois') || normalized.includes('24 mois') || normalized.includes('36 mois') || normalized.includes('3 ans') || normalized.includes('3-4 ans') || normalized.includes('parent-enfant')) {
+  if (/\b(18|24|36)\s*mois\b/.test(normalized) || /\b3\s*ans\b/.test(normalized) || /\b3\s*-\s*4\s*ans\b/.test(normalized) || normalized.includes('parent enfant') || normalized.includes('parent-enfant')) {
     return 'toddler';
   }
 
@@ -498,11 +505,12 @@ function extractAge(message) {
 
   const age = Number(match[1]);
   if (age <= 3) return 'toddler';
-  if (age <= 5) return '4-5';
-  if (age <= 7) return '6-7';
-  if (age <= 10) return '8-10';
-  if (age <= 15) return '11+';
-  return '16+';
+  if (age <= 6) return '4-6';
+  if (age <= 9) return '7-9';
+  if (age <= 12) return '10-12';
+  if (age <= 15) return '13-15';
+  if (age <= 19) return '16-19';
+  return '20+';
 }
 
 function normalizeForMatch(text) {
@@ -574,13 +582,51 @@ function findKnowledgeBaseMatch(text) {
   };
 }
 
+const PRIORITY_INTENT_IDS = new Set([
+  'niveau-non-debutant',
+  'dates-automne-2026',
+  'tenue-maillot',
+  'affiliation-fgq',
+  'cours-essai',
+  'session-deja-commencee',
+  'audition-formulaire',
+  'absence',
+  'reprise-cours',
+  'annulation-remboursement',
+  'contact-formulaire',
+  'contact',
+  'ancienne-inscription-qidigo',
+  'camp-de-jour',
+  'camp-recreatif-detail',
+  'camp-releve',
+  'camp-competitif',
+  'camp-tarifs-detail',
+  'camp-horaire-detail',
+  'services-detail',
+  'cours-prives',
+  'fetes-enfants',
+  'location-gymnase',
+  'boutique',
+  'emploi',
+  'stationnement',
+  'objets-perdus',
+  'retard',
+  'spectacle'
+]);
+
 function getDemoReply(text) {
   const ageGroup = extractAge(text);
   const normalized = normalizeForMatch(text);
+  const knowledgeMatch = findKnowledgeBaseMatch(text);
+
+  if (knowledgeMatch && PRIORITY_INTENT_IDS.has(knowledgeMatch.id)) {
+    floraLastTopic = knowledgeMatch.id;
+    return knowledgeMatch.answer;
+  }
 
   if (ageGroup && DEMO_PROGRAMS[ageGroup]) {
     floraLastTopic = `age-${ageGroup}`;
-    return `${DEMO_PROGRAMS[ageGroup].reply}\n\nA noter : ${getAffiliationNote(ageGroup)}`;
+    return `${DEMO_PROGRAMS[ageGroup].reply}\n\nA noter : ${getAffiliationNote(ageGroup)}\n\nInscription Activity Messenger : ${FLORA_CONFIG.contact.registrationUrl}`;
   }
 
   if ((normalized.includes('tarif') || normalized.includes('prix') || normalized.includes('cout') || normalized.includes('frais')) && floraLastTopic === 'camp-recreatif-detail') {
@@ -593,7 +639,6 @@ function getDemoReply(text) {
     return FLORA_SITE_KNOWLEDGE.camp.recreatifSchedule;
   }
 
-  const knowledgeMatch = findKnowledgeBaseMatch(text);
   if (knowledgeMatch) {
     floraLastTopic = knowledgeMatch.id;
     return knowledgeMatch.answer;

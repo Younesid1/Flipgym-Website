@@ -40,20 +40,30 @@ window.FLIPPY_KNOWLEDGE_BASE = [
     category: 'contact',
     priority: 100,
     keywords: ['horaire', 'horaires', 'heure', 'heures', 'ouvert', 'ouverture', 'ferme', 'fermeture', 'quand etes vous ouvert', 'quand êtes vous ouvert'],
-    answer: "Les heures d'ouverture du club sont du lundi au vendredi de 13 h 30 a 20 h 30, et le samedi et dimanche de 8 h 30 a 18 h. Pour les horaires de cours precis, consultez la page Horaires & Tarifs ou Qidigo.",
+    answer: "Les heures d'ouverture du club sont du lundi au vendredi de 13 h 30 a 20 h 30, et le samedi et dimanche de 8 h 30 a 18 h. Pour les horaires de cours précis, consultez la page Horaires & Tarifs dans la section Récréatif.",
     links: [
       { label: 'Horaires & Tarifs', url: 'recreatif-horaires-tarifs.html' },
-      { label: 'Inscription Qidigo', url: '{registrationUrl}' }
+      { label: 'Inscription Activity Messenger', url: '{registrationUrl}' }
     ]
   },
   {
-    id: 'inscription-qidigo',
+    id: 'inscription-activity-messenger',
     category: 'inscriptions',
     priority: 85,
-    keywords: ['inscription', 'inscrire mon enfant', 'inscrire', 'qidigo', 'comment inscrire'],
-    answer: "Bien sûr. Quel âge a votre enfant? Avec son âge, je pourrai mieux vous orienter vers le bon groupe récréatif. Les inscriptions se finalisent ensuite en ligne sur Qidigo, selon les périodes d'inscription et les places disponibles.",
+    keywords: ['inscription', 'inscrire mon enfant', 'inscrire', 'activity messenger', 'comment inscrire'],
+    answer: "Bien sûr. Quel âge a votre enfant? Avec son âge, je pourrai mieux vous orienter vers le bon groupe récréatif. Les inscriptions se finalisent ensuite en ligne sur Activity Messenger, selon les périodes d'inscription et les places disponibles.",
     links: [
-      { label: 'Inscription Qidigo', url: '{registrationUrl}' }
+      { label: 'Inscription Activity Messenger', url: '{registrationUrl}' }
+    ]
+  },
+  {
+    id: 'ancienne-inscription-qidigo',
+    category: 'inscriptions',
+    priority: 155,
+    keywords: ['qidigo'],
+    answer: "Les inscriptions de flipgym se font maintenant sur Activity Messenger. Utilisez le lien d'inscription ci-dessous pour voir les groupes disponibles et finaliser l'inscription.",
+    links: [
+      { label: 'Inscription Activity Messenger', url: '{registrationUrl}' }
     ]
   },
   {
@@ -61,7 +71,7 @@ window.FLIPPY_KNOWLEDGE_BASE = [
     category: 'inscriptions',
     priority: 95,
     keywords: ['tarif', 'tarifs', 'prix', 'cout', 'coût', 'combien', 'combien ca coute', 'combien ça coûte'],
-    answer: "Pour la session Printemps 2026, les tarifs recreatifs affiches vont notamment de 155 $ a 220 $ pour les groupes 1x/semaine, puis 415 $, 430 $ ou 475 $ pour certains groupes 2x/semaine selon l'age et le niveau. Si vous me donnez l'age de l'enfant, je peux vous orienter vers les groupes correspondants.",
+    answer: "Pour la session Automne 2026, les tarifs recreatifs affiches vont de 250 $ a 740 $ selon l'age, le niveau et la frequence. Les groupes Parent-Enfant sont a 285 $ ou 290 $, les groupes 1x/semaine sont generalement entre 250 $ et 360 $, et certains groupes 2x/semaine sont a 650 $, 690 $ ou 740 $. Si vous me donnez l'age du participant, je peux vous orienter vers les groupes correspondants.",
     links: [
       { label: 'Horaires & Tarifs', url: 'recreatif-horaires-tarifs.html' }
     ]
@@ -85,7 +95,7 @@ window.FLIPPY_KNOWLEDGE_BASE = [
     category: 'recreatif',
     priority: 65,
     keywords: ['recreatif', 'récréatif', 'cours', 'groupe', 'groupes'],
-    answer: "Le secteur recreatif comprend la petite enfance des 18 mois, puis des groupes 4-5 ans, 6-7 ans, 8-10 ans, 11 ans et +, ainsi que 16 ans et +. Si vous me donnez l'age exact de l'enfant, je peux vous repondre avec les groupes, horaires et prix de la session Printemps 2026.",
+    answer: "Le secteur recreatif comprend Parent-Enfant de 18 mois a 4 ans, les groupes 4-6 ans, 7-9 ans et 10-12 ans, puis Gymnastique pour tous pour les 13-15 ans, 16-19 ans et 20 ans et plus. Si vous me donnez l'age exact du participant, je peux vous repondre avec les groupes, horaires et prix de la session Automne 2026.",
     links: [
       { label: 'Description des cours', url: 'recreatif-description.html' },
       { label: 'Horaires & Tarifs', url: 'recreatif-horaires-tarifs.html' }
@@ -96,10 +106,10 @@ window.FLIPPY_KNOWLEDGE_BASE = [
     category: 'inscriptions',
     priority: 130,
     keywords: ['pas debutant', 'pas débutant', 'pas debutante', 'pas débutante', "n'est pas debutante", "n'est pas débutante", 'nest pas debutante', 'nest pas débutante', 'non debutant', 'non débutant', 'non debutante', 'non débutante', 'niveau intermediaire', 'niveau intermédiaire', 'intermediaire', 'intermédiaire', 'deja fait de la gym', 'déjà fait de la gym'],
-    answer: "Le niveau intermédiaire est sur invitation seulement. Vous avez le choix d'inscrire votre fille dans le niveau débutant pour débuter la session et, si les entraîneurs voient qu'elle a un niveau plus élevé que débutant, nous pourrons lui changer de niveau. Sinon, l'autre option est de passer une audition privée au coût de 40 $, où un entraîneur évaluera le niveau de votre enfant.",
+    answer: "Les niveaux plus avances comme Or, Platine, Diamant, R1 et certains groupes Développement sont sur recommandation. Si votre enfant a deja de l'experience, vous pouvez l'inscrire dans le niveau accessible correspondant a son age ou contacter le club pour verifier le meilleur groupe. Pour une evaluation plus precise, une audition privee peut aussi etre demandee.",
     links: [
       { label: "Formulaire d'audition", url: '{auditionFormUrl}' },
-      { label: 'Inscription Qidigo', url: '{registrationUrl}' }
+      { label: 'Inscription Activity Messenger', url: '{registrationUrl}' }
     ]
   },
   {
@@ -110,7 +120,18 @@ window.FLIPPY_KNOWLEDGE_BASE = [
     answer: "Les places disponibles peuvent varier selon l'age, le groupe et le moment de la session. Si la session est deja commencee, contactez le club pour verifier s'il reste une place ou s'il est possible d'etre ajoute a la liste d'attente.",
     links: [
       { label: 'Formulaire de contact', url: '{contactFormUrl}' },
-      { label: 'Inscription Qidigo', url: '{registrationUrl}' }
+      { label: 'Inscription Activity Messenger', url: '{registrationUrl}' }
+    ]
+  },
+  {
+    id: 'dates-automne-2026',
+    category: 'calendrier',
+    priority: 135,
+    keywords: ['automne 2026', 'date inscription', 'dates inscription', 'preinscription', 'préinscription', 'debut session', 'début session', 'debut des cours', 'début des cours', 'fin de session', 'fete du travail', 'fête du travail', 'action de grace', 'action de grâce'],
+    answer: "Pour la session Automne 2026 : les préinscriptions réservées aux membres ouvrent le mercredi 12 août 2026 à 10 h, les inscriptions ouvertes à tous le vendredi 14 août 2026 à 10 h. Le secteur compétitif et pré-compétitif commence le lundi 31 août 2026, le secteur récréatif le mardi 8 septembre 2026, et la fin de session récréative/pré-compétitive est le dimanche 20 décembre 2026. Le lundi 7 septembre et le lundi 12 octobre sont des jours fériés.",
+    links: [
+      { label: 'Calendrier', url: 'competitif-calendrier.html' },
+      { label: 'Inscription Activity Messenger', url: '{registrationUrl}' }
     ]
   },
   {
@@ -159,10 +180,10 @@ window.FLIPPY_KNOWLEDGE_BASE = [
     category: 'inscriptions',
     priority: 75,
     keywords: ['cours essai', "cours d'essai", 'essai gratuit', 'essayer un cours', 'premier cours'],
-    answer: "Le club n'offre pas de cours d'essai. Pour decouvrir les groupes disponibles, consultez les descriptions de cours et les horaires, puis finalisez l'inscription sur Qidigo selon les places disponibles.",
+    answer: "Le club n'offre pas de cours d'essai. Pour decouvrir les groupes disponibles, consultez les descriptions de cours et les horaires, puis finalisez l'inscription sur Activity Messenger selon les places disponibles.",
     links: [
       { label: 'Description des cours', url: 'recreatif-description.html' },
-      { label: 'Inscription Qidigo', url: '{registrationUrl}' }
+      { label: 'Inscription Activity Messenger', url: '{registrationUrl}' }
     ]
   },
   {
@@ -170,14 +191,14 @@ window.FLIPPY_KNOWLEDGE_BASE = [
     category: 'recreatif',
     priority: 120,
     keywords: ['maillot', 'uniforme', 'quoi porter', 'quoi elle doit porter', 'quoi il doit porter', 'porter pour son cours', 'porter pour le cours', 'tenue', 'vetement', 'vêtement', 'justaucorps'],
-    answer: "Le maillot d'entrainement flipgym est obligatoire a partir du groupe 4-5 ans. Si l'enfant n'en possede pas, il peut etre achete au bureau administratif au cout de 45 $. Tous les modeles de maillots flipgym sont acceptes."
+    answer: "Le maillot d'entrainement flipgym est obligatoire a partir du groupe 4-6 ans. Si l'enfant n'en possede pas, il peut etre achete au bureau administratif au cout de 45 $. Tous les modeles de maillots flipgym sont acceptes."
   },
   {
     id: 'affiliation-fgq',
     category: 'inscriptions',
     priority: 80,
     keywords: ['affiliation', 'federation', 'fédération', 'gymnastique quebec', 'gymnastique québec', 'fgq'],
-    answer: "Une affiliation annuelle a la Federation de gymnastique du Quebec est requise pour chaque gymnaste. Pour la periode du 1er septembre 2025 au 31 aout 2026, elle est de 35 $ par gymnaste, ou 14 $ pour les enfants de 3 ans et moins."
+    answer: "Une affiliation annuelle a la Federation de gymnastique du Quebec est requise pour chaque gymnaste. Le montant exact est affiche lors de l'inscription et peut varier selon l'age et la saison."
   },
   {
     id: 'absence',

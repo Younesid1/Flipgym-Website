@@ -251,6 +251,35 @@
       cursor: default;
       transform: none;
     }
+    .calendar-today-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 18px;
+      border-radius: 14px;
+      border: 1px solid rgba(16,72,139,0.12);
+      background: var(--white);
+      color: var(--blue);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+      white-space: nowrap;
+    }
+    .calendar-today-button:hover {
+      transform: translateY(-1px);
+      background: rgba(16,72,139,0.09);
+      border-color: rgba(16,72,139,0.18);
+    }
+    .calendar-today-button:disabled {
+      opacity: 0.45;
+      cursor: default;
+      transform: none;
+    }
     .calendar-nav-label {
       flex: 1;
       text-align: center;
@@ -589,6 +618,11 @@
         width: 40px;
         height: 40px;
       }
+      .calendar-today-button {
+        min-height: 40px;
+        padding: 0 12px;
+        font-size: 0.68rem;
+      }
       .calendar-weekdays,
       .calendar-days {
         min-width: 640px;
@@ -672,10 +706,10 @@
         <li class="nav-item"><a href="competitif-calendrier.html" class="nav-link active">Calendrier</a></li>
         <li class="nav-item"><a href="spectacle.html" class="nav-link">Spectacle</a></li>
         <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-        <li class="nav-item mobile-nav-cta"><a href="https://www.qidigo.com/u/Club-Flipgym-de-Montreal/activities/session" class="nav-cta" target="_blank" rel="noreferrer">S'inscrire</a></li>
+        <li class="nav-item mobile-nav-cta"><a href="https://activitymessenger.com/p/0kjW5he" class="nav-cta" target="_blank" rel="noreferrer">S'inscrire</a></li>
       </ul>
       <div class="nav-actions">
-        <a href="https://www.qidigo.com/u/Club-Flipgym-de-Montreal/activities/session" class="nav-cta" target="_blank" rel="noreferrer">S'inscrire</a>
+        <a href="https://activitymessenger.com/p/0kjW5he" class="nav-cta" target="_blank" rel="noreferrer">S'inscrire</a>
       </div>
     </div>
   </nav>
@@ -686,6 +720,7 @@
         <div class="calendar-nav" aria-label="Navigation du calendrier">
           <button class="calendar-nav-button" id="calendarPrev" type="button" aria-label="Mois précédent">‹</button>
           <div class="calendar-nav-label" id="calendarMonthLabel">Mars 2026</div>
+          <button class="calendar-today-button" id="calendarToday" type="button">Ce mois-ci</button>
           <button class="calendar-nav-button" id="calendarNext" type="button" aria-label="Mois suivant">›</button>
         </div>
 
@@ -1112,9 +1147,25 @@
 
               <div class="calendar-cell"><div class="calendar-date">10</div></div>
               <div class="calendar-cell"><div class="calendar-date">11</div></div>
-              <div class="calendar-cell"><div class="calendar-date">12</div></div>
+              <div class="calendar-cell has-event">
+                <div class="calendar-date">12</div>
+                <div class="calendar-events">
+                  <div class="calendar-event">
+                    <div class="calendar-event-title">Préinscriptions réservées aux membres</div>
+                    <div class="calendar-event-meta">Automne 2026</div>
+                  </div>
+                </div>
+              </div>
               <div class="calendar-cell"><div class="calendar-date">13</div></div>
-              <div class="calendar-cell"><div class="calendar-date">14</div></div>
+              <div class="calendar-cell has-event">
+                <div class="calendar-date">14</div>
+                <div class="calendar-events">
+                  <div class="calendar-event">
+                    <div class="calendar-event-title">Inscriptions ouvertes à tous</div>
+                    <div class="calendar-event-meta">Automne 2026</div>
+                  </div>
+                </div>
+              </div>
               <div class="calendar-cell"><div class="calendar-date">15</div></div>
               <div class="calendar-cell"><div class="calendar-date">16</div></div>
 
@@ -1134,7 +1185,15 @@
               <div class="calendar-cell"><div class="calendar-date">29</div></div>
               <div class="calendar-cell"><div class="calendar-date">30</div></div>
 
-              <div class="calendar-cell"><div class="calendar-date">31</div></div>
+              <div class="calendar-cell has-event">
+                <div class="calendar-date">31</div>
+                <div class="calendar-events">
+                  <div class="calendar-event">
+                    <div class="calendar-event-title">Début des cours</div>
+                    <div class="calendar-event-meta">Secteur compétitif et pré-compétitif</div>
+                  </div>
+                </div>
+              </div>
               <div class="calendar-cell is-empty"></div>
               <div class="calendar-cell is-empty"></div>
               <div class="calendar-cell is-empty"></div>
@@ -1166,8 +1225,24 @@
               <div class="calendar-cell"><div class="calendar-date">5</div></div>
               <div class="calendar-cell"><div class="calendar-date">6</div></div>
 
-              <div class="calendar-cell"><div class="calendar-date">7</div></div>
-              <div class="calendar-cell"><div class="calendar-date">8</div></div>
+              <div class="calendar-cell has-event">
+                <div class="calendar-date">7</div>
+                <div class="calendar-events">
+                  <div class="calendar-event">
+                    <div class="calendar-event-title">Fête du Travail au Québec</div>
+                    <div class="calendar-event-meta">Jour férié</div>
+                  </div>
+                </div>
+              </div>
+              <div class="calendar-cell has-event">
+                <div class="calendar-date">8</div>
+                <div class="calendar-events">
+                  <div class="calendar-event">
+                    <div class="calendar-event-title">Début des cours</div>
+                    <div class="calendar-event-meta">Secteur récréatif</div>
+                  </div>
+                </div>
+              </div>
               <div class="calendar-cell"><div class="calendar-date">9</div></div>
               <div class="calendar-cell"><div class="calendar-date">10</div></div>
               <div class="calendar-cell"><div class="calendar-date">11</div></div>
@@ -1230,7 +1305,15 @@
               <div class="calendar-cell"><div class="calendar-date">10</div></div>
               <div class="calendar-cell"><div class="calendar-date">11</div></div>
 
-              <div class="calendar-cell"><div class="calendar-date">12</div></div>
+              <div class="calendar-cell has-event">
+                <div class="calendar-date">12</div>
+                <div class="calendar-events">
+                  <div class="calendar-event">
+                    <div class="calendar-event-title">Action de grâce</div>
+                    <div class="calendar-event-meta">Jour férié</div>
+                  </div>
+                </div>
+              </div>
               <div class="calendar-cell"><div class="calendar-date">13</div></div>
               <div class="calendar-cell"><div class="calendar-date">14</div></div>
               <div class="calendar-cell"><div class="calendar-date">15</div></div>
@@ -1356,7 +1439,15 @@
               <div class="calendar-cell"><div class="calendar-date">17</div></div>
               <div class="calendar-cell"><div class="calendar-date">18</div></div>
               <div class="calendar-cell"><div class="calendar-date">19</div></div>
-              <div class="calendar-cell"><div class="calendar-date">20</div></div>
+              <div class="calendar-cell has-event">
+                <div class="calendar-date">20</div>
+                <div class="calendar-events">
+                  <div class="calendar-event">
+                    <div class="calendar-event-title">Fin de session Automne 2026</div>
+                    <div class="calendar-event-meta">Secteur récréatif et pré-compétitif</div>
+                  </div>
+                </div>
+              </div>
 
               <div class="calendar-cell"><div class="calendar-date">21</div></div>
               <div class="calendar-cell"><div class="calendar-date">22</div></div>
@@ -1456,7 +1547,12 @@
     const calendarMonthLabel = document.getElementById('calendarMonthLabel');
     const calendarPrev = document.getElementById('calendarPrev');
     const calendarNext = document.getElementById('calendarNext');
-    let activeCalendarMonth = 0;
+    const calendarToday = document.getElementById('calendarToday');
+    const calendarMonthNames = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+    const now = new Date();
+    const currentMonthLabel = `${calendarMonthNames[now.getMonth()]} ${now.getFullYear()}`;
+    const currentCalendarMonth = calendarMonths.findIndex((month) => month.dataset.monthLabel === currentMonthLabel);
+    let activeCalendarMonth = currentCalendarMonth >= 0 ? currentCalendarMonth : 0;
 
     window.addEventListener('scroll', () => {
       navbar.classList.toggle('scrolled', window.scrollY > 20);
@@ -1504,6 +1600,7 @@
       }
       if (calendarPrev) calendarPrev.disabled = activeCalendarMonth === 0;
       if (calendarNext) calendarNext.disabled = activeCalendarMonth === calendarMonths.length - 1;
+      if (calendarToday) calendarToday.disabled = currentCalendarMonth < 0 || activeCalendarMonth === currentCalendarMonth;
     };
 
     calendarPrev?.addEventListener('click', () => {
@@ -1516,6 +1613,13 @@
     calendarNext?.addEventListener('click', () => {
       if (activeCalendarMonth < calendarMonths.length - 1) {
         activeCalendarMonth += 1;
+        renderCalendarMonth();
+      }
+    });
+
+    calendarToday?.addEventListener('click', () => {
+      if (currentCalendarMonth >= 0) {
+        activeCalendarMonth = currentCalendarMonth;
         renderCalendarMonth();
       }
     });
