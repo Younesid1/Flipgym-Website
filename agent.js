@@ -116,7 +116,7 @@ Ces cours durent 55 minutes et sont penses pour developper la motricite dans un 
         label: '16-19 ans',
         reply: `Pour 16-19 ans, le programme Gymnastique pour tous offre :
 - Initiation : dimanche 17h30 a 340$
-- Developpement : mardi 20h30 / jeudi 20h30 a 690$`
+- Developpement : mardi 20h30 / jeudi 20h30 a 650$`
       },
       '20+': {
         label: '20 ans et plus',
