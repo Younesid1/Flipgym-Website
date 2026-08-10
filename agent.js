@@ -28,8 +28,8 @@ const FLORA_CONFIG = {
     uniformPrice: "Le maillot coute 45$ au bureau administratif si l'enfant n'en possede pas deja un.",
     uniformModels: 'Tous les modeles de maillots flipgym sont acceptes.',
     affiliationRule: 'Une affiliation annuelle a la Federation de gymnastique du Quebec est requise.',
-    affiliationRegular: "montant affiche lors de l'inscription",
-    affiliationToddler: "montant affiche lors de l'inscription",
+    affiliationRegular: '36$ par gymnaste',
+    affiliationToddler: '36$ par gymnaste',
     affiliationPeriod: "L'affiliation est payable une seule fois par annee et couvre la saison de Gymnastique Quebec."
   },
   programs: {
@@ -484,10 +484,10 @@ const DEMO_PROGRAMS = FLORA_CONFIG.demo.agePrograms;
 
 function getAffiliationNote(ageGroup) {
   if (ageGroup === 'toddler') {
-    return `L'affiliation annuelle a la Federation de gymnastique du Quebec est aussi requise; le montant exact est affiche lors de l'inscription.`;
+    return `L'affiliation annuelle recreative a la Federation de gymnastique du Quebec est aussi requise au cout de ${FLORA_CONFIG.recreationalNotes.affiliationRegular}.`;
   }
 
-  return `L'affiliation annuelle a la Federation de gymnastique du Quebec est aussi requise; le montant exact est affiche lors de l'inscription. ${FLORA_CONFIG.recreationalNotes.uniformRule} Si le participant n'en a pas, il peut l'acheter au bureau administratif pour 45$, et ${FLORA_CONFIG.recreationalNotes.uniformModels.toLowerCase()}`;
+  return `L'affiliation annuelle recreative a la Federation de gymnastique du Quebec est aussi requise au cout de ${FLORA_CONFIG.recreationalNotes.affiliationRegular}. ${FLORA_CONFIG.recreationalNotes.uniformRule} Si le participant n'en a pas, il peut l'acheter au bureau administratif pour 45$, et ${FLORA_CONFIG.recreationalNotes.uniformModels.toLowerCase()}`;
 }
 
 function extractAge(message) {

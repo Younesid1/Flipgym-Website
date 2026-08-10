@@ -196,9 +196,9 @@ window.FLIPPY_KNOWLEDGE_BASE = [
   {
     id: 'affiliation-fgq',
     category: 'inscriptions',
-    priority: 80,
+    priority: 160,
     keywords: ['affiliation', 'federation', 'fédération', 'gymnastique quebec', 'gymnastique québec', 'fgq'],
-    answer: "Une affiliation annuelle a la Federation de gymnastique du Quebec est requise pour chaque gymnaste. Le montant exact est affiche lors de l'inscription et peut varier selon l'age et la saison."
+    answer: "Une affiliation annuelle recreative a la Federation de gymnastique du Quebec est requise pour chaque gymnaste. Pour le secteur recreatif, elle est maintenant de 36 $."
   },
   {
     id: 'absence',
