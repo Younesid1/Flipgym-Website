@@ -429,9 +429,9 @@ window.FLIPPY_KNOWLEDGE_BASE = [
     category: 'evenements',
     priority: 90,
     keywords: ['evenement', 'événement', 'demonstration', 'démonstration', 'spectacle', 'fin d annee', 'fin d année', 'juin', 'billet spectacle', 'billetterie', 'ordre de passage'],
-    answer: "Le spectacle de fin d'annee 2026 aura lieu en juin. Les informations importantes, la billetterie et l'ordre de passage sont disponibles sur la page Spectacle du site. Pour une question precise sur le spectacle, contactez le club.",
+    answer: "Pour toute question sur le spectacle, contactez directement le club.",
     links: [
-      { label: 'Spectacle', url: 'spectacle.html' }
+      { label: 'Formulaire de contact', url: '{contactFormUrl}' }
     ]
   },
   {

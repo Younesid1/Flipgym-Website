@@ -297,6 +297,13 @@ function serveStatic(request, response) {
 loadEnv();
 
 const server = http.createServer((request, response) => {
+  const pathname = new URL(request.url, 'http://localhost').pathname.replace(/\/$/, '');
+  if (['/spectacle.html', '/spectacle', '/spectacle-', '/spectacle1'].includes(pathname)) {
+    response.writeHead(307, { Location: '/', 'Cache-Control': 'no-store' });
+    response.end();
+    return;
+  }
+
   if (request.url.startsWith('/api/instagram-feed')) {
     handleInstagramFeed(response);
     return;
