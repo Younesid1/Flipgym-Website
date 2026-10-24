@@ -199,6 +199,70 @@
     .page {
       padding: 122px 0 64px;
     }
+    .calendar-hero {
+      position: relative;
+      overflow: hidden;
+      padding: 34px;
+      margin-bottom: 28px;
+      border-radius: 34px;
+      background:
+        radial-gradient(circle at top right, rgba(255,255,255,0.2), transparent 28%),
+        linear-gradient(135deg, #0d3d79 0%, #10488B 55%, #1a62b0 100%);
+      color: var(--white);
+      box-shadow: var(--shadow-lg);
+    }
+    .calendar-hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -50px -70px auto;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      filter: blur(2px);
+    }
+    .calendar-hero::before {
+      content: none;
+    }
+    .calendar-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.76);
+    }
+    .calendar-eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 2px;
+      border-radius: 999px;
+      background: currentColor;
+    }
+    .calendar-title {
+      font-family: 'Outfit', sans-serif;
+      max-width: 760px;
+      font-size: clamp(2.6rem, 6vw, 4.6rem);
+      line-height: 0.96;
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 18px;
+    }
+    @media (max-width: 640px) {
+      .calendar-hero {
+        padding: 22px;
+        border-radius: 24px;
+      }
+      .calendar-title {
+        font-size: clamp(2.2rem, 11vw, 3.4rem);
+      }
+    }
     .calendar-shell { display: grid; gap: 18px; }
     .calendar-nav {
       display: flex;
@@ -649,6 +713,21 @@
         height: 48px;
       }
     }
+    @media (max-width: 360px) {
+      .calendar-nav {
+        display: grid;
+        grid-template-columns: 40px minmax(0, 1fr) 40px;
+        gap: 10px;
+      }
+      .calendar-today-button {
+        grid-column: 1 / -1;
+        grid-row: 2;
+      }
+      #calendarNext {
+        grid-column: 3;
+        grid-row: 1;
+      }
+    }
   </style>
   <link rel="stylesheet" href="mobile-footer.css" />
   <!-- Vercel Web Analytics -->
@@ -714,6 +793,11 @@
 
   <main class="page">
     <div class="container">
+      <header class="calendar-hero">
+        <div class="calendar-eyebrow">flipgym</div>
+        <h1 class="calendar-title">Calendrier</h1>
+      </header>
+
       <section class="calendar-shell" aria-label="Calendrier GymQC">
         <div class="calendar-nav" aria-label="Navigation du calendrier">
           <button class="calendar-nav-button" id="calendarPrev" type="button" aria-label="Mois précédent">‹</button>
