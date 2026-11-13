@@ -730,6 +730,7 @@
     }
   </style>
   <link rel="stylesheet" href="mobile-footer.css" />
+  <link rel="stylesheet" href="navigation.css" />
   <!-- Vercel Web Analytics -->
   <script>
     window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
@@ -781,6 +782,7 @@
             <li><a href="services.html#location" class="dropdown-link">Location de gymnase</a></li>
           </ul>
         </li>
+        <li class="nav-item"><a href="collecte-de-fonds.html" class="nav-link">Collecte de fonds</a></li>
         <li class="nav-item"><a href="competitif-calendrier.html" class="nav-link active">Calendrier</a></li>
         <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
         <li class="nav-item mobile-nav-cta"><a href="https://activitymessenger.com/p/0kjW5he" class="nav-cta" target="_blank" rel="noreferrer">S'inscrire</a></li>
@@ -1522,9 +1524,25 @@
               <div class="calendar-cell"><div class="calendar-date">12</div></div>
               <div class="calendar-cell"><div class="calendar-date">13</div></div>
 
-              <div class="calendar-cell"><div class="calendar-date">14</div></div>
+              <div class="calendar-cell has-event">
+                <div class="calendar-date">14</div>
+                <div class="calendar-events">
+                  <div class="calendar-event">
+                    <div class="calendar-event-title">Préinscriptions réservées aux membres</div>
+                    <div class="calendar-event-meta">Hiver 2027</div>
+                  </div>
+                </div>
+              </div>
               <div class="calendar-cell"><div class="calendar-date">15</div></div>
-              <div class="calendar-cell"><div class="calendar-date">16</div></div>
+              <div class="calendar-cell has-event">
+                <div class="calendar-date">16</div>
+                <div class="calendar-events">
+                  <div class="calendar-event">
+                    <div class="calendar-event-title">Inscriptions ouvertes à tous</div>
+                    <div class="calendar-event-meta">Hiver 2027</div>
+                  </div>
+                </div>
+              </div>
               <div class="calendar-cell"><div class="calendar-date">17</div></div>
               <div class="calendar-cell"><div class="calendar-date">18</div></div>
               <div class="calendar-cell"><div class="calendar-date">19</div></div>
@@ -1550,6 +1568,230 @@
               <div class="calendar-cell"><div class="calendar-date">29</div></div>
               <div class="calendar-cell"><div class="calendar-date">30</div></div>
               <div class="calendar-cell"><div class="calendar-date">31</div></div>
+              <div class="calendar-cell is-empty"></div>
+              <div class="calendar-cell is-empty"></div>
+              <div class="calendar-cell is-empty"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="calendar-month" data-month-label="Janvier 2027" hidden>
+          <div class="calendar-month-label">Janvier 2027</div>
+          <div class="calendar-board">
+            <div class="calendar-weekdays">
+              <div class="calendar-weekday">Lun</div>
+              <div class="calendar-weekday">Mar</div>
+              <div class="calendar-weekday">Mer</div>
+              <div class="calendar-weekday">Jeu</div>
+              <div class="calendar-weekday">Ven</div>
+              <div class="calendar-weekday">Sam</div>
+              <div class="calendar-weekday">Dim</div>
+            </div>
+            <div class="calendar-days">
+              <div class="calendar-cell is-empty"></div>
+              <div class="calendar-cell is-empty"></div>
+              <div class="calendar-cell is-empty"></div>
+              <div class="calendar-cell is-empty"></div>
+              <div class="calendar-cell"><div class="calendar-date">1</div></div>
+              <div class="calendar-cell"><div class="calendar-date">2</div></div>
+              <div class="calendar-cell"><div class="calendar-date">3</div></div>
+
+              <div class="calendar-cell has-event">
+                <div class="calendar-date">4</div>
+                <div class="calendar-events">
+                  <div class="calendar-event">
+                    <div class="calendar-event-title">Reprise des cours</div>
+                    <div class="calendar-event-meta">Tous les secteurs</div>
+                  </div>
+                </div>
+              </div>
+              <div class="calendar-cell"><div class="calendar-date">5</div></div>
+              <div class="calendar-cell"><div class="calendar-date">6</div></div>
+              <div class="calendar-cell"><div class="calendar-date">7</div></div>
+              <div class="calendar-cell"><div class="calendar-date">8</div></div>
+              <div class="calendar-cell"><div class="calendar-date">9</div></div>
+              <div class="calendar-cell"><div class="calendar-date">10</div></div>
+
+              <div class="calendar-cell has-event">
+                <div class="calendar-date">11</div>
+                <div class="calendar-events">
+                  <div class="calendar-event">
+                    <div class="calendar-event-title">Préinscriptions réservées aux membres</div>
+                    <div class="calendar-event-meta">Camp de relâche</div>
+                  </div>
+                </div>
+              </div>
+              <div class="calendar-cell"><div class="calendar-date">12</div></div>
+              <div class="calendar-cell has-event">
+                <div class="calendar-date">13</div>
+                <div class="calendar-events">
+                  <div class="calendar-event">
+                    <div class="calendar-event-title">Inscriptions ouvertes à tous</div>
+                    <div class="calendar-event-meta">Camp de relâche</div>
+                  </div>
+                </div>
+              </div>
+              <div class="calendar-cell"><div class="calendar-date">14</div></div>
+              <div class="calendar-cell"><div class="calendar-date">15</div></div>
+              <div class="calendar-cell"><div class="calendar-date">16</div></div>
+              <div class="calendar-cell"><div class="calendar-date">17</div></div>
+
+              <div class="calendar-cell"><div class="calendar-date">18</div></div>
+              <div class="calendar-cell"><div class="calendar-date">19</div></div>
+              <div class="calendar-cell"><div class="calendar-date">20</div></div>
+              <div class="calendar-cell"><div class="calendar-date">21</div></div>
+              <div class="calendar-cell"><div class="calendar-date">22</div></div>
+              <div class="calendar-cell"><div class="calendar-date">23</div></div>
+              <div class="calendar-cell"><div class="calendar-date">24</div></div>
+
+              <div class="calendar-cell"><div class="calendar-date">25</div></div>
+              <div class="calendar-cell"><div class="calendar-date">26</div></div>
+              <div class="calendar-cell"><div class="calendar-date">27</div></div>
+              <div class="calendar-cell"><div class="calendar-date">28</div></div>
+              <div class="calendar-cell"><div class="calendar-date">29</div></div>
+              <div class="calendar-cell"><div class="calendar-date">30</div></div>
+              <div class="calendar-cell"><div class="calendar-date">31</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="calendar-month" data-month-label="Février 2027" hidden>
+          <div class="calendar-month-label">Février 2027</div>
+          <div class="calendar-board">
+            <div class="calendar-weekdays">
+              <div class="calendar-weekday">Lun</div>
+              <div class="calendar-weekday">Mar</div>
+              <div class="calendar-weekday">Mer</div>
+              <div class="calendar-weekday">Jeu</div>
+              <div class="calendar-weekday">Ven</div>
+              <div class="calendar-weekday">Sam</div>
+              <div class="calendar-weekday">Dim</div>
+            </div>
+            <div class="calendar-days">
+              <div class="calendar-cell"><div class="calendar-date">1</div></div>
+              <div class="calendar-cell"><div class="calendar-date">2</div></div>
+              <div class="calendar-cell"><div class="calendar-date">3</div></div>
+              <div class="calendar-cell"><div class="calendar-date">4</div></div>
+              <div class="calendar-cell"><div class="calendar-date">5</div></div>
+              <div class="calendar-cell"><div class="calendar-date">6</div></div>
+              <div class="calendar-cell"><div class="calendar-date">7</div></div>
+
+              <div class="calendar-cell"><div class="calendar-date">8</div></div>
+              <div class="calendar-cell"><div class="calendar-date">9</div></div>
+              <div class="calendar-cell"><div class="calendar-date">10</div></div>
+              <div class="calendar-cell"><div class="calendar-date">11</div></div>
+              <div class="calendar-cell"><div class="calendar-date">12</div></div>
+              <div class="calendar-cell"><div class="calendar-date">13</div></div>
+              <div class="calendar-cell"><div class="calendar-date">14</div></div>
+
+              <div class="calendar-cell"><div class="calendar-date">15</div></div>
+              <div class="calendar-cell"><div class="calendar-date">16</div></div>
+              <div class="calendar-cell"><div class="calendar-date">17</div></div>
+              <div class="calendar-cell"><div class="calendar-date">18</div></div>
+              <div class="calendar-cell"><div class="calendar-date">19</div></div>
+              <div class="calendar-cell"><div class="calendar-date">20</div></div>
+              <div class="calendar-cell"><div class="calendar-date">21</div></div>
+
+              <div class="calendar-cell"><div class="calendar-date">22</div></div>
+              <div class="calendar-cell"><div class="calendar-date">23</div></div>
+              <div class="calendar-cell"><div class="calendar-date">24</div></div>
+              <div class="calendar-cell"><div class="calendar-date">25</div></div>
+              <div class="calendar-cell"><div class="calendar-date">26</div></div>
+              <div class="calendar-cell"><div class="calendar-date">27</div></div>
+              <div class="calendar-cell"><div class="calendar-date">28</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="calendar-month" data-month-label="Mars 2027" hidden>
+          <div class="calendar-month-label">Mars 2027</div>
+          <div class="calendar-board">
+            <div class="calendar-weekdays">
+              <div class="calendar-weekday">Lun</div>
+              <div class="calendar-weekday">Mar</div>
+              <div class="calendar-weekday">Mer</div>
+              <div class="calendar-weekday">Jeu</div>
+              <div class="calendar-weekday">Ven</div>
+              <div class="calendar-weekday">Sam</div>
+              <div class="calendar-weekday">Dim</div>
+            </div>
+            <div class="calendar-days">
+              <div class="calendar-cell has-event">
+                <div class="calendar-date">1</div>
+                <div class="calendar-events">
+                  <div class="calendar-event">
+                    <div class="calendar-event-title">Camp de relâche</div>
+                    <div class="calendar-event-meta">Du 1ᵉʳ au 5 mars</div>
+                  </div>
+                </div>
+              </div>
+              <div class="calendar-cell has-event">
+                <div class="calendar-date">2</div>
+                <div class="calendar-events">
+                  <div class="calendar-event">
+                    <div class="calendar-event-title">Camp de relâche</div>
+                    <div class="calendar-event-meta">Du 1ᵉʳ au 5 mars</div>
+                  </div>
+                </div>
+              </div>
+              <div class="calendar-cell has-event">
+                <div class="calendar-date">3</div>
+                <div class="calendar-events">
+                  <div class="calendar-event">
+                    <div class="calendar-event-title">Camp de relâche</div>
+                    <div class="calendar-event-meta">Du 1ᵉʳ au 5 mars</div>
+                  </div>
+                </div>
+              </div>
+              <div class="calendar-cell has-event">
+                <div class="calendar-date">4</div>
+                <div class="calendar-events">
+                  <div class="calendar-event">
+                    <div class="calendar-event-title">Camp de relâche</div>
+                    <div class="calendar-event-meta">Du 1ᵉʳ au 5 mars</div>
+                  </div>
+                </div>
+              </div>
+              <div class="calendar-cell has-event">
+                <div class="calendar-date">5</div>
+                <div class="calendar-events">
+                  <div class="calendar-event">
+                    <div class="calendar-event-title">Camp de relâche</div>
+                    <div class="calendar-event-meta">Du 1ᵉʳ au 5 mars</div>
+                  </div>
+                </div>
+              </div>
+              <div class="calendar-cell"><div class="calendar-date">6</div></div>
+              <div class="calendar-cell"><div class="calendar-date">7</div></div>
+
+              <div class="calendar-cell"><div class="calendar-date">8</div></div>
+              <div class="calendar-cell"><div class="calendar-date">9</div></div>
+              <div class="calendar-cell"><div class="calendar-date">10</div></div>
+              <div class="calendar-cell"><div class="calendar-date">11</div></div>
+              <div class="calendar-cell"><div class="calendar-date">12</div></div>
+              <div class="calendar-cell"><div class="calendar-date">13</div></div>
+              <div class="calendar-cell"><div class="calendar-date">14</div></div>
+
+              <div class="calendar-cell"><div class="calendar-date">15</div></div>
+              <div class="calendar-cell"><div class="calendar-date">16</div></div>
+              <div class="calendar-cell"><div class="calendar-date">17</div></div>
+              <div class="calendar-cell"><div class="calendar-date">18</div></div>
+              <div class="calendar-cell"><div class="calendar-date">19</div></div>
+              <div class="calendar-cell"><div class="calendar-date">20</div></div>
+              <div class="calendar-cell"><div class="calendar-date">21</div></div>
+
+              <div class="calendar-cell"><div class="calendar-date">22</div></div>
+              <div class="calendar-cell"><div class="calendar-date">23</div></div>
+              <div class="calendar-cell"><div class="calendar-date">24</div></div>
+              <div class="calendar-cell"><div class="calendar-date">25</div></div>
+              <div class="calendar-cell"><div class="calendar-date">26</div></div>
+              <div class="calendar-cell"><div class="calendar-date">27</div></div>
+              <div class="calendar-cell"><div class="calendar-date">28</div></div>
+
+              <div class="calendar-cell"><div class="calendar-date">29</div></div>
+              <div class="calendar-cell"><div class="calendar-date">30</div></div>
+              <div class="calendar-cell"><div class="calendar-date">31</div></div>
+              <div class="calendar-cell is-empty"></div>
               <div class="calendar-cell is-empty"></div>
               <div class="calendar-cell is-empty"></div>
               <div class="calendar-cell is-empty"></div>

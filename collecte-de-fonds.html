@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>flipgym Montréal | Un nouveau sol, un nouvel élan</title>
+  <meta name="description" content="Soutenez la campagne du Club Flipgym sur trois ans pour préparer le renouvellement de son sol de gymnastique et investir dans l’avenir de ses gymnastes." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.flipgym.com/collecte-de-fonds.html" />
+  <meta property="og:locale" content="fr_CA" />
+  <meta property="og:site_name" content="flipgym Montréal" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="flipgym Montréal | Un nouveau sol, un nouvel élan" />
+  <meta property="og:description" content="Soutenez la campagne du Club Flipgym sur trois ans pour préparer le renouvellement de son sol de gymnastique et investir dans l’avenir de ses gymnastes." />
+  <meta property="og:url" content="https://www.flipgym.com/collecte-de-fonds.html" />
+  <meta property="og:image" content="https://www.flipgym.com/collecte-gymnaste.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="flipgym Montréal | Un nouveau sol, un nouvel élan" />
+  <meta name="twitter:description" content="Soutenez la campagne du Club Flipgym sur trois ans pour préparer le renouvellement de son sol de gymnastique et investir dans l’avenir de ses gymnastes." />
+  <meta name="twitter:image" content="https://www.flipgym.com/collecte-gymnaste.jpg" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --blue: #10488B;
+      --blue-deep: #0a356a;
+      --blue-light: rgba(16, 72, 139, 0.08);
+      --blue-soft: #edf5fd;
+      --accent: #f37b4f;
+      --white: #ffffff;
+      --surface: #f7fbff;
+      --text-dark: #0f172a;
+      --text-muted: #50657d;
+      --border: rgba(16, 72, 139, 0.12);
+      --shadow-sm: 0 12px 30px rgba(16, 72, 139, 0.07);
+      --shadow-lg: 0 28px 70px rgba(16, 72, 139, 0.14);
+      --radius: 8px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text-dark);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 20px 0;
+      background: rgba(255,255,255,0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid transparent;
+      transition: all 0.3s ease;
+    }
+    .navbar.scrolled {
+      padding: 12px 0;
+      border-bottom-color: var(--border);
+      box-shadow: 0 4px 15px rgba(16,72,139,0.05);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .nav-logo { display: inline-flex; align-items: center; flex-shrink: 0; }
+    .nav-logo img { width: auto; height: 52px; object-fit: contain; }
+    .nav-toggle {
+      display: none;
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      border: 1px solid rgba(16,72,139,0.12);
+      background: rgba(255,255,255,0.92);
+      color: var(--blue);
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-direction: column;
+      gap: 5px;
+      box-shadow: 0 10px 22px rgba(16,72,139,0.08);
+    }
+    .nav-toggle span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      border-radius: 999px;
+      background: currentColor;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+    .nav-links { display: flex; list-style: none; gap: 32px; }
+    .nav-item { position: relative; display: flex; align-items: center; }
+    .nav-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      transition: color 0.2s ease;
+    }
+    .nav-link:hover,
+    .nav-link.active { color: var(--blue); }
+    .nav-caret { font-size: 0.7rem; transition: transform 0.25s ease; }
+    .nav-item:hover .nav-caret { transform: rotate(180deg); }
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 18px);
+      left: 0;
+      min-width: 230px;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.98);
+      border: 1px solid rgba(16,72,139,0.1);
+      border-radius: 18px;
+      box-shadow: 0 18px 36px rgba(15, 23, 42, 0.12);
+      list-style: none;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(8px);
+      transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+      backdrop-filter: blur(12px);
+      z-index: 1005;
+    }
+    .nav-item:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+    .dropdown-link {
+      display: block;
+      padding: 12px 14px;
+      border-radius: 12px;
+      font-size: 0.94rem;
+      font-weight: 500;
+      color: var(--text-dark);
+      transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    }
+    .dropdown-link:hover,
+    .dropdown-link.active { background: var(--blue-light); color: var(--blue); transform: translateX(4px); }
+    .nav-actions { display: flex; gap: 12px; }
+    .mobile-nav-cta { display: none; }
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 24px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--blue) 0%, #1d5fa9 100%);
+      color: var(--white);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      box-shadow: 0 8px 20px rgba(16,72,139,0.2);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(16,72,139,0.28); }
+
+    .footer { background: #0a0f1d; color: var(--white); padding: 80px 0 30px; border-top: 10px solid var(--blue); }
+    .footer-grid { display: grid; grid-template-columns: 1.45fr 1fr 0.9fr 1fr; gap: 34px; margin-bottom: 48px; align-items: start; }
+    .footer-brand .nav-logo { margin-bottom: 20px; }
+    .footer-brand .nav-logo img { height: 58px; filter: brightness(0) invert(1); }
+    .footer-desc { color: rgba(255,255,255,0.66); line-height: 1.7; font-size: 0.95rem; max-width: 290px; margin-bottom: 18px; }
+    .social-links { display: flex; gap: 12px; }
+    .social-link {
+      display: flex; align-items: center; justify-content: center; width: 40px; height: 40px;
+      border-radius: 50%; background: rgba(255,255,255,0.05); color: var(--white);
+      transition: all 0.3s;
+    }
+    .social-link:hover { background: var(--blue); transform: translateY(-4px); }
+    .footer-title { font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 800; color: var(--white); margin-bottom: 24px; text-transform: uppercase; letter-spacing: 1px; }
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: 12px; }
+    .footer-links a { color: rgba(255,255,255,0.6); font-size: 0.95rem; display: inline-block; transition: all 0.3s; }
+    .footer-links a:hover { color: var(--blue); transform: translateX(5px); }
+    .footer-contact-list { list-style: none; display: grid; gap: 14px; }
+    .footer-contact-list li { display: grid; gap: 4px; color: rgba(255,255,255,0.66); line-height: 1.6; }
+    .footer-contact-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.9);
+    }
+    .footer-contact-list a { color: rgba(255,255,255,0.72); transition: color 0.2s ease; }
+    .footer-contact-list a:hover { color: var(--blue); }
+    .footer-partners-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.02rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+    .footer-partner-grid { display: grid; grid-template-columns: 1fr; gap: 16px; align-items: center; }
+    .footer-partner-card { min-height: 62px; padding: 4px 0; display: flex; align-items: center; justify-content: flex-start; }
+    .footer-partner-card img {
+      width: 170px;
+      height: 44px;
+      object-fit: contain;
+      opacity: 0.8;
+      filter: brightness(0) invert(1);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+    .footer-partner-card.is-wide img { width: 156px; height: 40px; }
+    .footer-partner-card.is-tall img { width: 182px; height: 48px; }
+    .footer-partner-card:hover img { opacity: 1; transform: translateX(2px); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+    .footer-copy { color: rgba(255,255,255,0.4); font-size: 0.85rem; }
+
+    @media (max-width: 980px) {
+      .footer-grid { grid-template-columns: 1fr; }
+      .nav-inner { flex-wrap: wrap; align-items: center; }
+      .nav-toggle { display: inline-flex; margin-left: auto; }
+      .nav-actions { display: none; }
+      .nav-links {
+        display: none;
+        width: 100%;
+        margin-top: 12px;
+        padding: 18px;
+        gap: 16px;
+        flex-direction: column;
+        background: rgba(255,255,255,0.98);
+        border: 1px solid rgba(16,72,139,0.1);
+        border-radius: 22px;
+        box-shadow: 0 18px 36px rgba(15,23,42,0.12);
+      }
+      .navbar.menu-open .nav-links { display: flex; }
+      .navbar.menu-open .nav-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      .navbar.menu-open .nav-toggle span:nth-child(2) { opacity: 0; }
+      .navbar.menu-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+      .nav-item { width: 100%; align-items: flex-start; flex-direction: column; gap: 8px; }
+      .nav-link { width: 100%; justify-content: space-between; }
+      .dropdown-menu {
+        position: static;
+        min-width: 0;
+        width: 100%;
+        padding: 0 0 0 14px;
+        background: transparent;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        display: none;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .nav-item.mobile-open .dropdown-menu { display: flex; padding-top: 8px; }
+      .nav-item.mobile-open .nav-caret { transform: rotate(180deg); }
+      .dropdown-link { padding: 8px 0; border-radius: 0; color: var(--text-muted); }
+      .dropdown-link:hover,
+      .dropdown-link.active { transform: none; }
+      .mobile-nav-cta { display: inline-flex; width: 100%; justify-content: center; margin-top: 4px; }
+    }
+
+    @media (max-width: 640px) {
+      .container { padding: 0 18px; }
+      .nav-logo img,
+      .footer-brand img { height: 48px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+
+  </style>
+  <link rel="stylesheet" href="mobile-footer.css" />
+  <link rel="stylesheet" href="navigation.css" />
+  <link rel="stylesheet" href="collecte-de-fonds.css" />
+  <!-- Vercel Web Analytics -->
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+  <nav class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="/" class="nav-logo" aria-label="Retour à l'accueil flipgym Montréal">
+        <img decoding="async" src="logo-navbar.avif" alt="flipgym de Montréal" />
+      </a>
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mainNav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-links" id="mainNav">
+        <li class="nav-item has-dropdown">
+          <a href="/" class="nav-link">Notre club <span class="nav-caret">▾</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="equipe.html" class="dropdown-link">Notre Équipe</a></li>
+            <li><a href="boutique.html" class="dropdown-link">Boutique</a></li>
+            <li><a href="actualite.html" class="dropdown-link">Actualité</a></li>
+            <li><a href="cheminement.html" class="dropdown-link">Cheminement</a></li>
+          </ul>
+        </li>
+        <li class="nav-item has-dropdown">
+          <a href="recreatif-description.html" class="nav-link">Récréatif <span class="nav-caret">▾</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="recreatif-description.html" class="dropdown-link">Description des cours</a></li>
+            <li><a href="recreatif-horaires-tarifs.html" class="dropdown-link">Horaires & Tarifs</a></li>
+          </ul>
+        </li>
+        <li class="nav-item has-dropdown">
+          <a href="competitif-provincial-sport-etudes.html" class="nav-link">Compétitif <span class="nav-caret">▾</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="competitif-releve-defi.html" class="dropdown-link">Relève / Défi</a></li>
+            <li><a href="competitif-regional.html" class="dropdown-link">Régional</a></li>
+            <li><a href="competitif-provincial-sport-etudes.html" class="dropdown-link">Provincial / Sport Études</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a href="camp-de-jour.html" class="nav-link">Camp de jour</a></li>
+        <li class="nav-item has-dropdown">
+          <a href="services.html" class="nav-link">Services <span class="nav-caret">▾</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="services.html#cours-prives" class="dropdown-link">Cours privé</a></li>
+            <li><a href="services.html#fetes" class="dropdown-link">Fêtes d'enfants</a></li>
+            <li><a href="services.html#location" class="dropdown-link">Location de gymnase</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a href="collecte-de-fonds.html" class="nav-link active" aria-current="page">Collecte de fonds</a></li>
+        <li class="nav-item"><a href="competitif-calendrier.html" class="nav-link">Calendrier</a></li>
+        <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+        <li class="nav-item mobile-nav-cta"><a href="https://activitymessenger.com/p/0kjW5he" class="nav-cta" target="_blank" rel="noreferrer">S'inscrire</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="https://activitymessenger.com/p/0kjW5he" class="nav-cta" target="_blank" rel="noreferrer">S'inscrire</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="contenu" class="campaign-page">
+    <section class="campaign-hero container" aria-labelledby="campaign-title">
+      <div class="hero-story">
+        <div class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> La communauté flipgym se mobilise</div>
+        <h1 id="campaign-title">Un nouveau sol,<br/> <span>un nouvel élan.</span></h1>
+        <div class="hero-lead">
+          <p>Chaque année, près de 1 000 gymnastes évoluent au Club Flipgym, de leurs premiers mouvements jusqu’aux programmes compétitifs et sport-études.</p>
+          <p>Afin de continuer à leur offrir des installations de qualité et adaptées à leur progression, nous lançons une campagne de financement sur trois ans pour préparer le remplacement de notre sol de gymnastique.</p>
+          <p class="hero-rally">Ensemble, investissons dans l’avenir de nos gymnastes !</p>
+        </div>
+        <div class="hero-actions">
+          <p class="hero-funding-summary"><strong id="heroFundraisingRaised">5 058 $</strong> recueillis sur <span data-funding-goal>120 000 $</span></p>
+          <a href="#contribuer" class="campaign-btn primary" data-donation-link><span data-donation-label>Soutenir le projet</span> <span aria-hidden="true">↗</span></a>
+          <a href="#projet" class="text-link">Découvrir le projet <span aria-hidden="true">↓</span></a>
+        </div>
+        <figure class="hero-photo">
+          <img src="collecte-gymnaste.jpg" alt="Une gymnaste en justaucorps bleu réalisant un mouvement acrobatique au-dessus du sol" width="1121" height="1403" fetchpriority="high" decoding="async" />
+          <figcaption><span class="photo-line" aria-hidden="true"></span> La passion du mouvement. La force d’un club.</figcaption>
+        </figure>
+      </div>
+      <aside class="funding-card" aria-labelledby="funding-title">
+        <div class="funding-heading"><span class="small-label">Ensemble vers notre objectif</span><span class="duration">Objectif sur 3 ans</span></div>
+        <h2 id="funding-title">Chaque contribution<br/> compte.</h2>
+        <div class="funding-gauge" id="fundraisingMeter" role="progressbar" aria-label="Progression de la collecte de fonds" aria-valuemin="0" aria-valuemax="120000" aria-valuenow="5058" aria-valuetext="5 058 $ amassés sur 120 000 $, soit 4,2 %">
+          <svg class="gauge-svg" viewBox="0 0 280 280" aria-hidden="true">
+            <circle class="gauge-outer" cx="140" cy="140" r="132" />
+            <circle class="gauge-track" cx="140" cy="140" r="116" />
+            <circle class="gauge-fill" id="gaugeFill" cx="140" cy="140" r="116" pathLength="100" stroke-dasharray="100" stroke-dashoffset="95.785" />
+          </svg>
+          <div class="gauge-center"><span class="gauge-caption">Montant recueilli</span><strong id="fundraisingRaised">5 058 $</strong><span class="gauge-percentage" id="fundraisingPercent">4,2 % de l’objectif</span></div>
+        </div>
+        <dl class="funding-stats">
+          <div><dt>Notre objectif</dt><dd id="fundraisingGoal">120 000 $</dd></div>
+          <div><dt>Montant restant</dt><dd id="fundraisingRemaining">114 942 $</dd></div>
+        </dl>
+        <p id="fundraisingStatus" class="funding-status">Ensemble, donnons vie à ce projet.</p>
+        <a href="#contribuer" class="campaign-btn light" data-donation-link><span data-donation-label>Participer à la collecte</span> <span aria-hidden="true">↗</span></a>
+        <p class="funding-note">Reçu officiel de don possible dès 25&nbsp;$, selon les conditions applicables.</p>
+        <p class="funding-updated">Montants mis à jour le <time id="fundraisingUpdated" datetime="2026-11-05">5 novembre 2026</time></p>
+      </aside>
+    </section>
+
+    <div class="campaign-strip"><div class="container strip-inner"><span>Un projet pour notre club.</span><span>Un élan pour nos gymnastes.</span><span>Une communauté pour y arriver.</span></div></div>
+
+    <section class="container campaign-section" id="projet" aria-labelledby="project-title">
+      <div class="section-heading" data-reveal><div><div class="eyebrow">01 <span aria-hidden="true">/</span> Le projet</div><h2 id="project-title">Tout commence<br/> par de bonnes bases.</h2></div></div>
+      <div class="project-grid">
+        <article class="equipment-card" data-reveal>
+          <div class="equipment-top"><span class="small-label">L’équipement visé</span><span class="equipment-tag">Gymnastique artistique</span></div>
+          <!-- Photographie fournie, détourée sur fond transparent. Le schéma sert de repli si le fichier est indisponible. -->
+          <div class="floor-visual"><img id="floorOfficialPhoto" class="floor-official-photo" src="sol-spieth-moscow-1280.webp" srcset="sol-spieth-moscow-640.webp 640w, sol-spieth-moscow-1280.webp 1280w" sizes="auto, (max-width: 540px) calc(100vw - 82px), (max-width: 800px) calc(100vw - 102px), 542px" loading="lazy" alt="Sol de gymnastique SPIETH Moscow de 13 m × 13 m, vue en perspective" width="1280" height="568" decoding="async" /><svg id="floorDiagram" style="display: none" aria-hidden="true" viewBox="0 0 500 270" fill="none"><path d="M100 187L303 254L429 132L226 65Z" fill="#0a356a"/><path d="M100 175L303 242L429 120L226 53Z" fill="#10488B"/><path d="M116 172L300 232L412 122L229 63Z" stroke="#fff" stroke-width="2"/><path d="M131 169L296 222L396 125L232 73Z" stroke="#fff" stroke-opacity=".25"/><path d="M82 190L283 256M76 184L87 196M278 250L289 262M320 255L445 133M314 250L326 260M439 128L451 138" stroke="#10488B" stroke-opacity=".45" stroke-width="1.5"/><text x="158" y="242" fill="#10488B" font-size="14" font-family="Inter, sans-serif" transform="rotate(18 158 242)">13 m</text><text x="406" y="204" fill="#10488B" font-size="14" font-family="Inter, sans-serif" transform="rotate(-44 406 204)">13 m</text></svg></div>
+          <div class="equipment-bottom"><div><h3>Sol international Moscow</h3><p>SPIETH Germany</p></div><span class="dimension">13 × 13 m</span></div>
+          <p class="diagram-note" id="floorImageCaption">Sol SPIETH Moscow — photographie détourée.</p>
+          <dl class="equipment-specs">
+            <div><dt>Modèle</dt><dd>Moscow</dd></div>
+            <div><dt>Fabricant</dt><dd>SPIETH Germany</dd></div>
+            <div><dt>Dimensions</dt><dd>13 × 13 m</dd></div>
+            <div><dt>Fournisseur</dt><dd>Division Sport Rep</dd></div>
+            <div class="equipment-cost"><dt>Coût du projet</dt><dd>120 000 $ CAD</dd></div>
+          </dl>
+        </article>
+        <div class="project-details" data-reveal>
+          <div class="eyebrow">De l’espace pour progresser</div>
+          <h3>Un nouvel équipement.<br/> La même passion.</h3>
+          <p>Le Club inscrit ce projet dans une démarche de renouvellement planifié de ses équipements, afin d’accompagner durablement l’évolution de ses programmes.</p>
+          <p>Notre objectif est d’acquérir un nouveau sol international Moscow de SPIETH Germany, d’une dimension de 13 × 13 mètres, reconnu pour sa qualité et utilisé dans plusieurs compétitions internationales.</p>
+          <div class="project-fact"><strong data-funding-goal>120 000 $</strong><span>Objectif global de la campagne de financement, sur trois ans.</span></div>
+          <a href="#contribuer" class="text-link">Prendre part au projet <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="container campaign-section renewal-section" aria-labelledby="renewal-title">
+      <div class="section-heading" data-reveal>
+        <div>
+          <div class="eyebrow">02 <span aria-hidden="true">/</span> Le renouvellement</div>
+          <h2 id="renewal-title">Préparer aujourd’hui<br/> les installations de demain.</h2>
+        </div>
+      </div>
+      <div class="renewal-grid">
+        <article class="renewal-card" data-reveal><h3>Des conditions d’entraînement de qualité</h3><p>Continuer à offrir aux gymnastes un environnement adapté à la pratique et à l’apprentissage de la gymnastique artistique.</p></article>
+        <article class="renewal-card" data-reveal><h3>Des équipements adaptés à notre évolution</h3><p>Investir dans un équipement moderne qui accompagnera le développement de nos programmes récréatifs, compétitifs et sport-études.</p></article>
+        <article class="renewal-card" data-reveal><h3>Un investissement pour l’avenir</h3><p>Préparer les installations du Club pour les prochaines générations de gymnastes et assurer la pérennité de nos équipements.</p></article>
+      </div>
+    </section>
+
+    <section class="impact-section" aria-labelledby="impact-title"><div class="container campaign-section">
+      <div class="section-heading" data-reveal>
+        <div>
+          <div class="eyebrow">03 <span aria-hidden="true">/</span> L’impact</div>
+          <h2 id="impact-title">Bien plus qu’un sol.<br/> <span class="text-blue">Un terrain de possibilités.</span></h2>
+        </div>
+      </div>
+      <div class="impact-grid">
+        <article class="impact-card" data-reveal><h3>Apprendre et progresser</h3><p>Offrir aux jeunes gymnastes un espace adapté pour découvrir les mouvements de base, développer leurs habiletés et progresser à leur rythme.</p></article>
+        <article class="impact-card" data-reveal><h3>Accompagner les ambitions</h3><p>Permettre aux gymnastes du secteur compétitif de perfectionner leurs enchaînements et de poursuivre leur développement technique.</p></article>
+        <article class="impact-card" data-reveal><h3>Investir dans notre communauté</h3><p>Un équipement qui contribuera à maintenir des installations sportives de qualité pour les jeunes de Rosemont–La Petite-Patrie et les prochaines générations de gymnastes.</p></article>
+      </div>
+    </div></section>
+
+    <section class="container campaign-section initiatives-section" aria-labelledby="initiatives-title">
+      <div class="section-heading" data-reveal>
+        <div>
+          <div class="eyebrow">04 <span aria-hidden="true">/</span> Nos initiatives</div>
+          <h2 id="initiatives-title">Notre communauté<br/> est déjà en mouvement.</h2>
+        </div>
+      </div>
+      <div class="initiatives-grid">
+        <article class="initiative-card initiative-card--fripgym" data-reveal>
+          <div class="initiative-media" id="fripgymMedia"><img id="fripgymPhoto" alt="" decoding="async" hidden /></div>
+          <div class="initiative-body"><h3>La Fripgym</h3><p>Une activité communautaire de financement réunissant une vente d’articles Flipgym, une vente de garage et des pâtisseries maison préparées par des parents bénévoles.</p><p class="initiative-credit" id="fripgymCredit" hidden></p></div>
+        </article>
+        <article class="initiative-card" data-reveal>
+          <div class="initiative-media" id="chocolatsMedia"><img id="chocolatsPhoto" alt="" decoding="async" hidden /></div>
+          <div class="initiative-body"><h3>La vente de chocolats</h3><p>Une initiative de financement à laquelle les familles ont pu participer pour soutenir le projet du nouveau sol.</p><p class="initiative-credit" id="chocolatsCredit" hidden></p></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="container campaign-section" id="contribuer" aria-labelledby="contribute-title">
+      <div class="section-heading" data-reveal><div><div class="eyebrow">05 <span aria-hidden="true">/</span> Contribuer au projet</div><h2 id="contribute-title">Votre soutien.<br/> Notre prochain élan.</h2></div></div>
+      <div class="contribute-grid">
+        <article class="contribute-card featured" data-reveal>
+          <span class="small-label">Participer à la collecte</span>
+          <h3>Faire un don</h3>
+          <p>Faites un don par l’intermédiaire du Fonds SPORTSQUÉBEC pour soutenir notre projet de renouvellement des équipements.</p>
+          <p>Les dons admissibles de 25&nbsp;$ et plus peuvent donner droit à un reçu officiel aux fins de l’impôt. Celui-ci est établi au nom de la personne qui effectue le paiement et transmis par courriel aux coordonnées indiquées dans le formulaire.</p>
+          <a class="campaign-btn primary" href="mailto:flipgym@flipgym.com?subject=Collecte%20de%20fonds%20-%20Nouveau%20sol" aria-label="Faire un don — contacter le Club par courriel" data-donation-link><span data-donation-label>Faire un don</span> <span aria-hidden="true">↗</span></a>
+          <a class="quiet-link" href="contact.html">Toutes nos coordonnées</a>
+        </article>
+        <article class="contribute-card" data-reveal><span class="small-label">Entreprises et partenaires</span><h3>Devenir partenaire</h3><p>Votre entreprise souhaite soutenir le développement de la gymnastique dans notre communauté ? Associez-vous à un projet concret qui bénéficiera à près de 1 000 jeunes chaque année.</p><a class="text-link" href="mailto:flipgym@flipgym.com?subject=Commandite%20-%20Nouveau%20sol">Devenir partenaire <span aria-hidden="true">↗</span></a></article>
+        <article class="contribute-card" data-reveal>
+          <span class="small-label">Faire rayonner le projet</span>
+          <h3>Partager notre campagne</h3>
+          <p>Parlez de notre projet autour de vous ! Chaque partage contribue à faire connaître notre campagne et à mobiliser de nouveaux soutiens.</p>
+          <details class="campaign-share" id="campaignShare">
+            <summary class="text-link">Partager la campagne <span aria-hidden="true">⌄</span></summary>
+            <ul class="share-options">
+              <li><a href="mailto:?subject=Un%20nouveau%20sol%20pour%20le%20Club%20Flipgym&amp;body=D%C3%A9couvrez%20la%20campagne%20du%20Club%20Flipgym%20pour%20financer%20un%20nouveau%20sol%20de%20gymnastique.%0A%0Ahttps%3A%2F%2Fwww.flipgym.com%2Fcollecte-de-fonds.html">
+                <svg class="share-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>
+                Par courriel
+              </a></li>
+              <li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.flipgym.com%2Fcollecte-de-fonds.html">
+                <svg class="share-icon share-icon--facebook" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true" focusable="false"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                Sur Facebook
+              </a></li>
+              <li hidden><button type="button" id="shareOtherApps">
+                <svg class="share-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 15V3m-4 4 4-4 4 4M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>
+                Autres applications
+              </button></li>
+              <li hidden><button type="button" id="copyCampaignLink">
+                <svg class="share-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 4H6a2 2 0 0 0-2 2v10"/></svg>
+                Copier le lien
+              </button></li>
+            </ul>
+            <div class="share-feedback" role="status" id="campaignShareStatus"></div>
+            <label class="share-manual" hidden>Lien de la campagne
+              <input type="url" readonly id="campaignShareUrl" />
+            </label>
+          </details>
+        </article>
+      </div>
+    </section>
+
+    <section class="container campaign-section faq-layout" aria-labelledby="faq-title"><div data-reveal><div class="eyebrow">06 <span aria-hidden="true">/</span> FOIRE AUX QUESTIONS</div><h2 id="faq-title">Tout savoir<br/> sur notre campagne.</h2><p>Une autre question ?<br/> <a class="text-link" href="mailto:flipgym@flipgym.com">Contactez-nous <span aria-hidden="true">↗</span></a></p></div><div class="campaign-faq" data-reveal>
+      <details name="collecte-faq"><summary>Quel est l’objectif de la campagne de financement ?<span aria-hidden="true">+</span></summary><p>Notre objectif est d’amasser <span data-funding-goal>120 000 $</span> sur trois ans. La jauge en haut de la page présente le montant recueilli, la progression et la date de dernière mise à jour.</p></details>
+      <details name="collecte-faq">
+        <summary>Vais-je recevoir un reçu officiel pour mon don ?<span aria-hidden="true">+</span></summary>
+        <p>Les dons admissibles de 25&nbsp;$ et plus peuvent donner droit à un reçu officiel aux fins de l’impôt, conformément aux règles du Fonds SPORTSQUÉBEC. Le reçu est établi au nom de la personne qui effectue le paiement et envoyé à l’adresse courriel indiquée dans le formulaire. Aucun avantage n’est offert en contrepartie du don.</p>
+        <p>Le Fonds SPORTSQUÉBEC administre les dons et délivre les reçus officiels. Les donateurs ne peuvent pas demander que leur don soit réservé à une gymnaste ou à un club en particulier.</p>
+      </details>
+      <details name="collecte-faq">
+        <summary>Comment puis-je effectuer un don ?<span aria-hidden="true">+</span></summary>
+        <p id="donationFormStatus">Le lien officiel sera ajouté ici. D’ici là, vous pouvez <a href="contact.html">contacter le Club</a> pour toute question.</p>
+        <p>Vous pourrez faire un don par carte de crédit à partir du formulaire sécurisé SPORTSQUÉBEC. Des modalités par virement bancaire ou par chèque sont également prévues dans les documents du programme. Les instructions seront accessibles à partir du formulaire officiel.</p>
+      </details>
+      <details name="collecte-faq"><summary>Comment aider autrement qu’en faisant un don ?<span aria-hidden="true">+</span></summary><p>Vous pouvez partager la campagne avec votre entourage ou devenir partenaire. Pour en discuter, écrivez à <a href="mailto:flipgym@flipgym.com">flipgym@flipgym.com</a> ou appelez le <a href="tel:5149482222">514 948-2222</a>.</p></details>
+      <details name="collecte-faq"><summary>Mon entreprise peut-elle soutenir le projet ?<span aria-hidden="true">+</span></summary><p>Oui. Votre entreprise peut contacter le Club pour discuter d’une commandite ou d’une autre forme de soutien à ce projet destiné à près de 1 000 jeunes chaque année.</p></details>
+    </div></section>
+    <div class="closing-note container" data-reveal><span aria-hidden="true">✦</span><p>Les grands élans se construisent ensemble.<br/> <strong>Merci de faire partie du mouvement.</strong></p><a href="#contribuer" class="campaign-btn primary" data-donation-link><span data-donation-label>Soutenir Flipgym</span> <span aria-hidden="true">↗</span></a></div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="nav-logo" aria-label="flipgym Montréal">
+            <img decoding="async" src="logo-navbar.avif" alt="flipgym de Montréal" />
+          </a>
+          <p class="footer-desc">Gymnastique artistique récréative et compétitive à Montréal.</p>
+          <div class="social-links">
+            <a href="https://www.facebook.com/ClubDeGymnastiqueFlipgymDeMontreal/" class="social-link" aria-label="Facebook" target="_blank" rel="noreferrer"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+            <a href="https://www.instagram.com/clubflipgym" class="social-link" aria-label="Instagram" target="_blank" rel="noreferrer"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+            <a href="https://www.tiktok.com/@club.flipgym" class="social-link" aria-label="TikTok" target="_blank" rel="noreferrer"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 15.66a6.34 6.34 0 0010.86 4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1.04-.52 4.9 4.9 0 01-1.29-1.26c-.24-.34-.43-.73-.55-1.12l-.08-.3z"/></svg></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-partners-title">Nos partenaires</h4>
+          <div class="footer-partner-grid">
+            <div class="footer-partner-card is-tall"><img loading="lazy" decoding="async" src="partenaire-rosemont-petite-patrie.avif" alt="Rosemont La Petite-Patrie Montréal" /></div>
+            <div class="footer-partner-card is-tall"><img loading="lazy" decoding="async" src="partenaire-gymnastique-quebec.avif" alt="Gymnastique Québec" /></div>
+            <div class="footer-partner-card is-wide"><img loading="lazy" decoding="async" src="partenaire-asso-camps-quebec.avif" alt="Association des camps du Québec" /></div>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="recreatif-description.html">Récréatif</a></li>
+            <li><a href="competitif-releve-defi.html">Compétitif</a></li>
+            <li><a href="camp-de-jour.html">Camp de jour</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Nous joindre</h4>
+          <ul class="footer-contact-list">
+            <li><span class="footer-contact-label">Adresse</span><span>1600 Rue de Drucourt<br/> Montréal (QC) H2G 1N6</span></li>
+            <li><span class="footer-contact-label">Téléphone</span><a href="tel:5149482222">514 948-2222</a></li>
+            <li><span class="footer-contact-label">Courriel</span><a href="mailto:flipgym@flipgym.com">flipgym@flipgym.com</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copy">&copy; 2026 Club de gymnastique flipgym de Montréal. Tous droits réservés.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="collecte-de-fonds.js"></script>
+  <script>
+    const navbar = document.getElementById('navbar');
+    const navToggle = document.getElementById('navToggle');
+    const mobileNavLinks = document.querySelectorAll('#mainNav a');
+    const mobileDropdownTriggers = document.querySelectorAll('#mainNav .has-dropdown > .nav-link');
+
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape' || !navbar.classList.contains('menu-open')) return;
+      navbar.classList.remove('menu-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.setAttribute('aria-label', 'Ouvrir le menu');
+      mobileDropdownTriggers.forEach((trigger) => {
+        trigger.closest('.has-dropdown').classList.remove('mobile-open');
+        trigger.setAttribute('aria-expanded', 'false');
+      });
+      navToggle.focus();
+    });
+
+    navToggle?.addEventListener('click', () => {
+      const isOpen = navbar.classList.toggle('menu-open');
+      navToggle.setAttribute('aria-expanded', String(isOpen));
+      navToggle.setAttribute('aria-label', isOpen ? 'Fermer le menu' : 'Ouvrir le menu');
+      if (!isOpen) {
+        document.querySelectorAll('#mainNav .has-dropdown.mobile-open').forEach((item) => item.classList.remove('mobile-open'));
+      }
+    });
+
+    mobileDropdownTriggers.forEach((trigger) => {
+      trigger.addEventListener('click', (event) => {
+        if (window.innerWidth > 980) return;
+        event.preventDefault();
+        const item = trigger.closest('.has-dropdown');
+        const isOpen = item.classList.toggle('mobile-open');
+        document.querySelectorAll('#mainNav .has-dropdown.mobile-open').forEach((otherItem) => {
+          if (otherItem !== item) otherItem.classList.remove('mobile-open');
+        });
+        trigger.setAttribute('aria-expanded', String(isOpen));
+      });
+    });
+
+    mobileNavLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 980 && link.classList.contains('dropdown-link')) {
+          navbar.classList.remove('menu-open');
+          navToggle?.setAttribute('aria-expanded', 'false');
+          navToggle?.setAttribute('aria-label', 'Ouvrir le menu');
+          document.querySelectorAll('#mainNav .has-dropdown.mobile-open').forEach((item) => item.classList.remove('mobile-open'));
+        }
+      });
+    });
+
+  </script>
+</body>
+</html>

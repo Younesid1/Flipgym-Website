@@ -672,8 +672,7 @@
     .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
     .footer-copy { color: rgba(255,255,255,0.4); font-size: 0.85rem; }
     
-    @media (max-width: 768px) {
-      .container { padding: 0 18px; }
+    @media (max-width: 980px) {
       .navbar { padding: 12px 0; }
       .nav-inner { align-items: center; flex-wrap: wrap; gap: 12px; }
       .nav-toggle { display: inline-flex; margin-left: auto; }
@@ -726,6 +725,10 @@
         justify-content: center;
         margin-top: 4px;
       }
+    }
+
+    @media (max-width: 768px) {
+      .container { padding: 0 18px; }
       .hero { min-height: auto; padding: 120px 0 72px; }
       .hero-content { max-width: 100%; padding-top: 24px; text-align: center; }
       .hero-tagline { margin-bottom: 18px; }
@@ -750,8 +753,14 @@
       .stat-item:last-child { border-bottom: none; }
       .stat-item::after { display: none !important; }
     }
+    .fundraiser-banner { background: #edf5fd; border-bottom: 1px solid rgba(16,72,139,.12); padding: 24px 0; }
+    .fundraiser-banner-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    .fundraiser-banner p { color: var(--blue); line-height: 1.7; }
+    .fundraiser-banner strong { display: block; font-family: 'Outfit', sans-serif; font-size: 1.25rem; }
+    .fundraiser-banner a { background: var(--blue); color: white; border-radius: 999px; padding: 14px 22px; font-weight: 600; }
   </style>
   <link rel="stylesheet" href="mobile-footer.css" />
+  <link rel="stylesheet" href="navigation.css" />
   <!-- Vercel Web Analytics -->
   <script>
     window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
@@ -805,6 +814,7 @@
             <li><a href="services.html#location" class="dropdown-link">Location de gymnase</a></li>
           </ul>
         </li>
+        <li class="nav-item"><a href="collecte-de-fonds.html" class="nav-link">Collecte de fonds</a></li>
         <li class="nav-item"><a href="competitif-calendrier.html" class="nav-link">Calendrier</a></li>
         <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
         <li class="nav-item mobile-nav-cta"><a href="https://activitymessenger.com/p/0kjW5he" class="btn btn-blue" target="_blank" rel="noreferrer">S'inscrire</a></li>
@@ -835,6 +845,13 @@
       </div>
     </div>
   </header>
+
+  <aside class="fundraiser-banner" aria-label="Collecte de fonds pour un nouveau sol">
+    <div class="container fundraiser-banner-inner">
+      <p><strong>Un nouveau sol, un nouvel élan.</strong> Ensemble, soutenons le projet de flipgym.</p>
+      <a href="collecte-de-fonds.html">Découvrir la collecte <span aria-hidden="true">→</span></a>
+    </div>
+  </aside>
 
   <!-- STATS BAND -->
   <section class="stats-band" aria-label="Chiffres clés">

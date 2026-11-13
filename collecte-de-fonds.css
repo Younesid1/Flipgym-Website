@@ -1,0 +1,270 @@
+/* Identité Flipgym : bleu du club, Outfit / Inter et composants arrondis. */
+body { --text-muted: #475569; --surface: #f8fbff; }
+::selection { background: var(--blue); color: white; }
+.skip-link { position: fixed; top: -100px; left: 16px; z-index: 1100; background: white; color: var(--blue); padding: 14px 20px; border-radius: 8px; }
+.skip-link:focus { top: 12px; }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid #c85a30; outline-offset: 5px; }
+.nav-item:focus-within .dropdown-menu { opacity: 1; visibility: visible; transform: none; }
+.campaign-page { padding-top: 150px; }
+.campaign-page h1, .campaign-page h2, .campaign-page h3 { font-family: 'Outfit', sans-serif; }
+.campaign-page p { line-height: 1.75; }
+.eyebrow, .small-label { font: 800 .75rem/1.5 'Outfit', sans-serif; letter-spacing: .13em; text-transform: uppercase; }
+.eyebrow { display: flex; align-items: center; gap: 12px; color: var(--blue); margin-bottom: 20px; }
+.eyebrow > span:not(.eyebrow-dot) { color: #8a9cb3; }
+.eyebrow-dot { width: 7px; height: 7px; background: var(--blue); border-radius: 50%; box-shadow: 0 0 0 5px var(--blue-light); margin: 0 5px; flex-shrink: 0; }
+.campaign-hero { display: grid; grid-template-columns: minmax(0,1.3fr) minmax(0,1fr); gap: 54px; align-items: start; padding-bottom: 64px; }
+.hero-story h1 { font-size: clamp(3.2rem, 5.4vw, 4.7rem); letter-spacing: -.055em; line-height: 1.02; font-weight: 900; margin: 0 0 22px; }
+.hero-story h1 span { color: var(--blue); }
+.hero-lead { color: var(--text-muted); max-width: 560px; font-size: 1rem; }
+.hero-lead p + p { margin-top: 14px; }
+.hero-lead .hero-rally { font-weight: 600; color: var(--blue); }
+.hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 25px; margin-top: 28px; }
+.hero-funding-summary { display: none; }
+.campaign-btn { display: inline-flex; align-items: center; justify-content: center; gap: 18px; padding: 15px 24px; border: 1px solid transparent; border-radius: 50px; font: 700 .95rem/1.4 'Outfit', sans-serif; transition: transform .2s, box-shadow .2s, background .2s; text-align: center; }
+.campaign-btn span { font-size: 1.2rem; }
+.campaign-btn [data-donation-label] { font-size: inherit; }
+.campaign-btn.primary { background: var(--blue); color: white; box-shadow: 0 8px 20px rgba(16,72,139,.14); }
+.campaign-btn.primary:hover { background: var(--blue-deep); transform: translateY(-3px); box-shadow: 0 12px 25px rgba(16,72,139,.22); }
+.campaign-btn.light { background: white; color: var(--blue); width: 100%; }
+.campaign-btn.light:hover { background: #edf5fd; transform: translateY(-3px); }
+.text-link { display: inline-flex; align-items: center; gap: 14px; color: var(--blue); font: 700 .95rem/1.6 'Outfit', sans-serif; text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 5px; transition: text-decoration-color .2s; }
+.text-link:hover { text-decoration-color: currentColor; }
+.hero-photo { position: relative; margin-top: 36px; border-radius: 24px; overflow: hidden; background: var(--blue-soft); }
+.hero-photo img { width: 100%; height: auto; aspect-ratio: 8 / 5; object-fit: cover; object-position: 50% 64%; }
+.hero-photo figcaption { display: flex; align-items: center; gap: 12px; padding: 15px 18px; color: var(--blue); font: 600 .8rem/1.5 'Outfit', sans-serif; }
+.photo-line { width: 23px; height: 2px; background: var(--blue); flex-shrink: 0; }
+.funding-card { padding: 30px; background: var(--blue); color: white; border-radius: 28px; box-shadow: 0 22px 44px rgba(16,72,139,.14); }
+.funding-heading { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px; }
+.funding-heading .small-label { color: #d1e3f9; }
+.duration { font: 600 .72rem 'Outfit', sans-serif; border: 1px solid #6386b1; padding: 6px 10px; border-radius: 999px; white-space: nowrap; }
+.funding-card h2 { font-size: 1.9rem; letter-spacing: -.03em; line-height: 1.12; font-weight: 700; margin: 23px 0 0; }
+.funding-gauge { position: relative; width: min(100%,280px); aspect-ratio: 1; margin: 8px auto 10px; }
+.gauge-svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.gauge-outer { fill: none; stroke: #416da2; stroke-width: 1; stroke-dasharray: 1 7; }
+.gauge-track { fill: none; stroke: #39699f; stroke-width: 13; }
+.gauge-fill { fill: none; stroke: #ffbb95; stroke-width: 13; stroke-linecap: round; transform: rotate(-90deg); transform-origin: 140px 140px; }
+.gauge-fill.is-animating { animation: gauge-enter 1.25s cubic-bezier(.22,1,.36,1) both; }
+@keyframes gauge-enter { from { stroke-dashoffset: 100; } }
+.gauge-center { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 7px; }
+.gauge-caption { font-size: .8rem; color: #d1e3f9; }
+.gauge-center strong { font: 800 clamp(1.8rem,2.7vw,2.3rem)/1.2 'Outfit', sans-serif; letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
+.gauge-percentage { font-size: .8rem; color: #ffcfb6; }
+.funding-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 19px 0; border-top: 1px solid #426ea4; border-bottom: 1px solid #426ea4; }
+.funding-stats > div + div { border-left: 1px solid #426ea4; padding-left: 20px; }
+.funding-stats dt { color: #d1e3f9; font-size: .75rem; margin-bottom: 8px; }
+.funding-stats dd { font: 700 clamp(1.1rem,1.8vw,1.5rem) 'Outfit', sans-serif; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.funding-status { font-size: .8rem; text-align: center; padding: 14px 0; color: #e0edfc; }
+.funding-updated { grid-column: 2; font-size: .875rem; text-align: center; margin-top: 10px; color: #d1e3f9; }
+.funding-note { font-size: .875rem; text-align: center; margin-top: 14px; color: #d1e3f9; }
+.campaign-strip { background: var(--surface); border-block: 1px solid var(--border); }
+.strip-inner { display: flex; justify-content: space-between; gap: 20px; padding-block: 23px; color: var(--blue); font: 600 .9rem 'Outfit',sans-serif; }
+.strip-inner span { display: flex; align-items: center; gap: 16px; }
+.strip-inner span::before { content: '✦'; color: var(--blue); }
+.campaign-section { padding-top: 72px; padding-bottom: 72px; scroll-margin-top: 90px; }
+.section-heading { display: block; margin-bottom: 28px; }
+.campaign-section h2 { font-size: clamp(2.1rem,3.8vw,3.2rem); font-weight: 800; letter-spacing: -.04em; line-height: 1.1; }
+.text-blue { color: var(--blue); }
+.project-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; align-items: center; }
+.equipment-card { background: var(--blue-soft); border: 1px solid var(--border); border-radius: 28px; padding: 26px; overflow: hidden; }
+.equipment-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; color: var(--blue); }
+.equipment-tag { font-size: .68rem; border-radius: 999px; border: 1px solid #b6cee7; padding: 6px 10px; }
+.floor-visual { padding: 6px 0 15px; }
+.floor-official-photo:not([hidden]) { display: block; width: 100%; height: auto; aspect-ratio: 500 / 270; object-fit: contain; }
+.floor-visual [hidden] { display: none; }
+.floor-visual svg { display: block; width: 100%; height: auto; }
+.equipment-bottom { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.equipment-bottom h3 { font-size: 1.3rem; letter-spacing: -.02em; }
+.equipment-bottom p { color: var(--text-muted); font-size: .85rem; margin-top: 4px; }
+.dimension { background: white; color: var(--blue); border-radius: 12px; padding: 12px; font: 700 1rem 'Outfit',sans-serif; white-space: nowrap; }
+.diagram-note { font-size: .68rem; color: var(--text-muted); margin-top: 16px; }
+.project-details h3 { font-size: 2rem; line-height: 1.15; letter-spacing: -.025em; margin-bottom: 20px; }
+.project-details > p { color: var(--text-muted); }
+.project-fact { display: flex; align-items: center; gap: 20px; padding: 24px 0; border-block: 1px solid var(--border); margin: 24px 0; }
+.project-fact strong { color: var(--blue); font: 800 1.7rem 'Outfit',sans-serif; white-space: nowrap; }
+.project-fact span { color: var(--text-muted); font-size: .85rem; line-height: 1.6; }
+.impact-section { background: var(--surface); }
+.contribute-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 22px; }
+.impact-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+.impact-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 28px;
+}
+.impact-card h3 {
+  font-size: clamp(1.25rem, 2vw, 1.55rem);
+  letter-spacing: -.025em;
+  line-height: 1.15;
+  margin-bottom: 14px;
+}
+.impact-card p, .contribute-card p { color: var(--text-muted); font-size: .92rem; }
+.contribute-card { display: flex; flex-direction: column; align-items: flex-start; border: 1px solid var(--border); border-radius: 24px; padding: 28px; transition: border-color .2s, box-shadow .2s; }
+.contribute-card:hover { border-color: #91b1d4; box-shadow: var(--shadow-sm); }
+.contribute-card.featured { background: var(--blue-soft); }
+.contribute-card .small-label { color: var(--blue); font-size: .68rem; }
+.contribute-card h3 { font-size: 1.75rem; letter-spacing: -.025em; line-height: 1.15; margin: 22px 0 18px; }
+.contribute-card p { margin-bottom: 28px; }
+.contribute-card p:has(+ p) { margin-bottom: 12px; }
+.contribute-card > .text-link, .contribute-card > .campaign-btn { margin-top: auto; }
+.campaign-share { margin-top: auto; width: 100%; }
+.campaign-share summary { cursor: pointer; list-style: none; min-height: 44px; }
+.campaign-share summary::-webkit-details-marker { display: none; }
+.campaign-share[open] summary span { transform: rotate(180deg); }
+.campaign-share summary:focus-visible, .share-manual input:focus-visible {
+  outline: 3px solid #c85a30;
+  outline-offset: 4px;
+}
+.share-options { display: grid; gap: 4px; list-style: none; margin: 8px 0 0; padding: 0; }
+.share-options a, .share-options button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--blue);
+  font: 600 .9rem/1.4 'Outfit', sans-serif;
+  cursor: pointer;
+}
+.share-icon { flex: 0 0 18px; }
+.share-icon--facebook { color: #0866ff; }
+.share-options a:hover, .share-options button:hover { background: var(--blue-soft); }
+.share-feedback, .share-manual { color: var(--text-muted); font-size: .82rem; }
+.share-feedback:not(:empty), .share-manual:not([hidden]) { display: block; margin-top: 10px; }
+.share-manual input {
+  width: 100%;
+  margin-top: 4px;
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-muted);
+  font: inherit;
+}
+.contribute-card .campaign-btn { padding: 13px 16px; width: 100%; font-size: .85rem; gap: 8px; }
+.quiet-link { font-size: .78rem; color: var(--blue); text-decoration: underline; text-underline-offset: 4px; align-self: center; margin-top: 16px; padding: 4px; }
+.faq-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 70px; border-top: 1px solid var(--border); padding-top: 64px; }
+.faq-layout > div > p { color: var(--text-muted); margin-top: 24px; }
+.campaign-faq details { border-bottom: 1px solid var(--border); }
+.campaign-faq summary { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 22px 0; cursor: pointer; font: 600 1.05rem/1.5 'Outfit',sans-serif; list-style: none; }
+.campaign-faq summary::-webkit-details-marker { display: none; }
+.campaign-faq summary span { color: var(--blue); font-size: 1.5rem; transition: transform .2s; }
+.campaign-faq details[open] summary span { transform: rotate(45deg); }
+.campaign-faq details p { color: var(--text-muted); font-size: .9rem; padding-bottom: 22px; }
+.campaign-faq p a { color: var(--blue); text-decoration: underline; }
+.closing-note { display: flex; align-items: center; justify-content: space-between; gap: 26px; padding-block: 40px; border-top: 1px solid var(--border); margin-bottom: 66px; }
+.closing-note > span { font-size: 3rem; color: var(--blue); }
+.closing-note p { flex: 1; font-family: 'Outfit',sans-serif; color: var(--text-muted); }
+.closing-note strong { color: var(--text-dark); font-size: 1.3rem; }
+.reveal-ready { opacity: 0; transform: translateY(18px); transition: opacity .6s, transform .6s; }
+.reveal-ready.is-visible { opacity: 1; transform: none; }
+@media (min-width:981px) and (max-width:1150px) { .nav-cta { padding-inline: 18px; } }
+@media (max-width:1000px) { .campaign-hero { gap: 30px; } .funding-card { padding: 25px; } .project-grid, .section-heading { gap: 32px; } .impact-card, .contribute-card { padding: 23px; } .funding-stats > div + div { padding-left: 12px; } .strip-inner { font-size: .8rem; gap: 14px; } }
+@media (max-width:800px) { .campaign-page { padding-top: 128px; } .campaign-hero { grid-template-columns: 1fr; gap: 28px; padding-bottom: 40px; } .hero-story h1 { font-size: clamp(3rem,8vw,4.5rem); } .funding-card { display: grid; grid-template-columns: 1fr 1fr; gap: 0 28px; padding: 30px; } .funding-heading, .funding-card h2 { grid-column: 1/-1; } .funding-gauge { grid-row: span 4; margin: 16px auto 0; align-self: center; } .funding-stats { align-self: end; margin-top: 25px; } .funding-stats dd { font-size: 1.15rem; } .funding-note { grid-column: 2; } .funding-card h2 br { display: none; } .gauge-center strong { font-size: 1.8rem; } .section-heading, .project-grid { grid-template-columns: 1fr; gap: 26px; } .campaign-section { padding-block: 64px; } .impact-grid { gap: 14px; } .impact-card { padding: 22px 18px; } .impact-card h3 { font-size: 1.15rem; } .contribute-grid { grid-template-columns: 1fr; } .contribute-card h3 br { display: none; } .contribute-card > .campaign-btn { width: auto; } .quiet-link { align-self: flex-start; } .faq-layout { grid-template-columns: 1fr; gap: 26px; } .strip-inner { flex-wrap: wrap; justify-content: center; } }
+@media (max-width:540px) { .container { padding-inline: 20px; } .campaign-page { padding-top: 119px; } .eyebrow { font-size: .65rem; gap: 8px; margin-bottom: 18px; } .hero-story h1 { font-size: clamp(2.5rem,10.7vw,3.7rem); } .hero-lead { font-size: .96rem; } .hero-actions { gap: 20px; } .hero-actions .campaign-btn { width: 100%; } .hero-actions .text-link { margin-inline: auto; } .hero-photo { margin-top: 28px; border-radius: 20px; } .hero-photo figcaption { font-size: .71rem; padding: 13px; gap: 10px; } .funding-card { display: block; padding: 25px; border-radius: 24px; } .funding-card h2 { font-size: 1.8rem; } .funding-gauge { margin: 14px auto; } .gauge-center strong { font-size: 2.1rem; } .funding-stats { margin-top: 0; } .funding-stats { grid-template-columns: .85fr 1.15fr; gap: 10px; } .funding-stats dd { font-size: clamp(1rem, 5.4vw, 1.35rem); } .funding-stats > div + div { padding-left: 14px; } .strip-inner { flex-direction: column; gap: 13px; align-items: center; padding-block: 22px; } .strip-inner span { font-size: .85rem; } .campaign-section { padding-block: 54px; } .section-heading { margin-bottom: 28px; } .campaign-section h2 { font-size: 2.15rem; } .equipment-card { padding: 20px; border-radius: 22px; } .equipment-top { align-items: flex-start; } .equipment-tag { font-size: .58rem; } .equipment-top .small-label { font-size: .65rem; } .equipment-bottom { gap: 10px; } .equipment-bottom h3 { font-size: 1.1rem; } .dimension { font-size: .85rem; padding: 10px; } .project-details h3 { font-size: 1.8rem; } .project-fact { gap: 14px; } .project-fact strong { font-size: 1.6rem; } .impact-grid { grid-template-columns: 1fr; } .impact-card { padding: 26px; } .impact-card h3 { font-size: 1.35rem; } .contribute-card { padding: 26px; } .contribute-card > .campaign-btn { width: 100%; } .quiet-link { align-self: center; } .closing-note { flex-wrap: wrap; gap: 18px; padding-block: 30px; margin-bottom: 40px; } .closing-note > span { font-size: 2rem; } .closing-note p { font-size: .9rem; } .closing-note strong { font-size: 1.1rem; } .closing-note .campaign-btn { width: 100%; } }
+
+/* Contenu de campagne : soumission, renouvellement et mobilisation. */
+.project-details > p + p { margin-top: 16px; }
+.equipment-specs { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 20px; margin-top: 22px; padding-top: 20px; border-top: 1px solid var(--border); }
+.equipment-specs dt { color: var(--text-muted); font-size: .72rem; margin-bottom: 5px; }
+.equipment-specs dd { color: var(--blue); font: 600 .95rem/1.5 'Outfit', sans-serif; }
+.equipment-cost { grid-column: 1 / -1; display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding-top: 14px; border-top: 1px solid var(--border); }
+.equipment-cost dd { font-size: 1.15rem; white-space: nowrap; }
+.renewal-section {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr);
+  align-items: start;
+  gap: clamp(24px, 5vw, 64px);
+  padding-top: 0;
+}
+.renewal-section .section-heading { margin-bottom: 0; }
+.renewal-section h2 { font-size: clamp(2rem, 3.5vw, 3rem); }
+.renewal-grid { display: grid; gap: 14px; }
+.renewal-card {
+  padding: 22px 26px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+.renewal-card h3 { font-size: 1.2rem; line-height: 1.25; margin-bottom: 8px; }
+.renewal-card p { color: var(--text-muted); font-size: .92rem; }
+
+.initiatives-section { padding-bottom: clamp(12px, 2.5vw, 32px); }
+.initiatives-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: clamp(14px, 2vw, 22px);
+}
+.initiative-card {
+  --initiative-title: var(--blue-deep);
+  --initiative-text: var(--text-muted);
+  --initiative-line: rgba(16, 72, 139, .12);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  background: var(--blue-soft);
+}
+.initiative-card--fripgym {
+  --initiative-title: white;
+  --initiative-text: var(--blue-soft);
+  --initiative-line: rgba(255, 255, 255, .18);
+  border-color: var(--blue);
+  background: var(--blue);
+}
+.initiative-media img:not([hidden]) { display: block; width: 100%; aspect-ratio: 16 / 7; object-fit: cover; border-bottom: 1px solid var(--border); }
+.initiative-media [hidden], .initiative-credit[hidden] { display: none; }
+.initiative-body {
+  position: relative;
+  isolation: isolate;
+  flex: 1;
+  padding: clamp(26px, 3.5vw, 44px);
+}
+/* Deux contours évoquent les lignes du praticable. */
+.initiative-body::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: auto -58px -58px auto;
+  width: 140px;
+  aspect-ratio: 1;
+  border: 1px solid var(--initiative-line);
+  border-radius: 24px;
+  outline: 1px solid var(--initiative-line);
+  outline-offset: 8px;
+  pointer-events: none;
+}
+.initiative-body h3 { color: var(--initiative-title); font-size: clamp(1.65rem, 3vw, 2.25rem); line-height: 1.1; letter-spacing: -.03em; margin: 0 0 14px; }
+.initiative-body p { max-width: 46ch; color: var(--initiative-text); font-size: .92rem; }
+.initiative-body .initiative-credit { margin-top: 12px; font-size: .7rem; }
+@media (min-width:801px) {
+  .campaign-hero { align-items: stretch; }
+  .hero-story { display: flex; flex-direction: column; min-width: 0; }
+  .hero-story > * { flex-shrink: 0; }
+  .hero-actions { margin-bottom: 36px; }
+  .hero-photo { margin-top: auto; }
+  .hero-photo img { aspect-ratio: 16 / 9; }
+  .funding-card { align-self: stretch; display: flex; flex-direction: column; justify-content: space-between; }
+  .funding-gauge { flex-shrink: 0; }
+}
+@media (max-width:800px) {
+  .renewal-section { grid-template-columns: 1fr; padding-top: 0; }
+}
+@media (max-width:700px) { .initiatives-grid { grid-template-columns: 1fr; } .initiative-body::after { inset: auto -86px -86px auto; } }
+@media (max-width:800px) {
+  .hero-funding-summary:not([hidden]) {
+    display: block;
+    flex-basis: 100%;
+    color: var(--text-muted);
+    font-size: .95rem;
+  }
+  .hero-funding-summary strong { color: var(--blue); }
+  .hero-actions { row-gap: 12px; }
+}
+@media (max-width:540px) { .renewal-card { padding: 22px; } .equipment-cost { align-items: flex-start; flex-direction: column; gap: 4px; } .equipment-cost dd { font-size: 1.1rem; } .hero-lead p + p { margin-top: 12px; } }
+
+@media (max-width:540px) { .section-heading { margin-bottom: 24px; }   }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } .reveal-ready { opacity: 1; transform: none; } }
