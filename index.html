@@ -98,7 +98,16 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; font-size: 16px; }
-    body { font-family: 'Inter', sans-serif; color: var(--text-dark); background: var(--white); overflow-x: hidden; }
+    body { font-family: 'Inter', sans-serif; color: var(--text-dark); background: var(--white); overflow-x: hidden; padding-top: 40px; }
+    .announcement { position: fixed; inset: 0 0 auto; height: 40px; z-index: 1001; background: var(--blue); color: white; display: flex; align-items: center; }
+    .announcement-window { flex: 1; min-width: 0; overflow: hidden; }
+    .announcement-track { display: flex; width: max-content; animation: announcement-scroll 32s linear infinite; }
+    .announcement-track p { flex: none; white-space: nowrap; padding: 0 32px; font-size: .85rem; line-height: 40px; }
+    @keyframes announcement-scroll { to { transform: translateX(-50%); } }
+    @media (prefers-reduced-motion: reduce) {
+      .announcement-track { animation: none; }
+      .announcement-window { overflow-x: auto; }
+    }
     a { color: inherit; text-decoration: none; }
     img { max-width: 100%; display: block; }
     
@@ -152,7 +161,7 @@
        NAVBAR
     ═══════════════════════════════════════ */
     .navbar {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      position: fixed; top: 40px; left: 0; right: 0; z-index: 1000;
       padding: 20px 0; background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(10px); border-bottom: 1px solid transparent;
       transition: all 0.3s ease;
@@ -756,6 +765,11 @@
   </style>
   <link rel="stylesheet" href="mobile-footer.css" />
   <link rel="stylesheet" href="navigation.css" />
+  <style>
+    @media (max-width: 980px) {
+      .navbar.menu-open .nav-links { max-height: calc(100dvh - 155px); }
+    }
+  </style>
   <!-- Vercel Web Analytics -->
   <script>
     window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
@@ -763,6 +777,15 @@
   <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
+
+  <aside class="announcement" aria-label="Annonce des inscriptions Hiver 2027">
+    <div class="announcement-window" tabindex="0" aria-label="Dates d’inscription">
+      <div class="announcement-track">
+        <p>Hiver 2027 | Préinscriptions réservées aux membres : 14 décembre à 10 h • Inscriptions ouvertes à tous : 16 décembre à 10 h</p>
+        <p aria-hidden="true">Hiver 2027 | Préinscriptions réservées aux membres : 14 décembre à 10 h • Inscriptions ouvertes à tous : 16 décembre à 10 h</p>
+      </div>
+    </div>
+  </aside>
 
   <!-- NAVBAR -->
   <nav class="navbar" id="navbar">
